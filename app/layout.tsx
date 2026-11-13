@@ -3,6 +3,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
+import "./homepage.css";
+import "./header.css";
 
 export const metadata: Metadata = {
   title: {

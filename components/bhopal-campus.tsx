@@ -23,8 +23,8 @@ const campusDetails: Record<CampusKey, {
     partner: "SCOPE Global Skills University",
     introduction: "Study Clinical Embryology & ART in Central India, with specialist teaching, practical lab learning, and clinical exposure.",
     benefits: ["Industry-aligned curriculum", "Hands-on laboratory learning", "Career and placement support"],
-    image: "https://www.translationalhealthscience.in/wp-content/uploads/2025/12/group-chemical-engineers-working-laboratory-scaled.webp",
-    imageAlt: "Students working together in a laboratory",
+    image: "/images/campuses/bhopal.jpg",
+    imageAlt: "Scope Global Skills University campus in Bhopal",
     programmeHeading: "Clinical Embryology & ART programmes",
     programmeIntro: "Choose a pathway that fits your academic background and career goals.",
     programmes: [
@@ -46,8 +46,8 @@ const campusDetails: Record<CampusKey, {
     partner: "Rayat Bahra Professional University",
     introduction: "Study ART & Clinical Embryology with advanced laboratory learning, expert guidance, and practical clinical exposure.",
     benefits: ["Industry-aligned health science programmes", "Hands-on lab training and clinical exposure", "Career guidance and placement support"],
-    image: "/iths-learning-02.webp",
-    imageAlt: "Clinical researcher working with a microscope and cell samples",
+    image: "/images/campuses/hoshiarpur.jpg",
+    imageAlt: "Rayat Bahra Professional University campus in Hoshiarpur",
     programmeHeading: "ART & Clinical Embryology programmes",
     programmeIntro: "Explore undergraduate and postgraduate pathways offered at the Hoshiarpur campus.",
     programmes: [
@@ -68,8 +68,8 @@ const campusDetails: Record<CampusKey, {
     partner: "Bahra University",
     introduction: "Study Clinical Embryology and Stem Cell & Regenerative Medicine in a focused campus setting with practical laboratory and clinical learning.",
     benefits: ["Industry-aligned health science programmes", "Hands-on lab training and clinical exposure", "A peaceful hill campus for focused study"],
-    image: "/iths-learning-01.webp",
-    imageAlt: "Health science researchers studying genetics in a laboratory",
+    image: "/images/campuses/shimla-hills.jpg",
+    imageAlt: "Bahra University campus in Shimla Hills, Waknaghat",
     programmeHeading: "Clinical Embryology & Stem Cell programmes",
     programmeIntro: "Explore the study pathways listed for the Shimla campus.",
     programmes: [
@@ -91,8 +91,8 @@ const campusDetails: Record<CampusKey, {
     partner: "Rayat Bahra University",
     introduction: "Explore specialist health science programmes with laboratory learning and clinical exposure at the Rayat Bahra University campus.",
     benefits: ["Specialist health science programmes", "Hands-on lab training and clinical exposure", "Campus facilities and transport options"],
-    image: "/iths-learning-01.webp",
-    imageAlt: "Health science researchers studying genetics in a laboratory",
+    image: "/images/campuses/chandigarh-mohali.jpg",
+    imageAlt: "Rayat Bahra University campus in Mohali, Chandigarh",
     programmeHeading: "Health science programmes",
     programmeIntro: "Explore the programme areas listed for the Chandigarh (Mohali) campus.",
     programmes: [

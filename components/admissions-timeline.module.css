@@ -1,0 +1,369 @@
+/* Admissions Interactive Timeline Styles */
+
+.admissionsWrapper {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  padding: 20px 0 48px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(350px, 0.9fr);
+  gap: clamp(36px, 6vw, 84px);
+  align-items: start;
+}
+
+/* Left side: Timeline */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 8px 0 140px;
+}
+
+/* Vertical track connecting the circles */
+.track {
+  position: absolute;
+  width: 3px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.progressLine {
+  display: block;
+  width: 100%;
+  background: #E31E24;
+  border-radius: 3px;
+  box-shadow: 0 0 12px rgba(227, 30, 36, 0.45);
+  transition: height 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Step Card */
+.stepCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 24px;
+  align-items: start;
+  min-height: 120px;
+  padding: 16px 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  user-select: none;
+  transition: opacity 0.35s ease;
+}
+
+.stepCard:hover {
+  background: transparent;
+}
+
+.stepCard:not(.active) {
+  opacity: 0.6;
+}
+
+.stepCard:not(.active):hover {
+  opacity: 0.85;
+}
+
+/* Number Circle - stays anchored in a rock-solid vertical column */
+.numberCircle {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #64748b;
+  border: 2px solid #cbd5e1;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(20, 36, 71, 0.05);
+  transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+  margin-top: 2px;
+}
+
+/* Content block */
+.stepContent {
+  padding-top: 2px;
+}
+
+.stepContent h3 {
+  margin: 0 0 6px;
+  color: #142447;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.stepContent p {
+  margin: 0;
+  max-width: 480px;
+  color: #526078;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: color 0.25s ease;
+}
+
+/* Active Step State */
+.stepCard.active {
+  opacity: 1;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.stepCard.active .stepContent h3 {
+  color: #0c1833;
+  font-size: 19px;
+  font-weight: 800;
+  transform: none;
+}
+
+.stepCard.active .stepContent p {
+  color: #2e3c54;
+}
+
+.stepCard.active .numberCircle {
+  background: #E31E24;
+  color: #ffffff;
+  border-color: #E31E24;
+  box-shadow: 0 0 0 6px rgba(227, 30, 36, 0.16), 0 8px 22px rgba(227, 30, 36, 0.38);
+  transform: scale(1.08);
+}
+
+/* Right side: Illustration Card */
+.illustrationCard {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 520px;
+  padding: 32px 28px 26px;
+  background: linear-gradient(155deg, #ffffff 0%, #f4f8fe 50%, #eaf2fd 100%);
+  border: 1px solid #dce6f2;
+  border-radius: 26px;
+  box-shadow: 0 18px 48px rgba(20, 36, 71, 0.07);
+  overflow: hidden;
+  isolation: isolate;
+  text-align: center;
+}
+
+/* Background ambient light glow */
+.ambientGlow {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  width: 320px;
+  height: 320px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(195, 225, 255, 0.55) 0%, rgba(215, 235, 255, 0.1) 70%, transparent 100%);
+  border-radius: 50%;
+  filter: blur(36px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* SVG Illustration Canvas */
+.svgCanvas {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 430px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Animated illustration elements */
+.rotatingRing {
+  transform-origin: 260px 200px;
+  animation: rotateOrbit 45s linear infinite;
+}
+
+.floatingCap {
+  animation: floatCap 4.8s ease-in-out infinite;
+}
+
+.floatingBadge {
+  animation: floatBadge 3.6s ease-in-out infinite;
+}
+
+.pulseStarRed {
+  animation: starPulse 2.8s ease-in-out infinite;
+}
+
+.pulseStarBlue {
+  animation: starPulse 3.4s ease-in-out infinite 0.9s;
+}
+
+.floatingIcon1 {
+  animation: bobIcon 4.2s ease-in-out infinite;
+}
+
+.floatingIcon2 {
+  animation: bobIcon 4.6s ease-in-out infinite 1.2s;
+}
+
+.floatingIcon3 {
+  animation: bobIcon 5s ease-in-out infinite 0.6s;
+}
+
+.floatingIcon4 {
+  animation: bobIcon 4.4s ease-in-out infinite 1.8s;
+}
+
+/* Bottom info panel */
+.illustrationFooter {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(220, 230, 245, 0.8);
+}
+
+.caption {
+  margin: 0;
+  color: #142447;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Keyframe animations */
+@keyframes rotateOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes floatCap {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes floatBadge {
+  0%, 100% {
+    transform: translateY(0) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+}
+
+@keyframes bobIcon {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes starPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.75);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .stepCard.active .stepContent {
+    transform: none;
+  }
+
+  .illustrationCard {
+    position: static;
+    max-width: 580px;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 480px;
+    padding: 28px 24px 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .admissionsWrapper {
+    padding: 8px 0 24px;
+  }
+
+  .stepCard {
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    padding: 16px 14px 16px 8px;
+    min-height: 125px;
+  }
+
+  .numberCircle {
+    width: 42px;
+    height: 42px;
+    font-size: 14px;
+  }
+
+  .stepContent h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .stepContent p {
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .illustrationCard {
+    min-height: 410px;
+    padding: 22px 16px 18px;
+    border-radius: 20px;
+  }
+
+  .caption {
+    font-size: 13.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progressLine,
+  .stepCard,
+  .numberCircle,
+  .rotatingRing,
+  .floatingCap,
+  .floatingBadge,
+  .pulseStarRed,
+  .pulseStarBlue,
+  .floatingIcon1,
+  .floatingIcon2,
+  .floatingIcon3,
+  .floatingIcon4 {
+    transition: none !important;
+    animation: none !important;
+  }
+}

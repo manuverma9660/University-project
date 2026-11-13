@@ -12,7 +12,7 @@ const programmeLinks = [
 ];
 
 const quickLinks = [
-  { title: "About the University", href: "/about/" },
+  { title: "About ITHS", href: "/about/" },
   { title: "Departments", href: "/academics/" },
   { title: "Admissions", href: "/admissions/" },
   { title: "Research", href: "/research/" },
@@ -29,7 +29,7 @@ export function SiteFooter() {
           <Image className="footer-logo" src="/iths-logo.webp" alt="ITHS logo" width={515} height={290} />
           <span className="footer-brand-name">University of<br />Translational<br />Health Science</span>
         </Link>
-        <p>Education, research, and discovery in the health sciences.</p>
+        <p>Degrees and diplomas are awarded by the partner university associated with each programme.</p>
         <Link className="footer-contact" href="/enquire/">Enquire with ITHS <span aria-hidden="true">↗</span></Link>
       </div>
 

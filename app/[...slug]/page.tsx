@@ -17,6 +17,9 @@ import { NeurosciencePage } from "@/components/neuroscience-page";
 import { ApplicationPreviewForm, IthsSetPreviewForm } from "@/components/preview-forms";
 import { ContactDetails } from "@/components/contact-details";
 import { NewsEventsSection } from "@/components/news-events-section";
+import { ResearchOverview, ResearchRecordPage } from "@/components/research-page";
+import { isResearchPageAvailable } from "@/lib/research";
+import { navigationPublication } from "@/lib/site-map";
 
 type Props = { params: Promise<{ slug: string[] }> };
 const normalizedPath = (slug: string[]) => `/${slug.join("/")}/`;
@@ -26,7 +29,7 @@ function pageCopy(href: string, title: string) {
   const copy: Record<string, { intro: string; points: string[] }> = {
     "/about/founder-message/": { intro: "Ms. Jyoti Garhewal co-founded ITHS in 2023 and helped establish an academic degree in Nutrigenetics at Rayat Bahra University, Chandigarh. Her work connects genetic variation, diet, and individual health.", points: ["Ph.D. in Nutrigenetics", "Founder of India’s first academic Nutrigenetics programme, as described by ITHS", "Research record includes 8+ patents"] },
     "/about/director-message/": { intro: "Prof. Pulakes Purkait brings more than two decades of experience in reproductive medicine. ITHS describes its teaching approach as practical and clinically oriented, with laboratory skills and exposure to IVF clinic practice.", points: ["Ph.D. in Anthropology (Medical Genetics)", "Postdoctoral work in fetal programming", "ITHS lists 15+ patents and 30+ publications"] },
-    "/about/labs/": { intro: "ITHS describes practical learning in specialised health science laboratories alongside classroom study and clinical exposure. The 2024 prospectus lists facilities for embryology, andrology, stem cell science, nutrigenetics, molecular genetics, pathology, histology, microbiology, and anatomy and physiology.", points: ["Laboratory training is part of the institute’s stated approach", "Facility names are drawn from the published 2024 prospectus; confirm current access and equipment with admissions"] },
+    "/about/labs/": { intro: "ITHS describes practical learning in specialised health science laboratories alongside classroom study and clinical exposure. The 2024 prospectus lists facilities for embryology, andrology, stem cell science, nutrigenetics, molecular genetics, pathology, histology, microbiology, and anatomy and physiology.", points: ["Laboratory training is part of the university’s stated approach", "Facility names are drawn from the published 2024 prospectus; confirm current access and equipment with admissions"] },
     "/about/approvals-and-recognition/": { intro: "ITHS delivers programmes in association with university partners. The admission information identifies Rayat Bahra University, Rayat Bahra Professional University, Bahra University, and SCOPE Global Skills University as partner campuses. Confirm the awarding university and recognition status for your specific programme before applying.", points: ["Check the programme and campus combination", "Ask admissions for current recognition and awarding-body documentation"] },
     "/about/awards-and-recognitions/": { intro: "ITHS highlights its specialist teaching, research activity, and university partnerships. Recognition claims should be reviewed against the issuing body and the specific programme or campus.", points: ["Request the relevant award or recognition details from ITHS", "University recognition and programme approval can vary by course"] },
     "/admissions/eligibility/": { intro: "ITHS lists entry requirements by qualification level. The published criteria include minimum marks, and some programmes have their own subject requirements, so confirm the exact programme and campus combination with admissions before applying.", points: ["B.Sc. (Hons./Research): Class 12 with Physics, Chemistry, and Biology (PCB), minimum 50%", "M.Sc. and PG Diploma: bachelor’s degree in Life Sciences or Allied Health Sciences, minimum 50%", "Ph.D.: master’s degree in a relevant field, minimum 55%", "B.Tech Stem Cell & Tissue Engineering: Class 12 with PCM, minimum 50%"] },
@@ -36,8 +39,8 @@ function pageCopy(href: string, title: string) {
     "/admissions/courses-after-post-graduation/": { intro: "Applicants with a relevant master’s degree can ask about Ph.D. study in the departments that list doctoral pathways. ITHS publishes a general minimum of 55% at master’s level for Ph.D. entry; confirm the research area, supervisor availability, and current admission process.", points: ["Relevant master’s degree", "Published minimum: 55%", "Research topic and supervision availability require confirmation"] },
     "/admissions/how-to-apply/": { intro: "The ITHS admission page describes a five-step journey: submit an enquiry, apply online, upload documents, attend counselling, and confirm the seat by completing the required fee process.", points: ["Start with the course, campus, eligibility, and fee questions", "Use the official application route and submit the documents requested by admissions", "Confirm payment instructions directly with the university"] },
     "/admissions/scholarships-iths-set/": { intro: "The ITHS website promotes a free entrance test for its programmes and says top scorers may receive tuition fee waivers of up to 100%. Award levels, eligibility, test dates, and terms should be checked against the current official notice.", points: ["ITHS-SET registration is advertised as free", "Maximum advertised waiver: up to 100%", "A waiver is subject to official eligibility and award terms"] },
-    "/iths-set/": { intro: "ITHS-SET is the institute’s scholarship entrance test. The current website advertises free registration, a 30-minute test, and tuition fee waivers of up to 100% for top scorers across ITHS programmes. Check the official notice for the current test date, format, eligibility, and award conditions.", points: ["Registration: advertised as free", "Duration: 30 minutes", "Maximum advertised fee waiver: up to 100%, subject to terms"] },
-    "/admissions/national-scholarship-portal/": { intro: "Students can check whether they qualify for schemes listed on India’s National Scholarship Portal. Scheme rules, application windows, and required documents are set by the relevant government departments and can change each year.", points: ["Review scheme-specific eligibility on the official NSP portal", "Keep identity, income, category, and academic documents ready where applicable", "Contact your university partner’s scholarship office for institute procedures"] },
+    "/iths-set/": { intro: "ITHS-SET is the university’s scholarship entrance test. The current website advertises free registration, a 30-minute test, and tuition fee waivers of up to 100% for top scorers across ITHS programmes. Check the official notice for the current test date, format, eligibility, and award conditions.", points: ["Registration: advertised as free", "Duration: 30 minutes", "Maximum advertised fee waiver: up to 100%, subject to terms"] },
+    "/admissions/national-scholarship-portal/": { intro: "Students can check whether they qualify for schemes listed on India’s National Scholarship Portal. Scheme rules, application windows, and required documents are set by the relevant government departments and can change each year.", points: ["Review scheme-specific eligibility on the official NSP portal", "Keep identity, income, category, and academic documents ready where applicable", "Contact your university partner’s scholarship office for university procedures"] },
     "/admissions/for-parents/": { intro: "Families can speak with admissions about course fit, entry requirements, campus options, hostel arrangements, costs, and student support. The reference site says hostel facilities are available across its four campuses; confirm room availability, fees, and facilities with the selected university.", points: ["Ask for the programme and campus details in writing", "Confirm tuition, hostel, and other charges before enrolment", "Use the admissions helpline: +91 76966 14978"] },
     "/campus-life/": { intro: "ITHS describes campus life as a mix of academic study, laboratory and clinical exposure, collaborative learning, and student support. Its event and blog pages feature induction activities and student-facing academic events.", points: ["Orientation and induction activities", "Laboratory exposure and practical learning", "Student events and campus community"] },
     "/faqs/": { intro: "Find quick guidance on ITHS programmes, admissions, campuses, and practical learning. Course availability, fees, scholarship terms, and dates can change, so confirm current details with the admissions team.", points: ["Admissions helpline: +91 76966 14978", "Email: admission.iths@gmail.com", "Ask about a specific course and campus for the most accurate answer"] },
@@ -45,20 +48,21 @@ function pageCopy(href: string, title: string) {
   };
   if (copy[href]) return copy[href];
   if (href.startsWith("/programmes/")) return { intro: `Explore ${title.toLowerCase()} options across ITHS’s specialist health science departments. The published programme catalogue includes B.Sc., B.Tech, M.Sc., postgraduate diploma, and selected Ph.D. pathways. Exact subjects, entry criteria, duration, fees, and campus availability vary by programme and should be confirmed with admissions.`, points: ["Clinical Embryology & ART", "Cancer Biology, Stem Cell & Regenerative Medicine", "Nutrigenetics & Personalised Nutrition, Molecular Medicine, and Neuroscience"] };
-  if (href.startsWith("/academics/")) return { intro: `${title} is one of ITHS’s specialist study areas. The institute describes an applied approach that combines subject teaching with laboratory practice and, where relevant, clinical exposure. Course levels and campus options differ across disciplines.`, points: ["Review the listed programmes for this department", "Ask admissions to confirm current eligibility, duration, campus, and fees"] };
+  if (href.startsWith("/academics/")) return { intro: `${title} is one of ITHS’s specialist study areas. The university describes an applied approach that combines subject teaching with laboratory practice and, where relevant, clinical exposure. Course levels and campus options differ across disciplines.`, points: ["Review the listed programmes for this department", "Ask admissions to confirm current eligibility, duration, campus, and fees"] };
   if (href.startsWith("/admissions/")) return { intro: `${title} helps prospective students plan a route into ITHS health science programmes. Published guidance describes undergraduate entry after Class 12 and postgraduate routes for relevant graduates. Confirm the current course, eligibility, campus, fees, and deadlines with admissions before applying.`, points: ["Admissions cycle: 2026–27", "Helpline: +91 76966 14978", "Email: admission.iths@gmail.com"] };
-  if (href.startsWith("/about/")) return { intro: `${title} is part of ITHS’s institutional information. ITHS presents its work around specialist health science education, practical learning, and research, delivered in association with university partners.`, points: ["Explore the institute’s academic departments and campuses", "Contact ITHS for current approved records and details"] };
+  if (href.startsWith("/about/")) return { intro: `${title} is part of ITHS’s institutional information. ITHS presents its work around specialist health science education, practical learning, and research, delivered in association with university partners.`, points: ["Explore the university’s academic departments and campuses", "Contact ITHS for current approved records and details"] };
   if (href.startsWith("/campuses/")) return { intro: `${title} is part of ITHS’s four-campus network in Chandigarh, Hoshiarpur, Shimla, and Bhopal. Each location is associated with a university partner, and course availability differs by campus.`, points: ["Ask which ITHS programmes are currently offered at this location", "Confirm university, facilities, accommodation, and fees before applying"] };
-  return { intro: `${title} connects with ITHS’s teaching, research, student community, or university partnerships. The institute describes an applied learning model across specialist health science disciplines, supported by academic and campus activities.`, points: ["Explore related ITHS programmes and campus information", "Contact the institute for current details and approved records"] };
+  return { intro: `${title} connects with ITHS’s teaching, research, student community, or university partnerships. The university describes an applied learning model across specialist health science disciplines, supported by academic and campus activities.`, points: ["Explore related ITHS programmes and campus information", "Contact the university for current details and approved records"] };
 }
 
 export function generateStaticParams() {
-  return allRoutePages.map(page => ({ slug: page.href.split("/").filter(Boolean) }));
+  return allRoutePages.filter(page => (!page.href.startsWith("/research/") && page.href !== "/partnerships/") || isResearchPageAvailable(page.href, navigationPublication)).map(page => ({ slug: page.href.split("/").filter(Boolean) }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const href = normalizedPath(slug);
+  if ((href.startsWith("/research/") || href === "/partnerships/") && !isResearchPageAvailable(href, navigationPublication)) notFound();
   const page = lookup(href);
   return page ? { title: page.title, description: pageDescriptions[href] ?? `${page.title} at ${siteConfig.name}.` } : {};
 }
@@ -66,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function siblingLinks(href: string): SitePage[] {
   const group = navigation.find(item => href === item.href || item.columns?.some(column => column.items.some(child => child.href === href)) || item.items?.some(child => child.href === href));
   const list = group?.items ?? group?.columns?.flatMap(column => column.items) ?? [];
-  return list.filter(page => page.href !== href && !page.href.includes("#")).slice(0, 10);
+  return list.filter(page => page.href !== href && !page.href.includes("#") && ((!page.href.startsWith("/research/") && page.href !== "/partnerships/") || isResearchPageAvailable(page.href, navigationPublication))).slice(0, 10);
 }
 
 function RelatedLinks({ pages }: { pages: SitePage[] }) {
@@ -79,6 +83,11 @@ export default async function ContentPage({ params }: Props) {
   const href = normalizedPath(slug);
   const page = lookup(href);
   if (!page) notFound();
+  if (href === "/research/") return <ResearchOverview />;
+  if (href.startsWith("/research/") || href === "/partnerships/") {
+    if (!isResearchPageAvailable(href, navigationPublication)) notFound();
+    return <ResearchRecordPage href={href} />;
+  }
   const programmes = departmentProgrammes[href];
   const campus = campuses.find(item => item.href === href);
   const leader = leadership.find(person => person.href === href);
@@ -86,7 +95,7 @@ export default async function ContentPage({ params }: Props) {
   const crumbs = slug.map((part, index) => {
     const crumbHref = `/${slug.slice(0, index + 1).join("/")}/`;
     return lookup(crumbHref) ?? { href: crumbHref, title: part.replaceAll("-", " ").replace(/\b\w/g, character => character.toUpperCase()) };
-  });
+  }).filter(crumb => crumb.href !== "/partnerships/" || isResearchPageAvailable(crumb.href, navigationPublication));
   const isResearch = href.startsWith("/research/");
   const isConfirmedPending = ["/governance/iqac/"].includes(href) || isResearch;
   const isDirectory = ["/academics/", "/campuses/", "/about/", "/about/leadership/", "/admissions/", "/partnerships/", "/partnerships/university-partners/"].includes(href) || href.startsWith("/programmes/");

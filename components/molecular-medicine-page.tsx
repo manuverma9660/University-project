@@ -10,7 +10,7 @@ const fitItems = [
 const benefits = [
   ["UGC-approved university", "Programmes delivered at Rayat Bahra University, Mohali."],
   ["Lab exposure from year one", "Build practical familiarity with molecular and diagnostic methods."],
-  ["Research-led faculty", "Learn in an institute focused on translational health science."],
+  ["Research-led faculty", "Learn in a university focused on translational health science."],
   ["Placement support", "Get guidance for industry, research, and further study pathways."],
   ["Merit scholarship", "Ask admissions about current scholarship opportunities."],
   ["Personalised medicine", "Study the science behind modern diagnostics and targeted care."],
@@ -70,7 +70,7 @@ export function MolecularMedicinePage() {
     </section>
 
     <section className="molecular-benefits molecular-inner">
-      <header className="molecular-heading"><span className="molecular-eyebrow">THE INSTITUTE</span><h2>Why study at ITHS?</h2></header>
+      <header className="molecular-heading"><span className="molecular-eyebrow">THE UNIVERSITY</span><h2>Why study at ITHS?</h2></header>
       <div className="molecular-benefit-grid">{benefits.map(([title, text]) => <article key={title}><span aria-hidden="true">✦</span><h3>{title}</h3><p>{text}</p></article>)}</div>
     </section>
 
