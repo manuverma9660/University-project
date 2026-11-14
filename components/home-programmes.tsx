@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState, type FormEvent } from "react";
 import { departments } from "@/lib/site-content";
+import { getProgrammeHref } from "@/lib/course-catalogue";
 
 export const departmentImages = ["/clinical-embryology.webp", "/cancer-biology.webp", "/nutrigenetics.webp", "/stem-cell.webp", "/iths-learning-01.webp", "/iths-learning-02.webp"];
 
@@ -54,7 +55,7 @@ export function HomeProgrammes() {
       {active ? <article className="home-department-panel" id="home-department-panel" role="tabpanel" aria-labelledby={`department-tab-${active.index}`} tabIndex={0}>
         <div className="home-department-image"><Image src={departmentImages[active.index]} alt={`${active.shortTitle} study and laboratory learning`} fill sizes="(max-width: 760px) 100vw, 30vw" /></div>
         <div className="home-department-content"><p className="eyebrow">Explore your discipline</p><h3>{active.title}</h3><p>{descriptions[active.index]}</p>
-          <ul>{active.matched.map(programme => <li key={programme}><Link href={active.href}>{programme.length > 12 ? programme : `${programme} ${active.shortTitle}`}</Link></li>)}</ul>
+          <ul>{active.matched.map(programme => <li key={programme}><Link href={getProgrammeHref(active.href, programme)}>{programme.length > 12 ? programme : `${programme} ${active.shortTitle}`}</Link></li>)}</ul>
           <div className="home-button-row"><Link className="button button-red" href={`/enquire/?department=${encodeURIComponent(active.shortTitle)}`}>Enquire</Link><Link className="home-outline-button" href={active.href}>View department <span aria-hidden="true">&rarr;</span></Link></div>
         </div>
       </article> : <div className="home-empty" role="status"><h3>No programmes match these filters</h3><p>Choose another department or programme type.</p><button className="button button-primary" type="button" onClick={() => { setDepartment(""); setLevel(""); }}>Reset filters</button></div>}

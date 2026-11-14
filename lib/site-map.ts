@@ -1,3 +1,5 @@
+import { courseCatalogue } from "@/lib/course-catalogue";
+
 export type SitePage = { title: string; href: string; description?: string; status?: string };
 export type NavigationGroup = { label: string; href: string; columns?: { title: string; items: SitePage[] }[]; items?: SitePage[]; direct?: boolean };
 
@@ -13,7 +15,7 @@ export const navigation: NavigationGroup[] = [
   },
   {
     label: "Courses", href: "/academics/", columns: [
-      { title: "Departments", items: pages([["All Departments", "/academics/"], ["Clinical Embryology & ART", "/academics/clinical-embryology-art/"], ["Cancer Biology", "/academics/cancer-biology/"], ["Nutrigenetics & Personalised Nutrition", "/academics/nutrigenetics-personalised-nutrition/"], ["Stem Cell & Regenerative Medicine", "/academics/stem-cell-regenerative-medicine/"], ["Molecular Medicine", "/academics/molecular-medicine/"], ["Neuroscience", "/academics/neuroscience/"]]) },
+      { title: "Departments", items: [{ title: "All Courses", href: "/programs/" }, ...courseCatalogue.map(course => ({ title: course.title, href: course.href }))] },
       { title: "Programmes", items: pages([["All Programmes", "/programmes/"], ["Undergraduate", "/programmes/undergraduate/"], ["Postgraduate", "/programmes/postgraduate/"], ["Diploma", "/programmes/diploma/"], ["Doctoral (PhD)", "/programmes/doctoral/"], ["Certificate Programmes", "/programmes/certificate/"], ["PG Diploma", "/programmes/pg-diploma/"], ["Fellowship Programmes", "/programmes/fellowship/"], ["Training Programmes", "/programmes/training/"]]) },
     ]
   },
@@ -27,8 +29,8 @@ export const navigation: NavigationGroup[] = [
   },
   { label: "Life @ ITHS", href: "/campus-life/", items: pages([["ITHS Events", "/events/"], ["Life at ITHS", "/campus-life/"], ["ITHS Wellness Studio", "/wellness-studio/"]]) },
   {
-    label: "ITHS Events", href: "/events/", columns: [
-      { title: "Research at ITHS", items: pages([["Research at ITHS", "/research/"], ["Research and Development", "/research/research-and-development/"], ["Publications", "/research/publications/"], ["Patents", "/research/patents/"], ["PhD Scholars", "/research/phd-scholars/"], ["Research Projects", "/research/projects/"], ["ITHS Research Club (UG and PG research teams)", "/research/research-club/"], ["CIPRI: Centre for Intellectual Property Right & Innovation", "/research/cipri/"], ["Research Collaborators", "/research/collaborators/"], ["Partnerships", "/partnerships/"], ["University Partners", "/partnerships/university-partners/"]]) },
+    label: "Research", href: "/research/", columns: [
+      { title: "Research at ITHS", items: pages([["Research at ITHS", "/research/"], ["Research and Development", "/research/research-and-development/"], ["Publications", "/research/publications/"], ["Patents", "/research/patents/"], ["PhD Scholars", "/research/phd-scholars/"], ["Research Projects", "/research/projects/"], ["ITHS Research Club (UG and PG research teams)", "/research/research-club/"], ["CIPRI: Centre for Intellectual Property Rights & Innovation", "/research/cipri/"], ["Research Collaborators", "/research/collaborators/"], ["Partnerships", "/partnerships/"], ["University Partners", "/partnerships/university-partners/"]]) },
     ]
   },
   { label: "Contact Us", href: "/contact/", direct: true },
@@ -40,6 +42,14 @@ export const quickLinks: SitePage[] = [
   { title: "Apply Online", href: "/apply/" },
 ];
 
+export const headerUtilityLinks: SitePage[] = [
+  { title: "Placements", href: "/placed-students/" },
+  { title: "Our Campuses", href: "/campuses/" },
+  { title: "FAQs", href: "/faqs/" },
+  { title: "Blog", href: "/blog/" },
+  { title: "Work at ITHS", href: "/work-at-iths/" },
+];
+
 export const routePages: SitePage[] = [
   ...navigation.flatMap(group => [
     { title: group.label, href: group.href },
@@ -47,6 +57,10 @@ export const routePages: SitePage[] = [
     ...(group.columns ?? []).flatMap(column => column.items),
   ]),
   ...quickLinks,
+  ...headerUtilityLinks,
+  ...courseCatalogue.map(course => ({ title: course.title, href: course.href })),
+  ...courseCatalogue.map(course => ({ title: course.title, href: course.departmentHref })),
+  { title: "Health Science Courses", href: "/programs/" },
   { title: "Enquire", href: "/enquire/" },
   { title: "Cancer Biology Course", href: "/programs/cancer-biology/" },
   { title: "Placed Students", href: "/placed-students/" },
@@ -68,9 +82,16 @@ export const pageDescriptions: Record<string, string> = {
   "/research/research-and-development/": "Explore health science research directions, laboratory learning and how to discuss research opportunities with ITHS.",
   "/research/research-club/": "Explore research skills, scientific reading and participation enquiries for undergraduate and postgraduate students at ITHS.",
   "/research/publications/": "Find information about scientific publications, patents and how to request research documentation from ITHS.",
+  "/research/patents/": "Request verified patent and intellectual property information from ITHS.",
+  "/research/phd-scholars/": "Explore doctoral research areas and enquire about current scholar profiles and supervision.",
+  "/research/projects/": "Explore ITHS health science research directions and discuss project ideas.",
+  "/research/cipri/": "Contact ITHS about the Centre for Intellectual Property Rights and Innovation.",
+  "/research/collaborators/": "Enquire about research collaboration with ITHS and its university partners.",
   "/campuses/": "Explore ITHS campus locations and university collaborations.",
   "/placed-students/": "Meet ITHS graduates who have given written consent to share their placement stories.",
   "/events/": "Explore events, workshops, and moments from the ITHS campus community.",
+  "/wellness-studio/": "Explore wellbeing, mindful breaks, healthy study routines, and community support at ITHS.",
+  "/contact/": "Contact ITHS admissions for course guidance, campus information, and general enquiries.",
 };
 
 export const departmentProgrammes: Record<string, string[]> = {

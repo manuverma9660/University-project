@@ -1,12 +1,14 @@
 import Link from "next/link";
+import Image from "next/image";
 import { campuses, departments, leadership, programmeCategories, universityPartners } from "@/lib/site-content";
+import { courseCatalogue, getProgrammeHref } from "@/lib/course-catalogue";
 
 export function DepartmentDirectory() {
   return <div className="directory-grid">
-    {departments.map((department, index) => <Link className="directory-card" href={department.href} key={department.href}>
-      <span className="directory-number">0{index + 1}</span><h2>{department.shortTitle}</h2><p>{department.description}</p>
+    {departments.map((department, index) => { const course = courseCatalogue.find(item => item.departmentHref === department.href); return <Link className="directory-card" href={department.href} key={department.href}>
+      {course && <div className="directory-card-image"><Image src={course.image} alt="" fill sizes="(max-width: 760px) 90vw, 33vw" /></div>}<span className="directory-number">0{index + 1}</span><h2>{department.shortTitle}</h2><p>{department.description}</p>
       <div className="directory-tags">{department.programmes.map(programme => <span key={programme}>{programme}</span>)}</div><b>Explore department <span aria-hidden="true">↗</span></b>
-    </Link>)}
+    </Link>; })}
   </div>;
 }
 
@@ -23,7 +25,7 @@ export function ProgrammeDirectory({ href }: { href: string }) {
 
   return <>
     {offerings.length ? <div className="directory-grid">
-      {offerings.map(department => <Link className="directory-card" href={department.href} key={department.href}><span className="directory-number">{category.title}</span><h2>{department.shortTitle}</h2><p>{department.description}</p><div className="directory-tags">{department.matched.map(programme => <span key={programme}>{programme}</span>)}</div><b>View department <span aria-hidden="true">↗</span></b></Link>)}
+      {offerings.map(department => <Link className="directory-card" href={getProgrammeHref(department.href, department.matched.length === 1 ? department.matched[0] : "")} key={department.href}><span className="directory-number">{category.title}</span><h2>{department.shortTitle}</h2><p>{department.description}</p><div className="directory-tags">{department.matched.map(programme => <span key={programme}>{programme}</span>)}</div><b>View department <span aria-hidden="true">↗</span></b></Link>)}
     </div> : <div className="content-notice"><strong>Programme details pending from ITHS</strong><p>Specific {category.title.toLowerCase()} offerings will be listed here when confirmed for the 2026–27 admission cycle.</p></div>}
   </>;
 }

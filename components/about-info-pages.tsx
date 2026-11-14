@@ -1,0 +1,46 @@
+import Image from "next/image";
+import Link from "next/link";
+import { departments, universityPartners } from "@/lib/site-content";
+import styles from "./about-info-pages.module.css";
+
+const labAreas = [
+  { title: "Clinical Embryology & Andrology", text: "Explore the laboratory methods and reproductive science at the heart of clinical embryology education.", image: "/clinical-embryology.webp", alt: "Clinical embryology laboratory learning", href: "/academics/clinical-embryology-art/" },
+  { title: "Stem Cell & Regenerative Medicine", text: "Discover cell culture, stem cell science and the foundations of regenerative research.", image: "/stem-cell.webp", alt: "Stem cell research and regenerative medicine", href: "/academics/stem-cell-regenerative-medicine/" },
+  { title: "Molecular Genetics", text: "Learn about molecular approaches used to understand genes, health and disease.", image: "/images/about-iths-dna-research.webp", alt: "DNA research and molecular genetics", href: "/academics/molecular-medicine/" },
+  { title: "Cancer Biology", text: "Study cellular and molecular processes that help explain cancer biology.", image: "/cancer-biology.webp", alt: "Cancer biology research", href: "/academics/cancer-biology/" },
+  { title: "Nutrigenetics", text: "Explore the relationship between genetic variation, nutrition and personalised health.", image: "/nutrigenetics.webp", alt: "Nutrigenetics and personalised nutrition", href: "/academics/nutrigenetics-personalised-nutrition/" },
+  { title: "Practical Lab Learning", text: "Get a glimpse of student laboratory exposure and hands-on learning at ITHS.", image: "/images/notices/Laboratory-Exposure-Session-ITHS-1024x683.webp", alt: "ITHS students taking part in a laboratory exposure session", href: "/events/" },
+];
+
+function DetailHero({ eyebrow, title, text, image, alt }: { eyebrow: string; title: string; text: string; image: string; alt: string }) {
+  return <section className={styles.hero}><div className={styles.heroImage}><Image src={image} alt={alt} fill priority sizes="(max-width: 760px) 100vw, 50vw" /></div><div className={styles.heroCopy}><p className={styles.eyebrow}>{eyebrow}</p><h1>{title}</h1><p>{text}</p></div></section>;
+}
+
+export function AboutLabsPage() {
+  return <main id="main-content" className={styles.page}>
+    <DetailHero eyebrow="Explore ITHS laboratories" title="Learning beyond the classroom" text="Take a closer look at the specialist health science fields and practical learning experiences at ITHS. Laboratory facilities and access vary by campus and programme." image="/images/notices/Laboratory-Exposure-Session-ITHS-1024x683.webp" alt="Students learning in an ITHS laboratory" />
+    <section className={styles.section}><div className={styles.container}><header className={styles.sectionHead}><p className={styles.eyebrow}>Lab gallery</p><h2>Explore our learning areas</h2><p>ITHS prospectus information describes practical learning across specialist laboratory subjects. Browse a few areas connected with our academic departments.</p></header><div className={styles.labGrid}>{labAreas.map(lab=><article className={styles.labCard} key={lab.title}><Link href={lab.href} className={styles.labImage}><Image src={lab.image} alt={lab.alt} fill sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 33vw" /></Link><div><p className={styles.cardLabel}>ITHS lab learning</p><h3><Link href={lab.href}>{lab.title}</Link></h3><p>{lab.text}</p><Link className={styles.textLink} href={lab.href}>Explore subject <span aria-hidden="true">→</span></Link></div></article>)}</div></div></section>
+    <section className={styles.noteSection}><div className={styles.container}><div><p className={styles.eyebrow}>Plan a campus visit</p><h2>See what is available for your course.</h2><p>Facilities, equipment and practical access can differ between campuses and programmes. Contact admissions to confirm current details for your preferred study option.</p></div><Link className={styles.button} href="/contact/">Ask about lab facilities <span aria-hidden="true">→</span></Link></div></section>
+  </main>;
+}
+
+export function AboutFacultyPage() {
+  return <main id="main-content" className={styles.page}>
+    <DetailHero eyebrow="ITHS academic community" title="Faculty & subject expertise" text="ITHS brings together specialist health science teaching across laboratory, translational and clinical subject areas. Explore the academic departments and their study pathways." image="/iths-learning-02.webp" alt="Students learning collaboratively at ITHS" />
+    <section className={styles.section}><div className={styles.container}><header className={styles.sectionHead}><p className={styles.eyebrow}>Academic departments</p><h2>Expertise across health science</h2><p>Browse each department to explore its programmes and learning focus.</p></header><div className={styles.departmentGrid}>{departments.map((department,index)=><Link href={department.href} className={styles.departmentCard} key={department.href}><span>0{index+1}</span><h3>{department.shortTitle}</h3><p>{department.description}</p><b>View department <span aria-hidden="true">→</span></b></Link>)}</div><p className={styles.disclosure}>Faculty appointments and biographies are published when current details have been confirmed by ITHS.</p></div></section>
+  </main>;
+}
+
+export function AboutAwardsPage() {
+  return <main id="main-content" className={styles.page}>
+    <DetailHero eyebrow="Recognition & academic milestones" title="Building specialist health science education" text="ITHS highlights its work in specialist teaching, practical learning and research alongside university partners. Recognition and awards should always be checked against the issuing organisation and the relevant programme." image="/images/about-iths-biomedical.webp" alt="Biomedical science and health research" />
+    <section className={styles.section}><div className={styles.container}><header className={styles.sectionHead}><p className={styles.eyebrow}>Our areas of work</p><h2>Milestones in specialist learning</h2><p>ITHS focuses on emerging areas of health science through academic programmes, laboratory learning and research activity.</p></header><div className={styles.milestoneGrid}><article><span>01</span><h3>Specialist programmes</h3><p>Study pathways span clinical embryology, cancer biology, nutrigenetics, stem cell science, molecular medicine and neuroscience.</p></article><article><span>02</span><h3>Research activity</h3><p>ITHS describes faculty research, patents and publications as part of its academic work. Ask for current supporting records and details.</p></article><article><span>03</span><h3>University collaboration</h3><p>Programmes are associated with university partners. The awarding university and recognition status depend on the specific course and campus.</p></article></div><div className={styles.disclosurePanel}><strong>Checking an award or recognition?</strong><p>Request the issuing body, award year, scope and supporting documentation. For programme approval or degree recognition, confirm the exact programme and campus with admissions.</p><Link className={styles.textLink} href="/about/approvals-and-recognition/">View approvals and recognition <span aria-hidden="true">→</span></Link></div></div></section>
+  </main>;
+}
+
+export function AboutApprovalsPage() {
+  return <main id="main-content" className={styles.page}>
+    <DetailHero eyebrow="University collaborations" title="Approvals & recognition" text="ITHS programmes are delivered in association with university partners. Check the awarding university and current approval details for your specific course and campus before applying." image="/images/campuses/chandigarh-mohali.jpg" alt="University campus associated with ITHS programmes" />
+    <section className={styles.section}><div className={styles.container}><header className={styles.sectionHead}><p className={styles.eyebrow}>Partner universities</p><h2>Confirm the right campus and awarding body</h2><p>ITHS lists the following university partners across its campus network. Programme availability differs by location.</p></header><div className={styles.partnerGrid}>{universityPartners.map(partner=><article key={partner.name}><div><Image src={partner.logo.replace("https://www.translationalhealthscience.in/wp-content/uploads/2026/03/1.png", "/home/partner-rbu.png").replace("https://www.translationalhealthscience.in/wp-content/uploads/2026/03/2.png", "/home/partner-bahra.png").replace("https://www.translationalhealthscience.in/wp-content/uploads/2026/03/3.png", "/home/partner-rbpu.png").replace("https://www.translationalhealthscience.in/wp-content/uploads/2026/03/4.png", "/home/partner-scope.png")} alt={`${partner.name} logo`} width={240} height={90} /></div><h3>{partner.name}</h3><p>{partner.city}</p></article>)}</div><div className={styles.disclosurePanel}><strong>Before you apply</strong><p>Ask admissions to confirm the awarding university, current programme approval, campus availability and the relevant official documentation for your chosen course.</p><Link className={styles.button} href="/contact/">Contact admissions <span aria-hidden="true">→</span></Link></div></div></section>
+  </main>;
+}

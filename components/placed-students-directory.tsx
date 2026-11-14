@@ -33,6 +33,9 @@ export function PlacedStudentsDirectory() {
   const hasFilters = department !== "all" || campus !== "all" || year !== "all";
 
   return <>
+    <div className="placement-page-feature"><div><p className="eyebrow">Career pathways</p><h2>Prepare for what comes next.</h2><p>ITHS supports students as they explore opportunities across health science, research and further study. The right pathway depends on your qualification, experience and goals.</p><Link href="/contact/">Ask about placement support <span aria-hidden="true">→</span></Link></div><Image src="/images/notices/New-Batch-at-ITHS-2026.webp" alt="ITHS students beginning their academic journey" width={900} height={600} /></div>
+    <div className="placement-pathways">{[["01","Explore career areas","Ask about roles related to your programme and interests."],["02","Build your profile","Develop practical skills and prepare your CV with guidance."],["03","Plan your next step","Discuss employment, research and further study options."]].map(([number,title,text])=><article key={number}><span>{number}</span><h2>{title}</h2><p>{text}</p></article>)}</div>
+    <p className="placement-note">Placement guidance and opportunities vary by programme and intake. Contact ITHS for current information. Student placement stories are shared only with written consent.</p>
     <div className="placement-filter" aria-label="Filter placed students">
       <label>Department<select value={department} onChange={event => setDepartment(event.target.value)}><option value="all">All departments</option>{departments.map(item => <option value={item.shortTitle} key={item.href}>{item.shortTitle}</option>)}</select></label>
       <label>Campus<select value={campus} onChange={event => setCampus(event.target.value)}><option value="all">All campuses</option><option>Hoshiarpur</option><option>Mohali</option><option>Shimla Hills (Waknaghat)</option><option>Bhopal</option></select></label>

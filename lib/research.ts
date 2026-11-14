@@ -1,13 +1,13 @@
 export const researchSections = [
-  { title: "Research at ITHS", href: "/research/", group: "Research & innovation", description: "Explore research information and specialist health science departments." },
-  { title: "Research and Development", href: "/research/research-and-development/", group: "Research & innovation", description: "Research priorities, facilities and approved institutional activities." },
-  { title: "Publications", href: "/research/publications/", group: "Research & innovation", description: "Published work with authorship, journal details and source references." },
-  { title: "Patents", href: "/research/patents/", group: "Research & innovation", description: "Intellectual property records with application details and recorded status." },
-  { title: "PhD Scholars", href: "/research/phd-scholars/", group: "People & partnerships", description: "Approved scholar profiles, research topics and supervision details." },
-  { title: "Research Projects", href: "/research/projects/", group: "Research & innovation", description: "Documented projects, research teams and project status." },
-  { title: "ITHS Research Club (UG and PG research teams)", href: "/research/research-club/", group: "People & partnerships", description: "Undergraduate and postgraduate research teams and their activities." },
-  { title: "CIPRI: Centre for Intellectual Property Right & Innovation", href: "/research/cipri/", group: "Research & innovation", description: "Approved information about intellectual property and innovation activities." },
-  { title: "Research Collaborators", href: "/research/collaborators/", group: "People & partnerships", description: "Documented research collaborations and their areas of work." },
+  { title: "Research at ITHS", href: "/research/", group: "Research & innovation", description: "Explore research guidance and specialist health science departments." },
+  { title: "Research and Development", href: "/research/research-and-development/", group: "Research & innovation", description: "Explore health science research directions and how to discuss a research idea." },
+  { title: "Publications", href: "/research/publications/", group: "Research & innovation", description: "Request verified publication citations and journal or source details." },
+  { title: "Patents", href: "/research/patents/", group: "Research & innovation", description: "Request verified patent and intellectual property information." },
+  { title: "PhD Scholars", href: "/research/phd-scholars/", group: "People & partnerships", description: "Explore doctoral research areas and enquire about current scholars and supervision." },
+  { title: "Research Projects", href: "/research/projects/", group: "Research & innovation", description: "Explore project directions and ask ITHS about current approved project records." },
+  { title: "ITHS Research Club (UG and PG research teams)", href: "/research/research-club/", group: "People & partnerships", description: "Explore student research skills and ask about current club activities." },
+  { title: "CIPRI: Centre for Intellectual Property Rights & Innovation", href: "/research/cipri/", group: "Research & innovation", description: "Contact ITHS about current intellectual property and innovation information." },
+  { title: "Research Collaborators", href: "/research/collaborators/", group: "People & partnerships", description: "Enquire about documented research collaborations and current agreements." },
   { title: "Partnerships", href: "/partnerships/", group: "People & partnerships", description: "Institutional partnerships supported by signed agreements." },
 ] as const;
 
@@ -52,19 +52,99 @@ export const researchTopics: Record<string, {
     ],
   },
   "/research/publications/": {
-    title: "Publications and Patents",
-    intro: "Explore how scientific work is documented and shared. For ITHS publication references, patent details or supporting documents, contact the university research team.",
+    title: "Publications",
+    intro: "Explore how scientific work is documented and shared. For ITHS publication references or supporting documents, contact the university research team.",
     heading: "Explore research outputs.",
     areas: [
-      { title: "Scientific publications", text: "A publication record identifies the authors, work title, journal or publisher, year and a DOI or source link. Request these details when enquiring about ITHS research.", href: "/contact/?topic=publications", link: "Request publication references" },
-      { title: "Patents and intellectual property", text: "Patent details include the invention title, applicant or inventor, application number and recorded status. An application and a granted patent represent different stages.", href: "/contact/?topic=patents", link: "Enquire about patent records" },
+      { title: "Scientific publications", text: "A publication record identifies the authors, work title, journal or publisher, year and a DOI or source link. Request these details when enquiring about ITHS research.", href: "/enquire/?topic=publications", link: "Request publication references" },
+      { title: "Publication sources", text: "Use a DOI, journal page or publisher record to confirm a paper’s title, authors, publication year and version.", href: "/enquire/?topic=publications", link: "Request publication references" },
       { title: "Student research", text: "Interested in learning how to read and discuss research? Explore the Research Club and ask about current opportunities to participate.", href: "/research/research-club/", link: "Explore the Research Club" },
     ],
-    stepsTitle: "Request the information you need.",
+    stepsTitle: "Request publication references.",
     steps: [
-      { title: "Name the subject", text: "Include the research area, author, invention or title you are asking about, if known." },
-      { title: "Specify the record", text: "Ask for a publication citation, source document or patent application reference and its current recorded status." },
-      { title: "Contact ITHS", text: "The university team can help with available references and questions about research documentation." },
+      { title: "Name the subject", text: "Include the research area, author, publication title or year, if known." },
+      { title: "Ask for the citation", text: "Request the journal or publisher details and a DOI or official source link." },
+      { title: "Check the source", text: "Confirm the publication details against the journal or publisher record before citing the work." },
+    ],
+  },
+  "/research/patents/": {
+    title: "Patents and Intellectual Property",
+    intro: "Find guidance on requesting verified patent information from ITHS. Application and grant details should always be checked against the official patent record.",
+    heading: "Understand an intellectual property record.",
+    areas: [
+      { title: "Patent status", text: "A published application, a pending application and a granted patent are different stages. Ask for the current record and its source before citing it.", href: "/enquire/?topic=patents", link: "Ask about a patent record" },
+      { title: "Invention details", text: "A useful reference includes the invention title, inventor or applicant, application number, filing date and jurisdiction where available.", href: "/enquire/?topic=patents", link: "Request available details" },
+      { title: "Research and translation", text: "Explore ITHS research directions and academic areas that may connect with health science innovation.", href: "/research/research-and-development/", link: "Explore research directions" },
+    ],
+    stepsTitle: "Request a verified patent reference.",
+    steps: [
+      { title: "Identify the record", text: "Share a known title, inventor name or application number so the team can identify the record you mean." },
+      { title: "Ask for its status", text: "Request the source document or official register entry and confirm whether it is an application or a grant." },
+      { title: "Cite the source", text: "Use the verified application or grant details when referencing intellectual property information." },
+    ],
+  },
+  "/research/phd-scholars/": {
+    title: "PhD Scholars",
+    intro: "Explore doctoral research areas and ask ITHS about current scholar profiles, supervision and opportunities. A verified scholar directory is not currently published on this page.",
+    heading: "Start with a research area that interests you.",
+    areas: [
+      { title: "Choose a discipline", text: "Review specialist academic areas such as molecular medicine, neuroscience, cancer biology and regenerative science.", href: "/academics/", link: "Explore academic departments" },
+      { title: "Discuss supervision", text: "Ask the academic team whether an appropriate research supervisor and subject area are currently available.", href: "/enquire/?topic=research", link: "Contact the research team" },
+      { title: "Review study requirements", text: "Doctoral entry requirements and current openings should be confirmed with admissions for the intended intake.", href: "/admissions/courses-after-post-graduation/", link: "Explore doctoral admission guidance" },
+    ],
+    stepsTitle: "Plan a doctoral enquiry.",
+    steps: [
+      { title: "Share your background", text: "Include your relevant master’s degree, subject area and research experience." },
+      { title: "Describe your interests", text: "Outline the health science question or topic you would like to explore." },
+      { title: "Confirm availability", text: "Ask about current openings, supervision, eligibility and the application process." },
+    ],
+  },
+  "/research/projects/": {
+    title: "Research Projects",
+    intro: "Explore health science research directions and learn how to discuss a project idea with ITHS. A verified project list, team details and project statuses are not currently published here.",
+    heading: "Turn a question into a project plan.",
+    areas: [
+      { title: "Cancer and cellular science", text: "Explore cancer biology and cellular research as starting points for a focused question about health.", href: "/academics/cancer-biology/", link: "Explore cancer biology" },
+      { title: "Regenerative medicine", text: "Learn about stem cell and regenerative science study areas, then ask about suitable research guidance.", href: "/academics/stem-cell-regenerative-medicine/", link: "Explore regenerative medicine" },
+      { title: "Molecular health science", text: "Connect molecular medicine and genetics with questions that can be discussed with an academic supervisor.", href: "/academics/molecular-medicine/", link: "Explore molecular medicine" },
+    ],
+    stepsTitle: "Discuss a project idea with ITHS.",
+    steps: [
+      { title: "Define the question", text: "Describe the topic, health science context and what you hope to understand." },
+      { title: "Check feasibility", text: "Ask about academic supervision, facilities, methods, timelines and approvals that may apply." },
+      { title: "Confirm the project", text: "Agree the scope and participation requirements with ITHS before beginning any research activity." },
+    ],
+  },
+  "/research/cipri/": {
+    title: "CIPRI: Centre for Intellectual Property Rights & Innovation",
+    intro: "Learn where to ask about intellectual property, research documentation and innovation at ITHS. Contact the university for current information about CIPRI activities, services and participation.",
+    heading: "Give health science ideas a clear next step.",
+    areas: [
+      { title: "Document an idea", text: "Keep a clear record of the research question, contributors and supporting work when discussing a new idea.", href: "/enquire/?topic=research", link: "Ask ITHS for guidance" },
+      { title: "Understand IP records", text: "Request verified information about an application, its inventors and its current recorded status.", href: "/research/patents/", link: "Explore patent information" },
+      { title: "Connect research and practice", text: "Explore academic and laboratory directions in translational health science.", href: "/research/research-and-development/", link: "Explore research and development" },
+    ],
+    stepsTitle: "Ask about innovation support.",
+    steps: [
+      { title: "Describe the idea", text: "Share a short description of the research or innovation question and its health science context." },
+      { title: "Ask about the process", text: "Confirm the current ITHS contact, documentation requirements and any review process." },
+      { title: "Verify information", text: "Request approved details before citing a service, project, patent or collaboration." },
+    ],
+  },
+  "/research/collaborators/": {
+    title: "Research Collaborators",
+    intro: "Find out how to enquire about research collaboration with ITHS. A verified public collaborator directory and current agreement details are not published on this page.",
+    heading: "Build a clear foundation for collaboration.",
+    areas: [
+      { title: "Academic collaboration", text: "Describe your institution, research interests and the expertise you hope to connect with.", href: "/enquire/?topic=collaboration", link: "Start a collaboration enquiry" },
+      { title: "Clinical and laboratory interests", text: "Outline the research setting, facilities, supervision and approvals relevant to your proposal.", href: "/about/labs/", link: "Explore ITHS laboratories" },
+      { title: "University partners", text: "Review ITHS campus partners and confirm which university and programme a proposed activity relates to.", href: "/partnerships/university-partners/", link: "View university partners" },
+    ],
+    stepsTitle: "Make a collaboration enquiry.",
+    steps: [
+      { title: "Share the purpose", text: "Summarise the research question, subject area and intended outcome of the collaboration." },
+      { title: "Identify the people and institutions", text: "Include the participating teams, institutions and relevant academic contacts." },
+      { title: "Confirm current arrangements", text: "Ask ITHS to verify availability, approvals and any agreement required before work begins." },
     ],
   },
 };
@@ -101,6 +181,7 @@ export function getResearchRecords(href: string, records = researchRecords, mous
 }
 type Publication = { verifiedResearchPaths: readonly string[]; signedMouPaths: readonly string[] };
 export function isResearchPageAvailable(href: string, publication?: Publication) {
+  if (href === "/partnerships/") return true;
   return Object.hasOwn(researchTopics, href) || isResearchReady(href, publication);
 }
 export function getResearchMous(href: string, mous = researchMous) {

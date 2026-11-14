@@ -1,10 +1,10 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { getVisibleNavigation, pageDescriptions, quickLinks, type NavigationGroup } from "@/lib/site-map";
+import { getVisibleNavigation, headerUtilityLinks, pageDescriptions, quickLinks, type NavigationGroup } from "@/lib/site-map";
 import { siteConfig } from "@/lib/site-config";
 
 const navigation = getVisibleNavigation();
@@ -15,6 +15,7 @@ const searchablePages = [...new Map([
     ...(group.columns ?? []).flatMap(column => column.items),
   ]),
   ...quickLinks,
+  ...headerUtilityLinks,
   { title: "Enquire", href: "/enquire/" },
 ].map(page => [page.href, page])).values()];
 
@@ -79,11 +80,19 @@ function MegaMenuContent({ group, close }: { group: NavigationGroup; close: () =
   const items = columns.flatMap(column => column.items);
   // Reuse the published navigation and existing site copy for every panel.
   const cards = items.filter(item => item.href !== group.href).slice(0, 3);
-  const image = group.label === "Academics" || group.label === "Programmes" ? "/clinical-embryology.webp" : "/iths-learning-01.webp";
+  const menuImages: Record<string, string> = {
+    About: "/images/about-iths-dna-research.webp",
+    Courses: "/clinical-embryology.webp",
+    Campuses: "/images/campuses/bhopal.jpg",
+    Admission: "/admissions/visuals/overview.svg",
+    Research: "/research/visuals/research-menu.svg",
+    "Life @ ITHS": "/admissions/visuals/wellness-studio.svg",
+  };
+  const image = menuImages[group.label] ?? "/iths-learning-01.webp";
   return <>
     <div className="header-mega-top">
       <Link className="header-mega-feature" href={group.href} onClick={close}>
-        <Image src={image} alt="" fill sizes="(min-width: 1081px) 500px, 1px" />
+        {group.label !== "Research" && <Image src={image} alt="" fill sizes="(min-width: 1081px) 500px, 1px" />}
         <div><span>{siteConfig.shortName}</span><h2>{group.label}</h2>{pageDescriptions[group.href] && <p>{pageDescriptions[group.href]}</p>}<strong>{group.label} <span aria-hidden="true">&rarr;</span></strong></div>
       </Link>
       <div className={`header-mega-links${columns.length === 1 ? " header-mega-links-single" : ""}`}>
@@ -96,7 +105,7 @@ function MegaMenuContent({ group, close }: { group: NavigationGroup; close: () =
     </div>
     {!!cards.length && <div className="header-mega-cards">{cards.map((item, index) => <Link className="header-mega-card" href={item.href} key={item.href} onClick={close}>
       <span>{group.label}</span><h3>{item.title}</h3>{item.description && <p>{item.description}</p>}
-      {index === 2 && <Image src="/iths-learning-02.webp" alt="" fill sizes="350px" />}
+      {index === 2 && group.label !== "Research" && <Image src={group.label === "Admission" ? "/admissions/visuals/eligibility.svg" : group.label === "About" ? "/images/about-iths-biomedical.webp" : "/iths-learning-02.webp"} alt="" fill sizes="350px" />}
       <span className="header-mega-card-arrow" aria-hidden="true">&rarr;</span>
     </Link>)}</div>}
   </>;
@@ -153,10 +162,11 @@ export function SiteHeader() {
     };
     positionMenu();
     window.addEventListener("resize", positionMenu);
-    window.addEventListener("scroll", positionMenu, { passive: true });
+    const closeOnPageScroll = () => setOpenMenu(null);
+    window.addEventListener("scroll", closeOnPageScroll, { passive: true });
     return () => {
       window.removeEventListener("resize", positionMenu);
-      window.removeEventListener("scroll", positionMenu);
+      window.removeEventListener("scroll", closeOnPageScroll);
     };
   }, [openMenu, mobileOpen]);
   useEffect(() => () => { if (menuCloseTimer.current) clearTimeout(menuCloseTimer.current); }, []);
@@ -224,22 +234,18 @@ export function SiteHeader() {
         <div className="header-shell">
           <div className="utility-bar">
             <div className="container utility-inner">
-              <div className="header-contact-chips">
-                <a className="header-contact-chip" href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`}><span>Admissions</span><strong>{siteConfig.admissionsPhone}</strong></a>
-                <a className="header-contact-chip" href="https://wa.me/917696614978" target="_blank" rel="noreferrer"><span>WhatsApp</span><strong>{siteConfig.admissionsPhone}</strong></a>
-              </div>
+              <a className="header-admission-block" href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`}><span className="header-admission-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m8 3 3 5-3 2a15 15 0 0 0 6 6l2-3 5 3-1 4c-9 1-17-7-17-16l5-1Z" /></svg></span><span className="header-admission-copy"><span>Admission Helpline</span><strong>{siteConfig.admissionsPhone}</strong></span></a>
               <div className="utility-links">
-                {quickLinks.filter(link => link.title !== "Apply Online" && link.title !== "Contact").map(link => <Link href={link.href} key={link.title}>{link.title}</Link>)}
-                <Link href="/campuses/">Our Campuses</Link>
+                {headerUtilityLinks.map(link => <Link href={link.href} key={link.href}>{link.title}</Link>)}
               </div>
               <div className="header-utility-actions">
                 <HeaderSearch onOpen={() => { setOpenMenu(null); setMobileOpen(false); }} />
-                <Link className="header-utility-pill header-contact-link" href="/contact/" aria-label="Contact Us"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 3 3 5-3 2a15 15 0 0 0 6 6l2-3 5 3-1 4c-9 1-17-7-17-16l5-1Z" /></svg><span>Contact Us</span></Link>
-                <Link className="header-utility-pill header-enquiry-link" href="/enquire/"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3H13a8.5 8.5 0 0 1 8 8v.5Z" /><path d="M8 10h8M8 14h5" /></svg><span>Enquire Now</span></Link>
+                <a className="header-whatsapp-link" href="https://wa.me/917696614978" target="_blank" rel="noreferrer" aria-label={`WhatsApp admissions at ${siteConfig.admissionsPhone}`} title="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" strokeWidth="1.6" d="M12 3a9 9 0 0 0-7.72 13.62L3 21l4.5-1.18A9 9 0 1 0 12 3Z" /><path fill="currentColor" stroke="none" d="M8.4 7.2c-.5 0-1.2.9-1.2 1.9 0 2.8 4.4 7.1 7.5 7.1 1.1 0 2.3-.9 2.3-1.7 0-.2-.1-.4-.4-.5l-2-1c-.3-.1-.5-.1-.7.2l-.8.9c-1.3-.5-3.1-2.1-3.7-3.4l.9-.9c.2-.2.3-.4.1-.7l-.9-1.7c-.2-.2-.5-.2-1.1-.2Z" /></svg></a>
+                <a className="header-utility-pill header-contact-link" href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`} aria-label={`Call admissions at ${siteConfig.admissionsPhone}`} title={`Call ${siteConfig.admissionsPhone}`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.79a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.83.56 2.79.69A2 2 0 0 1 22 16.92Z" /></svg></a>
               </div>
             </div>
           </div>
-          <div className="brand-row"><div className="container brand-inner"><Brand /><div className="header-actions"><Link className="header-apply" href="/apply/">Apply Now</Link></div><button className="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded={mobileOpen} aria-controls="primary-navigation" onClick={() => setMobileOpen(true)}><span /><span /><span /></button></div>
+          <div className="brand-row"><div className="container brand-inner"><Brand /><div className="header-actions"><Link className="header-enquire" href="/enquire/">Enquire</Link><Link className="header-apply" href="/apply/">Apply</Link></div><button className="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded={mobileOpen} aria-controls="primary-navigation" onClick={() => setMobileOpen(true)}><span /><span /><span /></button></div>
             {mobileOpen && <button className="mobile-nav-backdrop" type="button" aria-label="Close navigation menu" onClick={() => { setMobileOpen(false); setOpenMenu(null); }} />}
             <nav ref={navRef} id="primary-navigation" className={`main-nav${mobileOpen ? " mobile-open" : ""}`} aria-label="Main navigation">
               <div className="mobile-drawer-top"><Brand compact /><button type="button" aria-label="Close navigation menu" onClick={() => { setMobileOpen(false); setOpenMenu(null); }}><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="m6 6 12 12M18 6 6 18" /></svg></button></div>
@@ -253,6 +259,7 @@ export function SiteHeader() {
                     </div></>}
                   </div>
                 ))}
+                <div className="mobile-drawer-quick-links" aria-label="More ITHS pages">{headerUtilityLinks.map(link => <Link href={link.href} key={link.href} onClick={() => { setMobileOpen(false); setOpenMenu(null); }}>{link.title}</Link>)}</div>
               </div>
               <div className="mobile-drawer-actions"><Link className="button button-red" href="/enquire/" onClick={() => { setMobileOpen(false); setOpenMenu(null); }}>Enquire now</Link><Link className="button button-primary" href="/apply/" onClick={() => { setMobileOpen(false); setOpenMenu(null); }}>Apply online</Link></div></nav>
           </div>

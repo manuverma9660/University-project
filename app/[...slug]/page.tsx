@@ -5,7 +5,7 @@ import { allRoutePages, departmentProgrammes, navigation, pageDescriptions, type
 import { campuses, leadership } from "@/lib/site-content";
 import { AdmissionEnquiryForm } from "@/components/enquiry-form";
 import { siteConfig } from "@/lib/site-config";
-import { CampusDirectory, CampusProfile, DepartmentDirectory, LeadershipProfiles, ProgrammeDirectory, UniversityPartnersSection } from "@/components/academic-directories";
+import { CampusProfile, DepartmentDirectory, LeadershipProfiles, ProgrammeDirectory, UniversityPartnersSection } from "@/components/academic-directories";
 import { PlacedStudentsDirectory } from "@/components/placed-students-directory";
 import { BhopalCampusPage, HoshiarpurCampusPage, MohaliCampusPage, ShimlaCampusPage } from "@/components/bhopal-campus";
 import { CancerBiologyPage } from "@/components/cancer-biology-page";
@@ -17,6 +17,17 @@ import { NeurosciencePage } from "@/components/neuroscience-page";
 import { ApplicationPreviewForm, IthsSetPreviewForm } from "@/components/preview-forms";
 import { ContactDetails } from "@/components/contact-details";
 import { NewsEventsSection } from "@/components/news-events-section";
+import { AboutPage } from "@/components/about-page";
+import { AboutApprovalsPage, AboutAwardsPage, AboutFacultyPage, AboutLabsPage } from "@/components/about-info-pages";
+import { GovernancePage, PartnershipsPage } from "@/components/institutional-pages";
+import { BtechTissueEngineeringPage } from "@/components/btech-tissue-engineering-page";
+import { CourseDirectoryPage } from "@/components/course-directory-page";
+import { ProgrammeDirectoryPage } from "@/components/programme-directory-page";
+import { AdmissionEnquiryPage, AdmissionGuidePage, AdmissionsOverviewPage, ApplicationPage, IthsSetPage } from "@/components/admission-pages";
+import { ContactPage } from "@/components/contact-page";
+import { CampusesPage } from "@/components/campuses-page";
+import { BlogPage, CampusLifePage, FaqPage, WellnessStudioPage, WorkAtIthsPage } from "@/components/utility-pages";
+import { btechCourseHref, getCourseDestination } from "@/lib/course-catalogue";
 import { ResearchOverview, ResearchRecordPage } from "@/components/research-page";
 import { isResearchPageAvailable } from "@/lib/research";
 import { navigationPublication } from "@/lib/site-map";
@@ -56,13 +67,13 @@ function pageCopy(href: string, title: string) {
 }
 
 export function generateStaticParams() {
-  return allRoutePages.filter(page => (!page.href.startsWith("/research/") && page.href !== "/partnerships/") || isResearchPageAvailable(page.href, navigationPublication)).map(page => ({ slug: page.href.split("/").filter(Boolean) }));
+  return allRoutePages.filter(page => !page.href.startsWith("/research/") || isResearchPageAvailable(page.href, navigationPublication)).map(page => ({ slug: page.href.split("/").filter(Boolean) }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const href = normalizedPath(slug);
-  if ((href.startsWith("/research/") || href === "/partnerships/") && !isResearchPageAvailable(href, navigationPublication)) notFound();
+  const href = getCourseDestination(normalizedPath(slug));
+  if (href.startsWith("/research/") && !isResearchPageAvailable(href, navigationPublication)) notFound();
   const page = lookup(href);
   return page ? { title: page.title, description: pageDescriptions[href] ?? `${page.title} at ${siteConfig.name}.` } : {};
 }
@@ -70,7 +81,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function siblingLinks(href: string): SitePage[] {
   const group = navigation.find(item => href === item.href || item.columns?.some(column => column.items.some(child => child.href === href)) || item.items?.some(child => child.href === href));
   const list = group?.items ?? group?.columns?.flatMap(column => column.items) ?? [];
-  return list.filter(page => page.href !== href && !page.href.includes("#") && ((!page.href.startsWith("/research/") && page.href !== "/partnerships/") || isResearchPageAvailable(page.href, navigationPublication))).slice(0, 10);
+  return list.filter(page => page.href !== href && !page.href.includes("#") && (!page.href.startsWith("/research/") || isResearchPageAvailable(page.href, navigationPublication))).slice(0, 10);
 }
 
 function RelatedLinks({ pages }: { pages: SitePage[] }) {
@@ -80,11 +91,33 @@ function RelatedLinks({ pages }: { pages: SitePage[] }) {
 
 export default async function ContentPage({ params }: Props) {
   const { slug } = await params;
-  const href = normalizedPath(slug);
+  const href = getCourseDestination(normalizedPath(slug));
   const page = lookup(href);
   if (!page) notFound();
+  if (href === "/campuses/") return <CampusesPage />;
+  if (href === "/faqs/") return <FaqPage />;
+  if (href === "/campus-life/") return <CampusLifePage />;
+  if (href === "/wellness-studio/") return <WellnessStudioPage />;
+  if (href === "/blog/") return <BlogPage />;
+  if (href === "/work-at-iths/") return <WorkAtIthsPage />;
+  if (href === "/contact/") return <ContactPage />;
+  if (href === "/admissions/") return <AdmissionsOverviewPage />;
+  if (href.startsWith("/admissions/")) return <AdmissionGuidePage href={href} />;
+  if (href === "/apply/") return <ApplicationPage />;
+  if (href === "/enquire/") return <AdmissionEnquiryPage />;
+  if (href === "/iths-set/") return <IthsSetPage />;
+  if (href === "/programs/") return <CourseDirectoryPage />;
+  if (href.startsWith("/programmes/")) return <ProgrammeDirectoryPage href={href} />;
+  if (href === "/about/") return <AboutPage />;
+  if (href === "/about/labs/") return <AboutLabsPage />;
+  if (href === "/about/faculty/") return <AboutFacultyPage />;
+  if (href === "/about/awards-and-recognitions/") return <AboutAwardsPage />;
+  if (href === "/about/approvals-and-recognition/") return <AboutApprovalsPage />;
+  if (["/governance/", "/governance/board-of-governance/", "/governance/board-of-management/"].includes(href)) return <GovernancePage kind={href === "/governance/board-of-governance/" ? "board" : href === "/governance/board-of-management/" ? "management" : "overview"} />;
+  if (href === "/partnerships/") return <PartnershipsPage />;
+  if (href === "/partnerships/university-partners/") return <PartnershipsPage directory />;
   if (href === "/research/") return <ResearchOverview />;
-  if (href.startsWith("/research/") || href === "/partnerships/") {
+  if (href.startsWith("/research/")) {
     if (!isResearchPageAvailable(href, navigationPublication)) notFound();
     return <ResearchRecordPage href={href} />;
   }
@@ -95,7 +128,7 @@ export default async function ContentPage({ params }: Props) {
   const crumbs = slug.map((part, index) => {
     const crumbHref = `/${slug.slice(0, index + 1).join("/")}/`;
     return lookup(crumbHref) ?? { href: crumbHref, title: part.replaceAll("-", " ").replace(/\b\w/g, character => character.toUpperCase()) };
-  }).filter(crumb => crumb.href !== "/partnerships/" || isResearchPageAvailable(crumb.href, navigationPublication));
+  });
   const isResearch = href.startsWith("/research/");
   const isConfirmedPending = ["/governance/iqac/"].includes(href) || isResearch;
   const isDirectory = ["/academics/", "/campuses/", "/about/", "/about/leadership/", "/admissions/", "/partnerships/", "/partnerships/university-partners/"].includes(href) || href.startsWith("/programmes/");
@@ -106,7 +139,8 @@ export default async function ContentPage({ params }: Props) {
   const isNutrigeneticsPage = href === "/academics/nutrigenetics-personalised-nutrition/";
   const isStemCellPage = href === "/academics/stem-cell-regenerative-medicine/";
   const isNeurosciencePage = href === "/academics/neuroscience/";
-  const isCourseLandingPage = isMolecularMedicinePage || isClinicalEmbryologyPage || isNutrigeneticsPage || isStemCellPage || isNeurosciencePage;
+  const isBtechPage = href === btechCourseHref;
+  const isCourseLandingPage = isMolecularMedicinePage || isClinicalEmbryologyPage || isNutrigeneticsPage || isStemCellPage || isNeurosciencePage || isBtechPage;
   const visualTheme = href.startsWith("/research/") || href.startsWith("/partnerships/") ? "research" : href.startsWith("/campuses/") || href.startsWith("/campus-life/") || href.startsWith("/wellness-studio/") || href.startsWith("/events/") ? "campus" : href.startsWith("/admissions/") || href === "/apply/" || href === "/enquire/" || href === "/iths-set/" ? "admissions" : href.startsWith("/academics/") || href.startsWith("/programmes/") || href.startsWith("/programs/") ? "academics" : "university";
 
   return <main id="main-content" className={`content-page ${href === "/about/leadership/" ? "content-page-leadership" : ""} ${href.startsWith("/partnerships/") ? "content-page-partners" : ""} ${["/campuses/bhopal/", "/campuses/hoshiarpur/", "/campuses/shimla-hills/", "/campuses/mohali/"].includes(href) ? "content-page-campus" : ""} ${isCancerBiologyPage ? "content-page-cancer-biology" : ""} ${isCourseLandingPage ? "content-page-molecular-medicine" : ""}`}>
@@ -115,10 +149,8 @@ export default async function ContentPage({ params }: Props) {
       {!isCancerBiologyPage && !isCourseLandingPage && programmes ? <><p className="eyebrow">Academic department</p><h2>Programmes in {page.title.replace("Department of ", "")}</h2><p>Explore the study options listed for this department. Programme details, eligibility, campus availability, and current admission status can be confirmed with the ITHS admissions team.</p><div className="programme-chip-list">{programmes.map(programme => <span key={programme}>{programme}</span>)}</div><Link className="button button-primary" href="/enquire/">Enquire about this department <span>↗</span></Link></> : null}
       {href === "/academics/" ? <><p className="eyebrow">Academic departments</p><h2>Explore health science at ITHS.</h2><p>Browse the six departments and their listed study pathways. Programme availability can vary by campus and admission cycle.</p><DepartmentDirectory /></> : null}
       {href.startsWith("/programmes/") ? <><p className="eyebrow">Study pathways</p><h2>{href === "/programmes/" ? "Find a programme pathway." : page.title}</h2><p>Explore the programme levels listed for ITHS departments. Detailed curricula, eligibility, duration, fees, and campus availability will be published when confirmed for the 2026–27 admission cycle.</p><ProgrammeDirectory href={href} /></> : null}
-      {href === "/campuses/" ? <><p className="eyebrow">University locations</p><h2>Explore ITHS campuses.</h2><p>Explore ITHS locations in Chandigarh, Hoshiarpur, Shimla, and Bhopal. Programme options differ by campus; contact admissions to confirm current availability.</p><CampusDirectory /></> : null}
       {isCampusPage && campus ? href === "/campuses/bhopal/" ? <BhopalCampusPage /> : href === "/campuses/hoshiarpur/" ? <HoshiarpurCampusPage /> : href === "/campuses/shimla-hills/" ? <ShimlaCampusPage /> : href === "/campuses/mohali/" ? <MohaliCampusPage /> : <><p className="eyebrow">ITHS campus</p><CampusProfile href={href} /></> : null}
-      {isCancerBiologyPage ? <CancerBiologyPage /> : null}{isMolecularMedicinePage ? <MolecularMedicinePage /> : null}{isClinicalEmbryologyPage ? <ClinicalEmbryologyPage /> : null}{isNutrigeneticsPage ? <NutrigeneticsPage /> : null}{isStemCellPage ? <StemCellPage /> : null}{isNeurosciencePage ? <NeurosciencePage /> : null}
-      {href === "/about/" ? <><p className="eyebrow">About the University of Translational Health Science</p><h2>Health science education connected to discovery.</h2><p>ITHS brings specialised study and research together across clinical embryology and ART, cancer biology, nutrigenetics and personalised nutrition, stem cell and regenerative medicine, molecular medicine, and neuroscience.</p><p>Explore our academic departments, university partnerships, leadership, facilities, and governance.</p><LeadershipProfiles /></> : null}
+      {isCancerBiologyPage ? <CancerBiologyPage /> : null}{isMolecularMedicinePage ? <MolecularMedicinePage /> : null}{isClinicalEmbryologyPage ? <ClinicalEmbryologyPage /> : null}{isNutrigeneticsPage ? <NutrigeneticsPage /> : null}{isStemCellPage ? <StemCellPage /> : null}{isNeurosciencePage ? <NeurosciencePage /> : null}{isBtechPage ? <BtechTissueEngineeringPage /> : null}
       {href === "/about/leadership/" ? <LeadershipProfiles variant="showcase" /> : null}
       {href === "/partnerships/" || href === "/partnerships/university-partners/" ? <UniversityPartnersSection /> : null}
       {leader ? <><div className="leader-message"><img src={leader.image} alt={leader.name} /><div><p className="eyebrow">{leader.title}</p><h2>{leader.name}</h2><p>{leader.description}</p><ul className="profile-credentials">{leader.credentials.map(item => <li key={item}>{item}</li>)}</ul></div></div><p>Explore more about ITHS leadership and its academic community.</p><Link className="text-link" href="/about/leadership/">Meet ITHS leadership <span>→</span></Link></> : null}

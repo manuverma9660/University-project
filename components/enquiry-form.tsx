@@ -1,21 +1,23 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { departments } from "@/lib/site-content";
+import { courseCatalogue } from "@/lib/course-catalogue";
 
 type EnquiryFormProps = { compact?: boolean; campaign?: boolean; courseOptions?: string[] };
+type AdmissionEnquiryFormProps = { variant?: "admissions" | "contact" };
 
-const admissionProgrammes = [
-  "ART & Clinical Embryology",
-  "Cancer Biology",
-  "Stem Cell & Regenerative Medicine",
-  "Nutrigenetics & Personalized Nutrition",
-  "B.Tech Stem Cell & Tissue Engineering",
-];
+const admissionProgrammes = courseCatalogue.map(course => course.title);
 
 /** Admissions form matching the fields shown on the official admissions page. */
-export function AdmissionEnquiryForm() {
+export function AdmissionEnquiryForm({ variant = "admissions" }: AdmissionEnquiryFormProps) {
   const [message, setMessage] = useState("");
+  const [topic, setTopic] = useState("admissions");
+
+  useEffect(() => {
+    const requestedTopic = new URLSearchParams(window.location.search).get("topic");
+    if (["fees", "campus", "graduate-story", "research", "publications", "patents", "collaboration"].includes(requestedTopic ?? "")) setTopic(requestedTopic ?? "admissions");
+  }, []);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -23,6 +25,17 @@ export function AdmissionEnquiryForm() {
       setMessage("Preview only: your enquiry details have not been sent or stored.");
     }
   }
+
+  if (variant === "contact") return <form className="enquiry-form admission-enquiry-form contact-message-form" onSubmit={handleSubmit}>
+    <label><span>Name <b>*</b></span><input name="name" autoComplete="name" minLength={2} maxLength={100} placeholder="Enter Your Name" required /></label>
+    <label><span>Number <b>*</b></span><input name="phone" type="tel" autoComplete="tel" inputMode="numeric" pattern="[0-9]{10}" maxLength={10} placeholder="Enter Your Number" required /></label>
+    <label><span>Email <b>*</b></span><input name="email" type="email" autoComplete="email" maxLength={254} placeholder="Enter Your Email" required /></label>
+    <label><span>Program</span><select name="programme" defaultValue=""><option value="">Select Program</option>{admissionProgrammes.map(programme => <option key={programme}>{programme}</option>)}</select></label>
+    <label><span>Campus</span><select name="campus" defaultValue=""><option value="">Select Campus</option>{["Chandigarh (Mohali)", "Hoshiarpur", "Shimla", "Bhopal"].map(campus => <option key={campus}>{campus}</option>)}</select></label>
+    <label><span>Message</span><textarea name="message" rows={4} maxLength={1500} placeholder="Enter Your Message" /></label>
+    <button className="button button-primary form-button" type="submit">SUBMIT</button>
+    {message && <p className="form-message form-info" role="status">{message}</p>}
+  </form>;
 
   return <form className="enquiry-form admission-enquiry-form" onSubmit={handleSubmit}>
     <label><span>Full Name <b>*</b></span><input name="name" autoComplete="name" minLength={2} maxLength={100} placeholder="Enter your full name" required /></label>
@@ -70,10 +83,10 @@ export function EnquiryForm({ compact = false, campaign = false, courseOptions =
     <label>{compact ? <span>Mobile number <b>*</b></span> : "Mobile number"}<div className={compact ? "enquiry-phone" : undefined}>{compact && <><span aria-hidden="true">🇮🇳</span><span>+91</span></>}<input name="phone" type="tel" autoComplete="tel-national" inputMode="numeric" pattern={compact ? "[0-9]{10}" : "[0-9+() -]{10,18}"} maxLength={compact ? 10 : undefined} placeholder={compact ? "Enter your phone number" : "10-digit mobile number"} required /></div></label>
     {compact && <label><span>Email <b>*</b></span><input name="email" type="email" autoComplete="email" maxLength={254} placeholder="Enter Your Email" required /></label>}
     {compact && <label>City<input name="city" autoComplete="address-level2" maxLength={100} placeholder="City" /></label>}
-    {!compact && <label>What is this about?<select name="topic" defaultValue="admissions"><option value="admissions">Admissions enquiry</option><option value="fees">Fee details</option><option value="campus">Campus information</option><option value="graduate-story">Graduate story</option></select></label>}
+    {!compact && <label>What is this about?<select name="topic" defaultValue="admissions"><option value="admissions">Admissions enquiry</option><option value="fees">Fee details</option><option value="campus">Campus information</option><option value="graduate-story">Graduate story</option><option value="research">Research enquiry</option><option value="publications">Publication records</option><option value="patents">Patent records</option><option value="collaboration">Research collaboration</option></select></label>}
     <label>{compact ? "Program Type" : "Programme of interest"}<select name="programme" defaultValue=""><option value="">{compact ? "Program Type..." : "Select a programme (optional)"}</option>{(compact ? courseOptions : departments.map(department => department.shortTitle)).map(option => <option key={option} value={option}>{option}</option>)}</select></label>
     {!compact && <label>Your message<textarea name="message" rows={4} maxLength={1500} placeholder="Share your question or story (optional)" /></label>}
-    {!compact && <label className="consent-label"><input name="consent" type="checkbox" required /> I agree that ITHS may contact me about admissions.</label>}
+    {!compact && <label className="consent-label"><input name="consent" type="checkbox" required /> I agree that ITHS may contact me about this enquiry.</label>}
     <button className="button button-primary form-button" type="submit">{compact ? "Submit" : "Preview enquiry"}{!compact && <span aria-hidden="true">→</span>}</button>
     {!compact && message && <p className="form-message form-info" role="status">{message}</p>}
   </form>;

@@ -45,7 +45,7 @@ export function MolecularMedicinePage() {
         <p>Molecular Medicine looks at why disease begins inside the body’s genes, proteins, and cells, rather than only at outward symptoms. This understanding supports earlier detection and more precise treatment.</p>
         <p>It brings genetics, cell biology, and translational research together. At ITHS, students can enter after 12th through B.Sc. or specialise after graduation through M.Sc.</p>
       </div>
-      <img src="/iths-learning-01.webp" alt="Student learning in a health science laboratory" />
+      <img src="/images/about-iths-dna-research.webp" alt="Molecular genetics and DNA research" />
     </section>
 
     <section className="molecular-pathways">
@@ -85,3 +85,4 @@ export function MolecularMedicinePage() {
     <section className="molecular-related molecular-inner"><h2>Explore related pages</h2><div><Link href="/programmes/">All programmes <span>↗</span></Link><Link href="/campuses/mohali/">Mohali campus <span>↗</span></Link><Link href="/admissions/eligibility/">Admissions eligibility <span>↗</span></Link><Link href="/academics/">All departments <span>↗</span></Link></div></section>
   </div>;
 }
+

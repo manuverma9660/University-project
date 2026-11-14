@@ -67,7 +67,7 @@ export function CancerBiologyPage() {
           <span aria-hidden="true">{feature.icon}</span><div><h3>{feature.title}</h3><p>{feature.text}</p></div>
         </article>)}</div>
       </div>
-      <img src="/iths-learning-02.webp" alt="Researcher working with samples in a laboratory" />
+      <img src="/cancer-biology.webp" alt="Cancer biology and molecular oncology research" />
     </section>
 
     <section className="cancer-course-programmes">
