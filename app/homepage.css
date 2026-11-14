@@ -23,7 +23,7 @@
 .site-header .main-nav { grid-column: 2; grid-row: 1; }
 .site-header .nav-inner { min-height: 100px; gap: 0; justify-content: space-evenly; overflow: visible; }
 .site-header .home-link { display: none; }
-.site-header .nav-dropdown > .nav-trigger, .site-header .direct-nav-link { min-height: 100px; padding: 0 7px; gap: 7px; color: #101026; font-size: 14px; font-weight: 500; text-transform: none; }
+.site-header .nav-dropdown > .nav-trigger, .site-header .direct-nav-link { min-height: 100px; padding: 0 7px; gap: 7px; color: #101026; font-size: 14px; font-weight: 700; text-transform: none; }
 .site-header .nav-trigger.is-active, .site-header .nav-trigger:hover, .site-header .menu-open > .nav-trigger { color: #c81020; }
 .site-header .nav-trigger::after { bottom: 22px; }
 .site-header .mega-menu { top: 100%; border-radius: 0 0 10px 10px; }
