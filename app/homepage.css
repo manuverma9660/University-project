@@ -280,6 +280,12 @@
   padding-block: 80px;
 }
 
+.reference-home .home-admissions-process {
+  background: #ffffff;
+  background-image: none;
+  box-shadow: none;
+}
+
 .home-section-head {
   display: flex;
   flex-wrap: wrap;

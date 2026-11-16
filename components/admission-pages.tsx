@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatedVisual } from "@/components/animated-visual";
 import { AdmissionEnquiryForm } from "@/components/enquiry-form";
-import { ApplicationPreviewForm } from "@/components/preview-forms";
+import { ApplyLandingPage } from "@/components/apply-landing-page";
 import { IthsSetLandingPage } from "@/components/iths-set-page";
 import { courseCatalogue } from "@/lib/course-catalogue";
 import { campuses } from "@/lib/site-content";
@@ -49,7 +49,7 @@ export function AdmissionGuidePage({ href }: { href: string }) {
 }
 
 export function ApplicationPage() {
-  return <main id="main-content" className={styles.page}><Hero eyebrow="Apply to ITHS" title="Start your application" intro="Share your programme and campus preferences to prepare an application enquiry. Admissions can confirm the current process and required documents." /><section className={styles.formSection}><div className={styles.container}><div><p className={styles.eyebrow}>Before you begin</p><h2>Keep these details ready</h2><ul>{["Your latest academic qualification and marks", "Programme and preferred campus", "A working email address and mobile number"].map(item=><li key={item}>{item}</li>)}</ul><p className={styles.formNote}>This website form is a frontend preview and does not submit or store your application.</p></div><ApplicationPreviewForm /></div></section></main>;
+  return <ApplyLandingPage />;
 }
 
 export function AdmissionEnquiryPage() {

@@ -1,0 +1,152 @@
+.heading {
+  max-width: 1000px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.heading .badge {
+  display: inline-block;
+  margin: 0 0 22px;
+  padding: 9px 22px;
+  border-radius: 999px;
+  background: #1a1a41;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.heading h2 {
+  max-width: 900px;
+  margin-inline: auto;
+  text-wrap: balance;
+}
+
+.titleAccent {
+  color: #cf1420;
+}
+
+.heading .intro {
+  margin: 18px auto 0;
+  color: #526078;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.journey {
+  position: relative;
+  margin-top: 42px;
+}
+
+.path {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: 128px;
+  color: #ccd4dc;
+  pointer-events: none;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  position: relative;
+  min-width: 0;
+  padding: 24px 18px 0;
+  text-align: center;
+}
+
+.icon {
+  position: relative;
+  display: grid;
+  width: 80px;
+  height: 80px;
+  place-items: center;
+  margin: 0 auto 24px;
+  border: 6px solid #ffffff;
+  border-radius: 50%;
+  background: #1a1a41;
+  color: #ffffff;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+@media (hover: hover) {
+  .step:hover .icon {
+    background: #cf1420;
+    transform: translateY(-3px);
+  }
+}
+
+.step .number {
+  margin: 0 0 10px;
+  color: #cf1420;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.steps .step h3 {
+  font-size: 20px;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.step .description {
+  max-width: 245px;
+  margin: 12px auto 0;
+  color: #596575;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.action {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.action a {
+  max-width: 100%;
+  border-radius: 8px;
+  text-align: center;
+}
+
+@media (max-width: 1080px) {
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 20px; }
+  .path { display: none; }
+  .step { padding: 0 12px; }
+  .journey { margin-top: 36px; }
+  .icon { margin-bottom: 18px; }
+}
+
+@media (max-width: 600px) {
+  .heading .badge { margin-bottom: 20px; font-size: 12px; }
+  .heading h2 { display: block; }
+  .heading .intro { margin-top: 16px; font-size: 15px; }
+  .steps { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .step { display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 16px; padding: 0; text-align: left; }
+  .icon { grid-column: 1; grid-row: 1 / 4; width: 52px; height: 52px; margin: 0; border: 0; border-radius: 50%; }
+  .icon svg { width: 25px; height: 25px; }
+  .step:not(:last-child)::after { position: absolute; top: 62px; bottom: -18px; left: 25px; border-left: 2px dashed #ccd4dc; content: ""; }
+  .step .number { grid-column: 2; margin-bottom: 6px; font-size: 13px; }
+  .steps .step h3 { grid-column: 2; font-size: 19px; }
+  .step .description { grid-column: 2; max-width: none; margin: 10px 0 0; font-size: 14px; line-height: 1.65; }
+  .action { margin-top: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon { transition: none; transform: none; }
+}

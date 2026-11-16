@@ -4,7 +4,7 @@ import { HomeEnquiryForm } from "@/components/home-enquiry-form";
 import { HomeProgrammes } from "@/components/home-programmes";
 import { campuses, departments, leadership } from "@/lib/site-content";
 import { siteConfig } from "@/lib/site-config";
-import { AdmissionsTimeline } from "@/components/admissions-timeline";
+import { HomeAdmissionsProcess } from "@/components/home-admissions-process";
 import { CampusLifeSlideshow, campusLifeSlideGroups } from "@/components/campus-life-slideshow";
 import { btechCourseHref, courseCatalogue } from "@/lib/course-catalogue";
 import { PartnerUniversitiesCarousel } from "@/components/partner-universities-carousel";
@@ -154,7 +154,7 @@ export default function HomePage() {
       </div>
     </section>
 
-    <section className="home-section" id="admissions"><div className="container"><SectionHead eyebrow="Admissions" title="Your path to ITHS" description="Start with a conversation. Explore your options with an admissions counsellor." href="/admissions/how-to-apply/" link="How to apply" /><AdmissionsTimeline /></div></section>
+    <section className="home-section home-admissions-process" id="admissions" aria-labelledby="home-admissions-title"><div className="container"><HomeAdmissionsProcess /></div></section>
     <section className="home-section home-careers" id="careers" aria-labelledby="careers-heading"><div className="container home-careers-grid"><div className="home-careers-intro"><p className="eyebrow">Professional Pathways</p><h2 id="careers-heading">Where Laboratory Science Meets <span>Career Impact</span></h2><p>Bridge laboratory bench science with real clinical diagnostics and health applications. Our graduates step into high-demand roles across IVF clinics, precision medicine laboratories, and biomedical institutes.</p></div><div className="home-career-marquee" aria-label="Explore health science career pathways"><div className="home-career-track">{[
       { title: "Clinical Embryology & ART", href: "/academics/clinical-embryology-art/", role: "IVF Specialist & Senior Embryologist", image: "/clinical-embryology.webp" },
       { title: "Cancer Biology Research", href: "/academics/cancer-biology/", role: "Oncology Researcher & Clinical Analyst", image: "/cancer-biology.webp" },
