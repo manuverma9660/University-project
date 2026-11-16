@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "University of Translational Health Science",
+  name: "Institute of Translational Health Science",
   shortName: "ITHS",
   descriptor: "Translational Health Sciences",
   tagline: "Learn. Discover. Transform.",

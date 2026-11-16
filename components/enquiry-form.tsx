@@ -59,7 +59,7 @@ export function EnquiryForm({ compact = false, campaign = false, courseOptions =
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!event.currentTarget.reportValidity()) return;
-    if (!compact) setMessage("Preview only: your enquiry details have not been sent or stored.");
+    setMessage("Your details have not been sent or stored. Please call admissions or contact us on WhatsApp to complete your enquiry.");
   }
 
   if (campaign) return <form className="enquiry-card enquiry-card-course enquiry-card-campaign" onSubmit={handleSubmit}>
@@ -72,6 +72,7 @@ export function EnquiryForm({ compact = false, campaign = false, courseOptions =
     <label><select name="programme" defaultValue=""><option value="">Select Course Type</option>{courseOptions.map(option => <option key={option} value={option}>{option}</option>)}</select></label>
     <label className="campaign-human"><input name="human" type="checkbox" required onChange={() => { setVerificationLoading(true); window.setTimeout(() => setVerificationLoading(false), 900); }} /><span className="campaign-human-copy">I’m not a robot</span><span className="campaign-captcha-mark" aria-hidden="true">{verificationLoading ? <i /> : <svg viewBox="0 0 40 36"><path d="M16 4a13 13 0 0 1 16 9" fill="none" stroke="#4285f4" strokeWidth="6"/><path d="m30 4 5 9-10 1" fill="#4285f4"/><path d="M25 32A13 13 0 0 1 8 23" fill="none" stroke="#9aa0a6" strokeWidth="6"/><path d="m10 32-5-9 10-1" fill="#9aa0a6"/><path d="M6 17a13 13 0 0 1 5-10" fill="none" stroke="#4285f4" strokeWidth="6"/></svg>}</span><small>reCAPTCHA</small></label>
     <button className="button button-primary form-button" type="submit">Submit</button>
+    {message && <p className="form-message form-info" role="status">{message}</p>}
     <div className="enquiry-instant"><span>or instant connect</span></div>
     <a className="enquiry-whatsapp" href="https://wa.me/917696614978" target="_blank" rel="noreferrer">CHAT ON WHATSAPP</a>
     <a className="enquiry-call" href="tel:+917696614978">Or call: +91 76966 14978</a>
@@ -88,6 +89,6 @@ export function EnquiryForm({ compact = false, campaign = false, courseOptions =
     {!compact && <label>Your message<textarea name="message" rows={4} maxLength={1500} placeholder="Share your question or story (optional)" /></label>}
     {!compact && <label className="consent-label"><input name="consent" type="checkbox" required /> I agree that ITHS may contact me about this enquiry.</label>}
     <button className="button button-primary form-button" type="submit">{compact ? "Submit" : "Preview enquiry"}{!compact && <span aria-hidden="true">→</span>}</button>
-    {!compact && message && <p className="form-message form-info" role="status">{message}</p>}
+    {message && <p className="form-message form-info" role="status">{message}</p>}
   </form>;
 }

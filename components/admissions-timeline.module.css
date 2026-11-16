@@ -17,6 +17,7 @@
 /* Left side: Timeline */
 .timeline {
   position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -29,7 +30,7 @@
   width: 3px;
   background: #e2e8f0;
   border-radius: 3px;
-  z-index: 1;
+  z-index: -1;
   pointer-events: none;
 }
 
@@ -45,6 +46,7 @@
 /* Step Card */
 .stepCard {
   position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: 50px 1fr;
   gap: 24px;
@@ -63,11 +65,11 @@
   background: transparent;
 }
 
-.stepCard:not(.active) {
+.stepCard:not(.active) .stepContent {
   opacity: 0.6;
 }
 
-.stepCard:not(.active):hover {
+.stepCard:not(.active):hover .stepContent {
   opacity: 0.85;
 }
 
@@ -90,6 +92,17 @@
   box-shadow: 0 2px 8px rgba(20, 36, 71, 0.05);
   transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
   margin-top: 2px;
+}
+
+/* Keep the circle opaque so the connecting line stays hidden behind it. */
+.stepCard:not(.active) .numberCircle {
+  color: #a2acb9;
+  border-color: #e0e6ed;
+}
+
+.stepCard:not(.active):hover .numberCircle {
+  color: #7b899c;
+  border-color: #d3dce6;
 }
 
 /* Content block */

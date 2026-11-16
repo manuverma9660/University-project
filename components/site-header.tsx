@@ -24,7 +24,6 @@ function HeaderSearch({ onOpen }: { onOpen: () => void }) {
   const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const toggleRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -36,12 +35,11 @@ function HeaderSearch({ onOpen }: { onOpen: () => void }) {
   useEffect(() => { setIsOpen(false); setQuery(""); }, [pathname]);
   useEffect(() => {
     if (!isOpen) return;
-    inputRef.current?.focus();
     const dismiss = (event: PointerEvent) => {
       if (!containerRef.current?.contains(event.target as Node)) setIsOpen(false);
     };
     const escape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") { setIsOpen(false); toggleRef.current?.focus(); }
+      if (event.key === "Escape") { setIsOpen(false); }
     };
     document.addEventListener("pointerdown", dismiss);
     window.addEventListener("keydown", escape);
@@ -51,28 +49,89 @@ function HeaderSearch({ onOpen }: { onOpen: () => void }) {
     };
   }, [isOpen]);
 
-  return <div className="header-search-container" ref={containerRef} onBlur={event => {
-    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsOpen(false);
-  }}>
-    <button ref={toggleRef} type="button" className="header-scholarship-link" aria-label="Search website" title="Search website" aria-expanded={isOpen} aria-controls="header-search-panel" onClick={() => {
-      if (!isOpen) onOpen();
-      setIsOpen(current => !current);
-    }}><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6" /><path d="m15 15 5 5" /></svg></button>
-    {isOpen && <div id="header-search-panel" className="header-search-panel">
-      <form role="search" aria-label="Search website pages" className="header-search-form" onSubmit={event => {
-        event.preventDefault();
-        if (results[0]) { router.push(results[0].href); setIsOpen(false); setQuery(""); }
-        else inputRef.current?.focus();
-      }}>
-        <input ref={inputRef} type="search" aria-label="Search pages and programmes" placeholder="Search..." value={query} onChange={event => setQuery(event.target.value)} autoComplete="off" />
-        <button type="submit" aria-label="Submit search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 4.5 4.5" /></svg></button>
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (results[0]) {
+      router.push(results[0].href);
+      setIsOpen(false);
+      setQuery("");
+    } else {
+      inputRef.current?.focus();
+    }
+  };
+
+  return (
+    <div
+      className="header-search-container"
+      ref={containerRef}
+      onBlur={event => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsOpen(false);
+      }}
+    >
+      <form
+        role="search"
+        aria-label="Search website"
+        className="header-search-inline-form"
+        onSubmit={handleSubmit}
+        onClick={event => {
+          if (event.target === event.currentTarget) inputRef.current?.focus();
+        }}
+      >
+        <input
+          ref={inputRef}
+          type="search"
+          className="header-search-input"
+          aria-label="Search pages and programmes"
+          placeholder="Search..."
+          value={query}
+          onFocus={() => {
+            onOpen();
+            if (query.trim()) setIsOpen(true);
+          }}
+          onChange={event => {
+            setQuery(event.target.value);
+            setIsOpen(true);
+          }}
+          autoComplete="off"
+        />
+        <button
+          type="submit"
+          className="header-search-button"
+          aria-label="Search website"
+          title="Search website"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.5" cy="10.5" r="6" />
+            <path d="m15 15 5 5" />
+          </svg>
+        </button>
       </form>
-      {!!terms.length && <div className="header-search-results">
-        <p role="status">{results.length ? `${results.length} matching pages` : "No pages found. Try another search."}</p>
-        {!!results.length && <ul aria-label="Search results">{results.map(page => <li key={page.href}><Link href={page.href} onClick={() => { setIsOpen(false); setQuery(""); }}>{page.title}<span aria-hidden="true">&rarr;</span></Link></li>)}</ul>}
-      </div>}
-    </div>}
-  </div>;
+      {isOpen && !!terms.length && (
+        <div id="header-search-panel" className="header-search-panel">
+          <div className="header-search-results">
+            <p role="status">{results.length ? `${results.length} matching pages` : "No pages found. Try another search."}</p>
+            {!!results.length && (
+              <ul aria-label="Search results">
+                {results.map(page => (
+                  <li key={page.href}>
+                    <Link
+                      href={page.href}
+                      onClick={() => {
+                        setIsOpen(false);
+                        setQuery("");
+                      }}
+                    >
+                      {page.title}<span aria-hidden="true">&rarr;</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function MegaMenuContent({ group, close }: { group: NavigationGroup; close: () => void }) {
@@ -116,7 +175,7 @@ function Brand({ compact = false }: { compact?: boolean }) {
     <Link className="brand" href="/" aria-label={`${siteConfig.name} home`}>
       <span className="brand-logo-crop" aria-hidden="true"><Image className="brand-logo" src="/iths-logo.webp" alt="" width={515} height={290} priority={!compact} /></span>
       <span className="brand-divider" aria-hidden="true" />
-      <span className="brand-name"><strong>University of<br />Translational Health<br />Science</strong></span>
+      <span className="brand-name"><strong>Institute of<br />Translational Health<br />Science</strong></span>
     </Link>
   );
 }
@@ -240,8 +299,8 @@ export function SiteHeader() {
               </div>
               <div className="header-utility-actions">
                 <HeaderSearch onOpen={() => { setOpenMenu(null); setMobileOpen(false); }} />
+                <a className="header-contact-link" href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`} aria-label={`Call admissions at ${siteConfig.admissionsPhone}`} title={`Call ${siteConfig.admissionsPhone}`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.79a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.83.56 2.79.69A2 2 0 0 1 22 16.92Z" /></svg></a>
                 <a className="header-whatsapp-link" href="https://wa.me/917696614978" target="_blank" rel="noreferrer" aria-label={`WhatsApp admissions at ${siteConfig.admissionsPhone}`} title="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" strokeWidth="1.6" d="M12 3a9 9 0 0 0-7.72 13.62L3 21l4.5-1.18A9 9 0 1 0 12 3Z" /><path fill="currentColor" stroke="none" d="M8.4 7.2c-.5 0-1.2.9-1.2 1.9 0 2.8 4.4 7.1 7.5 7.1 1.1 0 2.3-.9 2.3-1.7 0-.2-.1-.4-.4-.5l-2-1c-.3-.1-.5-.1-.7.2l-.8.9c-1.3-.5-3.1-2.1-3.7-3.4l.9-.9c.2-.2.3-.4.1-.7l-.9-1.7c-.2-.2-.5-.2-1.1-.2Z" /></svg></a>
-                <a className="header-utility-pill header-contact-link" href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`} aria-label={`Call admissions at ${siteConfig.admissionsPhone}`} title={`Call ${siteConfig.admissionsPhone}`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.79a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.83.56 2.79.69A2 2 0 0 1 22 16.92Z" /></svg></a>
               </div>
             </div>
           </div>

@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatedVisual } from "@/components/animated-visual";
 import { AdmissionEnquiryForm } from "@/components/enquiry-form";
-import { ApplicationPreviewForm, IthsSetPreviewForm } from "@/components/preview-forms";
+import { ApplicationPreviewForm } from "@/components/preview-forms";
+import { IthsSetLandingPage } from "@/components/iths-set-page";
 import { courseCatalogue } from "@/lib/course-catalogue";
 import { campuses } from "@/lib/site-content";
 import { siteConfig } from "@/lib/site-config";
@@ -56,5 +57,5 @@ export function AdmissionEnquiryPage() {
 }
 
 export function IthsSetPage() {
-  return <main id="main-content" className={styles.page}><Hero eyebrow="Scholarship entrance test" title="ITHS-SET" intro="Learn about the scholarship test and ask admissions for the current schedule, eligibility and award conditions." /><section className={styles.section}><div className={styles.container}><div className={styles.testSummary}><div><p className={styles.eyebrow}>Published information</p><h2>Check the current test details</h2><p>ITHS advertises free registration, a 30-minute test and tuition fee waivers of up to 100% for top scorers. Awards are subject to official eligibility and terms.</p><ul><li>Confirm the next test date and format</li><li>Review current eligibility and programme coverage</li><li>Request written scholarship conditions before applying</li></ul></div><IthsSetPreviewForm /></div></div></section></main>;
+  return <IthsSetLandingPage />;
 }

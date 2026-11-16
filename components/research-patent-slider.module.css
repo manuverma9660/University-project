@@ -1,0 +1,13 @@
+.slider { min-width: 0; }
+.viewport { height: clamp(380px, 34vw, 500px); overflow: hidden; }
+.track { display: flex; width: max-content; height: 100%; animation: patent-scroll 14s linear infinite; }
+.group { display: flex; flex: 0 0 auto; gap: 16px; height: 100%; padding-right: 16px; }
+.slide { position: relative; flex: 0 0 auto; height: 100%; aspect-ratio: 208 / 297; }
+.slide img { object-fit: contain; }
+@keyframes patent-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (max-width: 900px) { .viewport { height: clamp(340px, 55vw, 460px); } }
+@media (max-width: 480px) { .viewport { height: 340px; } .group { gap: 12px; padding-right: 12px; } }
+@media (prefers-reduced-motion: reduce) { .track { animation: none; } }
