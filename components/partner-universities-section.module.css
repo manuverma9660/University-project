@@ -10,12 +10,12 @@
 .university:nth-child(odd) { border-right: 1px solid #e9edf3; }
 .university:nth-child(-n + 2) { border-bottom: 1px solid #e9edf3; }
 .university:hover { background: #fbfcfe; }
-.logo { display: flex; height: 76px; align-items: center; justify-content: flex-start; margin-bottom: 20px; }
+.logo { display: flex; height: 76px; align-items: center; justify-content: flex-start; margin-bottom: 12px; }
 .logo img { width: min(100%, 170px); height: 76px; object-fit: contain; object-position: left center; margin-left: 0; }
-.directory h3 { min-height: 47px; margin: 0; color: #1a1a41; font-size: 18px; line-height: 1.35; letter-spacing: -.02em; }
-.university .location { display: flex; align-items: flex-start; gap: 6px; min-height: 32px; margin: 12px 0 15px; color: #7a8698; font-size: 11px; line-height: 1.6; }
+.directory h3 { margin: 0; color: #1a1a41; font-size: 18px; line-height: 1.35; letter-spacing: -.02em; }
+.university .location { display: flex; align-items: flex-start; gap: 6px; margin: 8px 0 10px; color: #7a8698; font-size: 11px; line-height: 1.6; }
 .location svg { width: 15px; height: 15px; flex: 0 0 15px; margin-top: 1px; color: #c81020; }
-.explore { display: flex; min-height: 44px; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; color: #3a4660; font-size: 11px; font-weight: 700; }
+.explore { display: flex; min-height: 44px; align-items: center; justify-content: space-between; gap: 12px; margin-top: 0; color: #3a4660; font-size: 11px; font-weight: 700; }
 .explore span { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid #e3e8ef; border-radius: 50%; color: #c81020; font-size: 16px; transition: background .2s ease, color .2s ease, border-color .2s ease; }
 .explore:hover { color: #c81020; }
 .explore:hover span { border-color: #c81020; background: #c81020; color: #fff; }
