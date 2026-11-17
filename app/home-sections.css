@@ -34,7 +34,9 @@
 #departments .home-outline-button:hover { border-color: #1a1a41; background: #f8fafc; }
 #departments .home-course-paths { gap: 12px; margin-top: 25px; padding: 20px 22px; border: 1px solid #e7ecf3; border-radius: 15px; background: #f8fafc; }
 #departments .home-course-paths strong { padding-right: 8px; font-size: 11px; }
-#departments .home-course-paths a { min-height: 45px; border-color: #e4eaf2; border-radius: 9px; background: #fff; }
+#departments .home-course-paths a { min-height: 45px; border-color: #e4eaf2; border-radius: 9px; background: #fff; color: #102748; }
+#departments .home-course-paths a:hover { background: #102748; border-color: #102748; color: #fff; }
+#departments .home-course-paths a:hover > span { color: #fff; }
 @media (max-width: 1080px) {
   #departments .home-department-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   #departments .home-department-tabs button { min-height: 103px; }

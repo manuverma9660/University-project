@@ -106,8 +106,8 @@
 .header-search-results a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 8px; border-radius: 6px; font-size: 14px; line-height: 1.4; }
 .header-search-results a:hover, .header-search-results a:focus-visible { background: #fff0f1; color: var(--header-accent); }
 .site-header .brand-row { width: calc(100% - 40px); max-width: none; min-height: 98px; grid-template-columns: 275px minmax(0, 1fr) auto; gap: 30px; background: transparent; }
-.site-header .brand-inner > .brand { transition: opacity .2s ease; }
-.site-header .brand-inner > .brand:hover { opacity: .8; }
+.site-header .brand-inner > .brand { transition: none; }
+.site-header .brand-inner > .brand:hover { opacity: 1; }
 .site-header .nav-inner { min-height: 98px; justify-content: center; gap: 16px; }
 .site-header .nav-dropdown > .nav-trigger, .site-header .direct-nav-link { min-height: 98px; gap: 9px; padding-inline: 8px; color: var(--header-muted); font-size: 16px; font-weight: 700; }
 .site-header .nav-trigger.is-active, .site-header .nav-trigger:hover, .site-header .menu-open > .nav-trigger { color: var(--header-navy); }
