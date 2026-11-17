@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Image from "next/image";
 import { HomeEnquiryForm } from "@/components/home-enquiry-form";
 import { HomeProgrammes } from "@/components/home-programmes";
@@ -137,10 +137,10 @@ export default function HomePage() {
         <div className="home-research-content">
           <div className="home-research-header"><p className="eyebrow">Research &amp; discovery</p><h2 id="home-research-title">Where curiosity<br />becomes <span>discovery.</span></h2><p>Explore the ideas behind ITHS research, discover scientific publications and view the patent documents that bring its innovations into focus.</p></div>
           <div className="home-research-chips">{[
-      { icon: <><path d="m9 3 5 3-4 7-5-3 4-7Z" /><path d="m8 2 7 4M5 10l-1 2 3 2 1-2M14 9a6 6 0 0 1-1 12H4m4-5H3m6 0v5" /></>, title: "Research and Development", href: "/research/research-and-development/", desc: "Explore research directions and laboratory learning." },
-      { icon: <><circle cx="12" cy="7" r="3" /><path d="M6 21v-2a6 6 0 0 1 12 0v2M19 4a3 3 0 0 1 0 6m2 11v-2a6 6 0 0 0-3-5M5 4a3 3 0 0 0 0 6m-2 11v-2a6 6 0 0 1 3-5" /></>, title: "ITHS Research Club", href: "/research/research-club/", desc: "Research interests and participation for UG and PG students." },
-      { icon: <><path d="M13 3H5a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V10l-7-7Z" /><path d="M13 3v7h7M8 14h8m-8 3h5" /></>, title: "Publications and Patents", href: "/research/publications/", desc: "Explore scientific publications and intellectual property." }
-    ].map(item => <Link href={item.href} className="home-research-chip" key={item.href}><span className="home-research-chip-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" focusable="false">{item.icon}</svg></span><div className="home-research-chip-copy"><h3>{item.title}</h3><p>{item.desc}</p></div><span className="home-research-chip-arrow" aria-hidden="true">&#8599;</span></Link>)}</div>
+            { icon: <><path d="m9 3 5 3-4 7-5-3 4-7Z" /><path d="m8 2 7 4M5 10l-1 2 3 2 1-2M14 9a6 6 0 0 1-1 12H4m4-5H3m6 0v5" /></>, title: "Research and Development", href: "/research/research-and-development/", desc: "Explore research directions and laboratory learning." },
+            { icon: <><circle cx="12" cy="7" r="3" /><path d="M6 21v-2a6 6 0 0 1 12 0v2M19 4a3 3 0 0 1 0 6m2 11v-2a6 6 0 0 0-3-5M5 4a3 3 0 0 0 0 6m-2 11v-2a6 6 0 0 1 3-5" /></>, title: "ITHS Research Club", href: "/research/research-club/", desc: "Research interests and participation for UG and PG students." },
+            { icon: <><path d="M13 3H5a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V10l-7-7Z" /><path d="M13 3v7h7M8 14h8m-8 3h5" /></>, title: "Publications and Patents", href: "/research/publications/", desc: "Explore scientific publications and intellectual property." }
+          ].map(item => <Link href={item.href} className="home-research-chip" key={item.href}><span className="home-research-chip-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" focusable="false">{item.icon}</svg></span><div className="home-research-chip-copy"><h3>{item.title}</h3><p>{item.desc}</p></div><span className="home-research-chip-arrow" aria-hidden="true">&#8599;</span></Link>)}</div>
           <Link className="home-research-cta" href="/research/">Explore all research <span aria-hidden="true">&rarr;</span></Link>
         </div>
       </div>
