@@ -10,6 +10,8 @@ import { btechCourseHref, courseCatalogue } from "@/lib/course-catalogue";
 import { PartnerUniversitiesCarousel } from "@/components/partner-universities-carousel";
 import { ResearchPatentSlider } from "@/components/research-patent-slider";
 import { HomeFaqAccordion } from "@/components/home-faq-accordion";
+import { labPhotos } from "@/lib/lab-photos";
+import { HomeAboutSection } from "@/components/home-about-section";
 
 const faqs = [
   ["What does a partner university collaboration mean?", "ITHS runs programmes in collaboration with partner universities. The university associated with your programme awards the degree or diploma. Ask admissions to confirm the awarding university for your chosen programme and campus."],
@@ -32,7 +34,9 @@ const whyPoints = [
     title: "Focused disciplines",
     description: "Study specialised areas of health science through dedicated departments and career-aligned curriculum.",
     highlight: "6 health science departments",
-    image: "/clinical-embryology.webp",
+    image: labPhotos.equipment.src,
+    imageAlt: labPhotos.equipment.alt,
+    imagePosition: labPhotos.equipment.position,
     icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 18h8" /><path d="M3 22h18" /><path d="m14 2 6 6-4 4-6-6 4-4Z" /><path d="m9 7-5 5 4 4 5-5" /></svg>,
   },
   {
@@ -41,6 +45,8 @@ const whyPoints = [
     description: "Learn in a community actively connected to scientific publications, innovation and patent discoveries.",
     highlight: "8+ patents & research club",
     image: "/images/about-iths-dna-research.webp",
+    imageAlt: "DNA illustration representing molecular research",
+    imagePosition: "50% 50%",
     icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /><path d="M11 8a3 3 0 0 0-3 3" /></svg>,
   },
   {
@@ -48,7 +54,9 @@ const whyPoints = [
     title: "Practical learning",
     description: "Learn at the laboratory bench with hands-on exposure, modern diagnostics, and clinical equipment.",
     highlight: "Hands-on bench training",
-    image: "/images/notices/Laboratory-Exposure-Session-ITHS-1024x683.webp",
+    image: labPhotos.microscopy.src,
+    imageAlt: labPhotos.microscopy.alt,
+    imagePosition: labPhotos.microscopy.position,
     icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.31M14 9.3V2M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0" /></svg>,
   },
   {
@@ -57,6 +65,8 @@ const whyPoints = [
     description: "Get dedicated counselling on programme pathways, university recognition, eligibility and admissions.",
     highlight: "1-on-1 counsellor support",
     image: "/iths-learning-02.webp",
+    imageAlt: "Student using a microscope in a laboratory",
+    imagePosition: "50% 50%",
     icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>,
   },
 ];
@@ -69,7 +79,7 @@ export default function HomePage() {
   const programmeCount = departments.reduce((total, item) => total + item.programmes.length, 0);
   return <main id="main-content" className="reference-home">
     <section className="home-intro">
-      <Image className="home-hero-photo" src="/home/health-science-hero.webp" alt="" fill priority sizes="100vw" />
+      <Image className="home-hero-photo" src={labPhotos.microscopy.src} alt={labPhotos.microscopy.alt} fill priority sizes="100vw" />
       <div className="container home-intro-grid">
         <div className="home-intro-copy"><span className="home-admissions-pill"><span /> Admissions enquiries open</span><h1>Institute of<br />Translational<br />Health Science<span className="home-title-dot">.</span></h1><p className="home-intro-lede">Where laboratory science<br />meets a healthier tomorrow.</p><p>Explore specialised health science programmes, from B.Sc to PhD, with practical learning and partner university collaborations.</p><div className="home-button-row"><Link className="button button-red" href="/apply/">Apply now <span aria-hidden="true">&rarr;</span></Link><Link className="button button-outline-light" href="/iths-set/">ITHS-SET 2027</Link></div><div className="home-hero-footnote"><span aria-hidden="true">01 /</span> Learn in the classroom. Discover at the bench.</div></div>
         <HomeEnquiryForm />
@@ -87,27 +97,7 @@ export default function HomePage() {
       </li>)}</ul>
     </div></aside>
 
-    <section className="home-section home-about" id="about" aria-labelledby="home-about-title">
-      <Image className="home-about-background" src="/images/about-iths-dna-research.webp" alt="" fill sizes="100vw" />
-      <div className="container home-about-grid">
-        <div className="home-about-copy">
-          <p className="eyebrow">About ITHS</p>
-          <h2 id="home-about-title">Where laboratory science<br />meets health care</h2>
-          <p>Understand how embryos develop, how cancer grows, how genes shape the body's response to food, and how stem cells and the nervous system work.</p>
-          <p>ITHS connects classroom study with laboratory learning across six specialist departments. Find a study pathway that brings your curiosity closer to the questions shaping health care.</p>
-          <div className="home-button-row">
-            <Link className="home-about-cta" href="/about/">About ITHS <span aria-hidden="true">&rarr;</span></Link>
-            <Link className="home-about-secondary" href="/partnerships/university-partners">How degrees are awarded <span aria-hidden="true">{"\u2197"}</span></Link>
-          </div>
-        </div>
-        <aside className="home-about-glass" aria-label="About ITHS and degree awards">
-          <span className="home-about-card-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4"><path d="m3 12 13-7 13 7-13 7-13-7Z" /><path d="M9 16v8c5 4 9 4 14 0v-8m6-4v11" /></svg></span>
-          <p className="home-about-card-kicker">A practical approach to health science</p>
-          <h3>Learn. Discover.<br />Transform.</h3>
-          <div className="home-degree-note">ITHS is a university. Degrees and diplomas are awarded by the partner university associated with each programme.</div>
-        </aside>
-      </div>
-    </section>
+    <HomeAboutSection />
 
     <section className="home-section home-partners" id="partners"><div className="container"><div className="home-centered-heading"><p className="eyebrow">How degrees are awarded</p><h2>Our partner universities</h2><p>Specialist teaching at ITHS, in collaboration with a partner university that awards your qualification.</p></div><PartnerUniversitiesCarousel /><Link className="text-link home-centered-link" href="/partnerships/university-partners/">All partnerships <span aria-hidden="true">&rarr;</span></Link></div></section>
 
@@ -136,7 +126,9 @@ export default function HomePage() {
 
     <section className="home-section" id="campuses"><div className="container"><SectionHead eyebrow="Campuses" title="Your next chapter starts here" description="Explore our partner university locations and find a campus for your studies." href="/campuses/" link="All campuses" /><div className="home-campus-grid">{campuses.map(campus => { const partner = { "/campuses/mohali/": { image: "/home/partner-rbu.png" }, "/campuses/hoshiarpur/": { image: "/home/partner-rbpu.png" }, "/campuses/shimla-hills/": { image: "/home/partner-bahra.png" }, "/campuses/bhopal/": { image: "/home/partner-scope.png" } }[campus.href]!; const campusImage = { "/campuses/hoshiarpur/": "/images/campuses/hoshiarpur.jpg", "/campuses/bhopal/": "/images/campuses/bhopal.jpg", "/campuses/mohali/": "/images/campuses/chandigarh-mohali.jpg", "/campuses/shimla-hills/": "/images/campuses/shimla-hills.jpg" }[campus.href]!; const title = campus.title.replace(/\s*\([^)]*\)/g, ""); return <Link className="home-campus-card" href={campus.href} key={campus.href}><div className="home-campus-visual"><Image className="home-campus-photo" src={campusImage} alt={`${title} campus`} fill sizes="(max-width: 480px) calc(100vw - 36px), (max-width: 1024px) 45vw, 25vw" /><div className="home-campus-logo"><Image src={partner.image} alt={`${campus.partner} logo`} width={190} height={82} /></div></div><div className="home-campus-details"><div><p className="eyebrow">{campus.location}</p><h3>{title}</h3></div><div className="home-campus-partner-box"><p>In collaboration with</p><strong>{campus.partner}</strong></div><span className="text-link">View campus <span aria-hidden="true">&rarr;</span></span></div></Link>; })}</div></div></section>
 
-    <section className="home-section home-labs" id="labs"><div className="container"><SectionHead eyebrow="Courses" title="Explore specialist health science" description="Discover your course, study pathways and the science behind your next step." href="/programs/" link="All courses" /><div className="home-lab-grid">{courseCatalogue.filter(course => course.href !== btechCourseHref).map(item => <Link href={item.href} className="home-lab-card" key={item.href}><Image className="home-lab-photo" src={item.image} alt="" fill sizes="(max-width: 760px) 100vw, 33vw" /><div className="home-lab-overlay"><h3>{item.title}</h3><p>{item.description}</p><span className="home-lab-link-text">Explore course <span aria-hidden="true">&rarr;</span></span></div></Link>)}</div></div></section>
+    <section className="home-section home-labs" id="labs"><div className="container"><SectionHead eyebrow="Courses" title="Explore specialist health science" description="Discover your course, study pathways and the science behind your next step." href="/programs/" link="All courses" /><div className="home-lab-grid">{courseCatalogue.filter(course => course.href !== btechCourseHref).map(item => {
+      return <Link href={item.href} className="home-lab-card" key={item.href}><Image className="home-lab-photo" src={item.image} alt={`${item.title} subject illustration`} fill sizes="(max-width: 760px) 100vw, 33vw" /><div className="home-lab-overlay"><h3>{item.title}</h3><p>{item.description}</p><span className="home-lab-link-text">Explore course <span aria-hidden="true">&rarr;</span></span></div></Link>;
+    })}</div></div></section>
 
     <section className="home-section"><div className="container"><SectionHead eyebrow="Leadership" title="People guiding ITHS" href="/about/leadership/" link="Meet our leadership" /><div className="home-leadership-grid">{leadership.map(person => <article className="home-leader" key={person.href}><div className="home-leader-photo"><Image src={person.title === "Director" ? "/home/director.webp" : "/home/founder.png"} alt={person.name} fill sizes="(max-width: 760px) 35vw, 180px" /></div><div><h3>{person.name}</h3><span>{person.badge}</span><p>{person.title === "Director" ? "Connecting specialist health science education with practical laboratory learning." : "Bringing a focus on genetics, nutrition and personalised health to the ITHS community."}</p><Link className="text-link" href={person.href}>Read message <span aria-hidden="true">&rarr;</span></Link></div></article>)}</div></div></section>
     <section className="home-section home-research" id="research" aria-labelledby="home-research-title">
@@ -199,7 +191,7 @@ export default function HomePage() {
           {whyPoints.map((item, index) => (
             <article className={`home-why-card home-why-card-${index + 1}`} key={item.title}>
               <div className="home-why-media">
-                <Image src={item.image} alt={item.title} fill sizes="(max-width: 560px) 100vw, (max-width: 1080px) 50vw, 25vw" className="home-why-image" />
+                <Image src={item.image} alt={item.imageAlt} style={{ objectPosition: item.imagePosition }} fill sizes="(max-width: 560px) 100vw, (max-width: 1080px) 50vw, 25vw" className="home-why-image" />
                 <div className="home-why-media-fade" />
                 <div className="home-why-top">
                   <span className="home-why-icon" aria-hidden="true">{item.icon}</span>

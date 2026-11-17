@@ -15,7 +15,7 @@
 .labGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
 .labCard { min-width:0; overflow:hidden; border:1px solid #e0e6ee; border-radius:14px; background:#fff; transition:transform .2s ease,box-shadow .2s ease; }
 .labCard:hover { transform:translateY(-3px); box-shadow:0 14px 32px #10274814; }
-.labImage { position:relative; display:block; height:225px; overflow:hidden; background:#edf1f7; }
+.labImage { position:relative; display:block; aspect-ratio:4 / 5; overflow:hidden; background:#edf1f7; }
 .labImage img { object-fit:cover; transition:transform .3s ease; }
 .labCard:hover .labImage img { transform:scale(1.04); }
 .labCard > div { padding:20px 21px 22px; }
@@ -55,4 +55,4 @@
 .partnerGrid p { margin:5px 0 0; color:#64748b; font-size:12px; }
 .page a:focus-visible { outline:3px solid var(--red); outline-offset:3px; }
 @media(max-width:900px) { .labGrid,.departmentGrid { grid-template-columns:repeat(2,minmax(0,1fr)); } .partnerGrid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media(max-width:680px) { .container { width:calc(100% - 36px); } .hero { grid-template-columns:1fr; } .heroCopy { grid-column:1; grid-row:1; justify-self:stretch; padding:42px 22px 28px; } .heroImage { grid-column:1; grid-row:2; min-height:240px; } .heroImage::after { background:linear-gradient(0deg,transparent 55%,#0d2140 100%); } .section { padding-block:50px 58px; } .labGrid,.departmentGrid,.milestoneGrid,.partnerGrid { grid-template-columns:1fr; } .labImage { height:220px; } .noteSection > div { align-items:stretch; flex-direction:column; } .departmentCard { min-height:180px; } }
+@media(max-width:680px) { .container { width:calc(100% - 36px); } .hero { grid-template-columns:1fr; } .heroCopy { grid-column:1; grid-row:1; justify-self:stretch; padding:42px 22px 28px; } .heroImage { grid-column:1; grid-row:2; min-height:240px; } .heroImage::after { background:linear-gradient(0deg,transparent 55%,#0d2140 100%); } .section { padding-block:50px 58px; } .labGrid,.departmentGrid,.milestoneGrid,.partnerGrid { grid-template-columns:1fr; } .noteSection > div { align-items:stretch; flex-direction:column; } .departmentCard { min-height:180px; } }

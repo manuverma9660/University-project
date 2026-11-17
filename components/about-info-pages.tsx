@@ -1,15 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { departments, universityPartners } from "@/lib/site-content";
+import { labPhotos } from "@/lib/lab-photos";
 import styles from "./about-info-pages.module.css";
 
 const labAreas = [
-  { title: "Clinical Embryology & Andrology", text: "Explore the laboratory methods and reproductive science at the heart of clinical embryology education.", image: "/clinical-embryology.webp", alt: "Clinical embryology laboratory learning", href: "/academics/clinical-embryology-art/" },
-  { title: "Stem Cell & Regenerative Medicine", text: "Discover cell culture, stem cell science and the foundations of regenerative research.", image: "/stem-cell.webp", alt: "Stem cell research and regenerative medicine", href: "/academics/stem-cell-regenerative-medicine/" },
-  { title: "Molecular Genetics", text: "Learn about molecular approaches used to understand genes, health and disease.", image: "/images/about-iths-dna-research.webp", alt: "DNA research and molecular genetics", href: "/academics/molecular-medicine/" },
-  { title: "Cancer Biology", text: "Study cellular and molecular processes that help explain cancer biology.", image: "/cancer-biology.webp", alt: "Cancer biology research", href: "/academics/cancer-biology/" },
-  { title: "Nutrigenetics", text: "Explore the relationship between genetic variation, nutrition and personalised health.", image: "/nutrigenetics.webp", alt: "Nutrigenetics and personalised nutrition", href: "/academics/nutrigenetics-personalised-nutrition/" },
-  { title: "Practical Lab Learning", text: "Get a glimpse of student laboratory exposure and hands-on learning at ITHS.", image: "/images/notices/Laboratory-Exposure-Session-ITHS-1024x683.webp", alt: "ITHS students taking part in a laboratory exposure session", href: "/events/" },
+  { title: "Laboratory Equipment", text: "A closer look at microscopes, instruments and the practical bench environment at ITHS.", photo: labPhotos.equipment, href: "/academics/" },
+  { title: "Learning through Microscopy", text: "Students work with microscopes, observe samples and record their learning together.", photo: labPhotos.microscopy, href: "/academics/clinical-embryology-art/" },
+  { title: "Laminar Airflow Workstation", text: "A view of practical work with a pipette at the laboratory's laminar airflow workstation.", photo: labPhotos.airflow, href: "/academics/stem-cell-regenerative-medicine/" },
+  { title: "Inside the Teaching Laboratory", text: "Explore the benches, equipment and shared spaces used for hands-on laboratory learning.", photo: labPhotos.teachingLab, href: "/academics/" },
+  { title: "Pipetting Practice", text: "Building familiarity with micropipettes and sample handling through practical laboratory study.", photo: labPhotos.pipetting, href: "/academics/molecular-medicine/" },
+  { title: "Nutrition & Sample Study", text: "Bringing classroom learning to the laboratory through close observation of biological samples.", photo: labPhotos.nutrition, href: "/academics/nutrigenetics-personalised-nutrition/" },
 ];
 
 function DetailHero({ eyebrow, title, text, image, alt }: { eyebrow: string; title: string; text: string; image: string; alt: string }) {
@@ -18,8 +19,8 @@ function DetailHero({ eyebrow, title, text, image, alt }: { eyebrow: string; tit
 
 export function AboutLabsPage() {
   return <main id="main-content" className={styles.page}>
-    <DetailHero eyebrow="Explore ITHS laboratories" title="Learning beyond the classroom" text="Take a closer look at the specialist health science fields and practical learning experiences at ITHS. Laboratory facilities and access vary by campus and programme." image="/images/notices/Laboratory-Exposure-Session-ITHS-1024x683.webp" alt="Students learning in an ITHS laboratory" />
-    <section className={styles.section}><div className={styles.container}><header className={styles.sectionHead}><p className={styles.eyebrow}>Lab gallery</p><h2>Explore our learning areas</h2><p>ITHS prospectus information describes practical learning across specialist laboratory subjects. Browse a few areas connected with our academic departments.</p></header><div className={styles.labGrid}>{labAreas.map(lab=><article className={styles.labCard} key={lab.title}><Link href={lab.href} className={styles.labImage}><Image src={lab.image} alt={lab.alt} fill sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 33vw" /></Link><div><p className={styles.cardLabel}>ITHS lab learning</p><h3><Link href={lab.href}>{lab.title}</Link></h3><p>{lab.text}</p><Link className={styles.textLink} href={lab.href}>Explore subject <span aria-hidden="true">→</span></Link></div></article>)}</div></div></section>
+    <DetailHero eyebrow="Explore ITHS laboratories" title="Learning beyond the classroom" text="Take a closer look at the specialist health science fields and practical learning experiences at ITHS. Laboratory facilities and access vary by campus and programme." image={labPhotos.teachingLab.src} alt={labPhotos.teachingLab.alt} />
+    <section className={styles.section}><div className={styles.container}><header className={styles.sectionHead}><p className={styles.eyebrow}>Lab gallery</p><h2>Explore our learning areas</h2><p>Step inside ITHS laboratories through photographs of our learning spaces, practical equipment and students at work.</p></header><div className={styles.labGrid}>{labAreas.map(lab=><article className={styles.labCard} key={lab.title}><Link href={lab.href} className={styles.labImage}><Image src={lab.photo.src} alt={lab.photo.alt} style={{ objectPosition: lab.photo.position }} fill sizes="(max-width: 680px) 100vw, (max-width: 900px) 50vw, 33vw" /></Link><div><p className={styles.cardLabel}>ITHS lab learning</p><h3><Link href={lab.href}>{lab.title}</Link></h3><p>{lab.text}</p><Link className={styles.textLink} href={lab.href}>Explore subject <span aria-hidden="true">→</span></Link></div></article>)}</div></div></section>
     <section className={styles.noteSection}><div className={styles.container}><div><p className={styles.eyebrow}>Plan a campus visit</p><h2>See what is available for your course.</h2><p>Facilities, equipment and practical access can differ between campuses and programmes. Contact admissions to confirm current details for your preferred study option.</p></div><Link className={styles.button} href="/contact/">Ask about lab facilities <span aria-hidden="true">→</span></Link></div></section>
   </main>;
 }

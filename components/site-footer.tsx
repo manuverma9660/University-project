@@ -27,7 +27,7 @@ export function SiteFooter() {
       <div className="footer-intro">
         <Link className="footer-brand" href="/" aria-label={`${siteConfig.name} home`}>
           <Image className="footer-logo" src="/iths-logo.webp" alt="ITHS logo" width={515} height={290} />
-          <span className="footer-brand-name">University of<br />Translational<br />Health Science</span>
+          <span className="footer-brand-name">Institute of Translational <span style={{ whiteSpace: "nowrap" }}>Health Science</span></span>
         </Link>
         <p>Degrees and diplomas are awarded by the partner university associated with each programme.</p>
         <Link className="footer-contact" href="/enquire/">Enquire with ITHS <span aria-hidden="true">↗</span></Link>

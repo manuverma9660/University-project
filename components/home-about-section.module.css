@@ -1,0 +1,36 @@
+.section { position: relative; overflow: hidden; padding-block: 76px; background: #111c34; color: #d2dbea; scroll-margin-top: 100px; }
+.layout { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 5vw, 76px); }
+.copy { min-width: 0; }
+.copy .eyebrow { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 24px; color: #eff3fa; font-size: 11px; font-weight: 700; letter-spacing: .14em; }
+.eyebrow > span { width: 7px; height: 7px; border-radius: 50%; background: #f13647; }
+.copy h2 { max-width: 620px; margin: 0; color: #fff; font-size: clamp(34px, 3.6vw, 50px); line-height: 1.12; letter-spacing: -.04em; text-wrap: balance; }
+.copy h2 span { color: #a5dce6; }
+.copy .lead { margin: 24px 0 18px; color: #edf3fa; font-size: 18px; line-height: 1.5; }
+.copy > p:not(.eyebrow):not(.lead) { max-width: 590px; margin: 0 0 15px; color: #b7c5d9; font-size: 14px; line-height: 1.8; }
+.features { display: flex; flex-wrap: wrap; gap: 10px 18px; margin: 24px 0 0; padding: 0; list-style: none; }
+.features li { display: flex; align-items: center; gap: 7px; color: #d5dfed; font-size: 11px; }
+.features li::before { color: #a5dce6; content: "✓"; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 15px 22px; margin-top: 30px; }
+.primary { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 26px; padding: 12px 21px; border: 1px solid #cf1420; border-radius: 7px; background: #cf1420; color: #fff; font-size: 13px; font-weight: 700; }
+.primary:hover { background: #b3111c; }
+.secondary { display: inline-flex; min-height: 44px; align-items: center; gap: 12px; color: #e5edf7; font-size: 12px; font-weight: 600; }
+.secondary:hover { color: #a5dce6; }
+.visual { min-width: 0; }
+.photo { position: relative; height: clamp(290px, 28vw, 385px); overflow: hidden; margin: 0; border-radius: 18px 18px 0 0; background: #253b51; }
+.photo > img { object-fit: cover; }
+.photo::after { position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, #0b172bd9); content: ""; pointer-events: none; }
+.photo figcaption { position: absolute; z-index: 1; bottom: 24px; left: 24px; display: flex; align-items: center; gap: 12px; color: #e6edf5; font-size: 12px; line-height: 1.6; }
+.photo figcaption strong { color: #fff; font-size: 20px; font-weight: 600; }
+.photoMark { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid #ffffff40; border-radius: 50%; background: #ffffff12; }
+.photoMark svg { width: 23px; height: 23px; }
+.galleryLink { position: absolute; z-index: 1; right: 24px; bottom: 25px; display: grid; width: 44px; height: 44px; place-items: center; border: 1px solid #ffffff66; border-radius: 50%; background: #ffffff16; color: white; font-size: 22px; }
+.galleryLink:hover { background: #fff; color: #111c34; }
+.note { display: flex; align-items: flex-start; gap: 16px; padding: 25px; border-radius: 0 0 18px 18px; background: #f3f6fa; color: #1a1a41; }
+.noteIcon { display: grid; width: 42px; height: 42px; flex: 0 0 42px; place-items: center; border: 1px solid #dbe3ed; border-radius: 11px; color: #1a1a41; }
+.noteIcon svg { width: 27px; height: 27px; }
+.note .kicker { margin: 0 0 7px; color: #b81625; font-size: 9px; font-weight: 700; letter-spacing: .12em; }
+.note h3 { margin: 0; color: #1a1a41; font-size: 22px; line-height: 1.25; letter-spacing: -.03em; }
+.note .degreeNote { max-width: 430px; margin: 12px 0 0; color: #657188; font-size: 12px; line-height: 1.7; }
+@media (max-width: 1080px) { .layout { gap: 30px; } .note { gap: 12px; padding: 20px; } .note h3 { font-size: 20px; } }
+@media (max-width: 900px) { .section { padding-block: 54px; } .layout { grid-template-columns: minmax(0, 1fr); gap: 32px; } .copy { max-width: 680px; } .copy h2 { max-width: 650px; font-size: clamp(34px, 5vw, 46px); } .visual { width: 100%; max-width: 680px; justify-self: center; } .photo { height: 360px; } }
+@media (max-width: 480px) { .section { padding-block: 44px; } .copy .eyebrow { margin-bottom: 19px; } .copy h2 { font-size: 34px; } .copy .lead { font-size: 17px; margin-top: 20px; } .features { gap: 10px 15px; } .actions { align-items: flex-start; flex-direction: column; gap: 10px; margin-top: 24px; } .photo { height: 310px; } .photo figcaption { left: 18px; bottom: 20px; gap: 9px; } .galleryLink { right: 18px; bottom: 22px; } .photoMark { display: none; } .note { padding: 20px 18px; } .noteIcon { display: none; } .note h3 { font-size: 22px; } }
