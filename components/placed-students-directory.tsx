@@ -1,4 +1,6 @@
 "use client";
+import { SiteIcon } from "@/components/site-icon";
+
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
@@ -46,7 +48,7 @@ export function PlacedStudentsDirectory() {
     {filtered.length ? <div className="student-card-grid">{filtered.map(student => <article className="student-card" key={`${student.name}-${student.batchYear}`}>
       {/* Profile photography is supplied only alongside an approved student record. */}
       <div className="student-photo"><Image src={student.photo} alt={student.name} width={400} height={400} /></div><div className="student-card-content"><h2>{student.name}</h2><p>{student.programme} · {student.campus}</p><strong>{student.role}</strong><span>{student.employer} · Batch {student.batchYear}</span></div>
-    </article>)}</div> : <div className="empty-students"><span className="empty-icon" aria-hidden="true">✳</span><h2>{hasFilters ? "No approved profiles match these filters." : "Student stories will appear here."}</h2><p>{hasFilters ? "Try clearing or changing the filters. Only profiles with written student consent are shown." : "Profiles are published only after written consent is received. No approved student records have been provided yet."}</p><Link href="/contact/">Share your story <span>→</span></Link></div>}
+    </article>)}</div> : <div className="empty-students"><span className="empty-icon" aria-hidden="true"><SiteIcon name="leaf" /></span><h2>{hasFilters ? "No approved profiles match these filters." : "Student stories will appear here."}</h2><p>{hasFilters ? "Try clearing or changing the filters. Only profiles with written student consent are shown." : "Profiles are published only after written consent is received. No approved student records have been provided yet."}</p><Link href="/contact/">Share your story <span>→</span></Link></div>}
     <p className="privacy-note">Student profiles are shared only with written consent. Salary, package, and placement percentage information is not displayed.</p>
   </>;
 }

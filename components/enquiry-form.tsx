@@ -1,4 +1,6 @@
 "use client";
+import { SiteIcon } from "@/components/site-icon";
+
 
 import { useEffect, useState, type FormEvent } from "react";
 import { departments } from "@/lib/site-content";
@@ -65,7 +67,7 @@ export function EnquiryForm({ compact = false, campaign = false, courseOptions =
   if (campaign) return <form className="enquiry-card enquiry-card-course enquiry-card-campaign" onSubmit={handleSubmit}>
     <h2>2026 Admissions Open - Limited Seats</h2>
     <label><span>Name <b>*</b></span><input name="name" autoComplete="name" minLength={2} maxLength={100} placeholder="Enter Your Name" required /></label>
-    <label><span>Mobile Number <b>*</b></span><div className="campaign-phone"><input name="phone" type="tel" autoComplete="tel-national" inputMode="numeric" pattern="[0-9]{10}" maxLength={10} placeholder="Enter Your Number" required /><span aria-hidden="true">🇮🇳</span></div></label>
+    <label><span>Mobile Number <b>*</b></span><div className="campaign-phone"><input name="phone" type="tel" autoComplete="tel-national" inputMode="numeric" pattern="[0-9]{10}" maxLength={10} placeholder="Enter Your Number" required /><span aria-hidden="true"><SiteIcon name="phone" /></span></div></label>
     <label><span>Email Address <b>*</b></span><input name="email" type="email" autoComplete="email" maxLength={254} placeholder="Enter Your Email" required /></label>
     <label><input name="city" autoComplete="address-level2" maxLength={100} placeholder="City" /></label>
     <label><input name="state" autoComplete="address-level1" maxLength={100} placeholder="State" /></label>
@@ -81,7 +83,7 @@ export function EnquiryForm({ compact = false, campaign = false, courseOptions =
   return <form className={compact ? "enquiry-card enquiry-card-course" : "enquiry-form"} onSubmit={handleSubmit}>
     {compact && <><h2>Request a call back</h2><p className="enquiry-subtitle">Takes under a minute</p></>}
     <label>{compact ? <span>Full name <b>*</b></span> : "Your name"}<input name="name" autoComplete="name" minLength={2} maxLength={100} placeholder="Enter Your Name" required /></label>
-    <label>{compact ? <span>Mobile number <b>*</b></span> : "Mobile number"}<div className={compact ? "enquiry-phone" : undefined}>{compact && <><span aria-hidden="true">🇮🇳</span><span>+91</span></>}<input name="phone" type="tel" autoComplete="tel-national" inputMode="numeric" pattern={compact ? "[0-9]{10}" : "[0-9+() -]{10,18}"} maxLength={compact ? 10 : undefined} placeholder={compact ? "Enter your phone number" : "10-digit mobile number"} required /></div></label>
+    <label>{compact ? <span>Mobile number <b>*</b></span> : "Mobile number"}<div className={compact ? "enquiry-phone" : undefined}>{compact && <><span aria-hidden="true"><SiteIcon name="phone" /></span><span>+91</span></>}<input name="phone" type="tel" autoComplete="tel-national" inputMode="numeric" pattern={compact ? "[0-9]{10}" : "[0-9+() -]{10,18}"} maxLength={compact ? 10 : undefined} placeholder={compact ? "Enter your phone number" : "10-digit mobile number"} required /></div></label>
     {compact && <label><span>Email <b>*</b></span><input name="email" type="email" autoComplete="email" maxLength={254} placeholder="Enter Your Email" required /></label>}
     {compact && <label>City<input name="city" autoComplete="address-level2" maxLength={100} placeholder="City" /></label>}
     {!compact && <label>What is this about?<select name="topic" defaultValue="admissions"><option value="admissions">Admissions enquiry</option><option value="fees">Fee details</option><option value="campus">Campus information</option><option value="graduate-story">Graduate story</option><option value="research">Research enquiry</option><option value="publications">Publication records</option><option value="patents">Patent records</option><option value="collaboration">Research collaboration</option></select></label>}

@@ -1,3 +1,4 @@
+import { SiteIcon } from "@/components/site-icon";
 import Image from "next/image";
 import Link from "next/link";
 import { AdmissionEnquiryForm } from "@/components/enquiry-form";
@@ -31,17 +32,17 @@ export function ContactPage() {
       <div className={styles.container}>
         <div className={styles.sectionHeading}><p className={styles.eyebrow}>Get in Touch</p><h2>Get in Touch</h2></div>
         <div className={styles.contactCards}>
-          <a href={`tel:${admissionsPhone}`}><span className={styles.contactIcon} aria-hidden="true">☎</span><span><small>Phone</small><strong>+91 7696614978</strong></span><b aria-hidden="true">↗</b></a>
-          <a href="https://wa.me/917696614978" target="_blank" rel="noreferrer"><span className={`${styles.contactIcon} ${styles.whatsapp}`} aria-hidden="true">◉</span><span><small>WhatsApp</small><strong>Chat with us instantly</strong></span><b aria-hidden="true">↗</b></a>
-          <a href={`mailto:${siteConfig.admissionsEmail}`}><span className={`${styles.contactIcon} ${styles.email}`} aria-hidden="true">✉</span><span><small>Email</small><strong>Admission.iths@gmail.com</strong></span><b aria-hidden="true">↗</b></a>
-          <article><span className={`${styles.contactIcon} ${styles.hours}`} aria-hidden="true">◷</span><span><small>Office Hours</small><strong>Mon-Sat: 9AM-6PM</strong></span></article>
+          <a href={`tel:${admissionsPhone}`}><span className={styles.contactIcon} aria-hidden="true"><SiteIcon name="phone" /></span><span><small>Phone</small><strong>+91 7696614978</strong></span><b aria-hidden="true">↗</b></a>
+          <a href="https://wa.me/917696614978" target="_blank" rel="noreferrer"><span className={`${styles.contactIcon} ${styles.whatsapp}`} aria-hidden="true"><SiteIcon name="chat" /></span><span><small>WhatsApp</small><strong>Chat with us instantly</strong></span><b aria-hidden="true">↗</b></a>
+          <a href={`mailto:${siteConfig.admissionsEmail}`}><span className={`${styles.contactIcon} ${styles.email}`} aria-hidden="true"><SiteIcon name="mail" /></span><span><small>Email</small><strong>Admission.iths@gmail.com</strong></span><b aria-hidden="true">↗</b></a>
+          <article><span className={`${styles.contactIcon} ${styles.hours}`} aria-hidden="true"><SiteIcon name="clock" /></span><span><small>Office Hours</small><strong>Mon-Sat: 9AM-6PM</strong></span></article>
         </div>
       </div>
     </section>
 
     <section className={styles.messageSection} id="send-message">
       <div className={`${styles.container} ${styles.messageLayout}`}>
-        <div className={styles.messageIntro}><p className={styles.eyebrow}>Contact Us</p><h2>Get in Touch</h2><p>Have questions? Reach out for admissions inquiries, career counseling, or any information about ITHS.</p><div className={styles.responseNote}><span aria-hidden="true">◷</span><p><strong>Office Hours</strong><br />Mon-Sat: 9AM-6PM</p></div><p className={styles.disclaimer}>This form is a local preview and does not send or store your details. For an official response, call or email the admissions team.</p></div>
+        <div className={styles.messageIntro}><p className={styles.eyebrow}>Contact Us</p><h2>Get in Touch</h2><p>Have questions? Reach out for admissions inquiries, career counseling, or any information about ITHS.</p><div className={styles.responseNote}><span aria-hidden="true"><SiteIcon name="clock" /></span><p><strong>Office Hours</strong><br />Mon-Sat: 9AM-6PM</p></div><p className={styles.disclaimer}>This form is a local preview and does not send or store your details. For an official response, call or email the admissions team.</p></div>
         <div className={styles.formCard}><h2>Send us a Message</h2><AdmissionEnquiryForm variant="contact" /></div>
       </div>
     </section>

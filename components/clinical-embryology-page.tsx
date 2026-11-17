@@ -1,3 +1,4 @@
+import { SiteIcon } from "@/components/site-icon";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/enquiry-form";
 
@@ -69,7 +70,7 @@ export function ClinicalEmbryologyPage() {
 
     <section className="molecular-benefits molecular-inner">
       <header className="molecular-heading"><span className="molecular-eyebrow">WHY ITHS</span><h2>Study ART &amp; Clinical Embryology at ITHS</h2></header>
-      <div className="molecular-benefit-grid">{embryologyBenefits.map(([title, text]) => <article key={title}><span aria-hidden="true">✦</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+      <div className="molecular-benefit-grid">{embryologyBenefits.map(([title, text]) => <article key={title}><span aria-hidden="true"><SiteIcon name="sparkles" /></span><h3>{title}</h3><p>{text}</p></article>)}</div>
     </section>
 
     <section className="clinical-campuses"><div className="molecular-inner"><header className="molecular-heading"><span className="molecular-eyebrow">CAMPUS OPTIONS</span><h2>Explore ITHS campuses</h2><p>The source page lists these locations; ask which programme is available at each campus.</p></header><div className="clinical-campus-links"><Link href="/campuses/mohali/">Chandigarh (Mohali) <span>↗</span></Link><Link href="/campuses/hoshiarpur/">Hoshiarpur <span>↗</span></Link><Link href="/campuses/shimla-hills/">Shimla Hills <span>↗</span></Link><Link href="/campuses/bhopal/">Bhopal <span>↗</span></Link></div></div></section>

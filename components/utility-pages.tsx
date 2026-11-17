@@ -1,3 +1,4 @@
+import { SiteIcon } from "@/components/site-icon";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatedVisual } from "@/components/animated-visual";
@@ -35,9 +36,9 @@ export function WellnessStudioPage() {
     <section className={`${styles.container} ${styles.wellnessSection}`}>
       <header className={styles.wellnessHeading}><p className={styles.eyebrow}>Wellness Studio</p><h2>Wellbeing can be part of the everyday.</h2><p>Use this space to explore mindful breaks, healthy routines and community support. Ask ITHS for current studio access, activities and session timings.</p></header>
       <div className={styles.wellnessCards}>
-        <article><span className={styles.wellnessIcon} aria-hidden="true">✳</span><p>01 · RESET</p><h3>Take a mindful pause</h3><p>Make room in a busy day to slow down, breathe and return to study with a clearer head.</p></article>
+        <article><span className={styles.wellnessIcon} aria-hidden="true"><SiteIcon name="leaf" /></span><p>01 · RESET</p><h3>Take a mindful pause</h3><p>Make room in a busy day to slow down, breathe and return to study with a clearer head.</p></article>
         <article><span className={styles.wellnessIcon} aria-hidden="true">↗</span><p>02 · ROUTINE</p><h3>Build healthy study rhythms</h3><p>Balance focused learning with movement, rest, hydration and time away from screens.</p></article>
-        <article><span className={styles.wellnessIcon} aria-hidden="true">♡</span><p>03 · COMMUNITY</p><h3>Stay connected</h3><p>Small conversations and shared campus moments can help students feel part of a supportive community.</p></article>
+        <article><span className={styles.wellnessIcon} aria-hidden="true"><SiteIcon name="heart" /></span><p>03 · COMMUNITY</p><h3>Stay connected</h3><p>Small conversations and shared campus moments can help students feel part of a supportive community.</p></article>
       </div>
       <div className={styles.wellnessFeature}>
         <div className={styles.wellnessFeatureImage}><Image src="/images/notices/Teachers-day-2026-1024x768.webp" alt="ITHS students and teachers gathered together on campus" fill sizes="(max-width:760px) 100vw, 45vw" /></div>

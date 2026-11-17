@@ -1,3 +1,4 @@
+import { SiteIcon } from "@/components/site-icon";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/enquiry-form";
 
@@ -71,7 +72,7 @@ export function MolecularMedicinePage() {
 
     <section className="molecular-benefits molecular-inner">
       <header className="molecular-heading"><span className="molecular-eyebrow">THE UNIVERSITY</span><h2>Why study at ITHS?</h2></header>
-      <div className="molecular-benefit-grid">{benefits.map(([title, text]) => <article key={title}><span aria-hidden="true">✦</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+      <div className="molecular-benefit-grid">{benefits.map(([title, text]) => <article key={title}><span aria-hidden="true"><SiteIcon name="sparkles" /></span><h3>{title}</h3><p>{text}</p></article>)}</div>
     </section>
 
     <section className="molecular-careers">

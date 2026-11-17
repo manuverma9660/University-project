@@ -13,3 +13,6 @@ pnpm-debug.log*
 .vercel
 .next-dev/
 output/
+
+# Backup files
+*.bak

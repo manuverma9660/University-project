@@ -1754,10 +1754,11 @@
   z-index: 1;
   top: 16px;
   left: 16px;
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   width: min(78%, 185px);
   min-height: 62px;
-  place-items: center;
   padding: 8px 12px;
   border: 1px solid #ffffffaa;
   border-radius: 8px;
@@ -1769,6 +1770,7 @@
   width: 100%;
   max-height: 46px;
   object-fit: contain;
+  object-position: left center;
 }
 
 .home-campus-details {
@@ -2331,6 +2333,23 @@
   gap: 20px;
 }
 
+.home-careers-actions .button-outline {
+  border: 1.5px solid #1a1a41;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #1a1a41;
+  font-weight: 700;
+  transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.home-careers-actions .button-outline:hover {
+  border-color: #1a1a41;
+  background: #1a1a41;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(26, 26, 65, 0.15);
+}
+
 .home-career-marquee {
   width: calc(100vw - 8px);
   margin-left: calc(50% - 50vw + 4px);
@@ -2373,7 +2392,7 @@
 .home-career-card:focus-visible {
   transform: translateY(-4px);
   border-color: #ff7880;
-  box-shadow: 0 12px 28px #14244730;
+  box-shadow: none;
 }
 
 .home-career-image {
@@ -3129,24 +3148,64 @@
 }
 
 /* Card 1 — Blue accent */
-.home-why-card-1 .home-why-icon { color: #1d4ed8; }
-.home-why-card-1 .home-why-highlight { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
-.home-why-card-1 .home-why-sparkle { color: #1d4ed8; }
+.home-why-card-1 .home-why-icon {
+  color: #1d4ed8;
+}
+
+.home-why-card-1 .home-why-highlight {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+.home-why-card-1 .home-why-sparkle {
+  color: #1d4ed8;
+}
 
 /* Card 2 — Red accent */
-.home-why-card-2 .home-why-icon { color: #c81020; }
-.home-why-card-2 .home-why-highlight { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
-.home-why-card-2 .home-why-sparkle { color: #c81020; }
+.home-why-card-2 .home-why-icon {
+  color: #c81020;
+}
+
+.home-why-card-2 .home-why-highlight {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.home-why-card-2 .home-why-sparkle {
+  color: #c81020;
+}
 
 /* Card 3 — Teal accent */
-.home-why-card-3 .home-why-icon { color: #0d9488; }
-.home-why-card-3 .home-why-highlight { background: #f0fdfa; border-color: #99f6e4; color: #0f766e; }
-.home-why-card-3 .home-why-sparkle { color: #0d9488; }
+.home-why-card-3 .home-why-icon {
+  color: #0d9488;
+}
+
+.home-why-card-3 .home-why-highlight {
+  background: #f0fdfa;
+  border-color: #99f6e4;
+  color: #0f766e;
+}
+
+.home-why-card-3 .home-why-sparkle {
+  color: #0d9488;
+}
 
 /* Card 4 — Purple accent */
-.home-why-card-4 .home-why-icon { color: #7c3aed; }
-.home-why-card-4 .home-why-highlight { background: #faf5ff; border-color: #e9d5ff; color: #6b21a8; }
-.home-why-card-4 .home-why-sparkle { color: #7c3aed; }
+.home-why-card-4 .home-why-icon {
+  color: #7c3aed;
+}
+
+.home-why-card-4 .home-why-highlight {
+  background: #faf5ff;
+  border-color: #e9d5ff;
+  color: #6b21a8;
+}
+
+.home-why-card-4 .home-why-sparkle {
+  color: #7c3aed;
+}
 
 @media (max-width: 1080px) {
   .home-why-grid {

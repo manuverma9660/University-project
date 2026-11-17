@@ -1,4 +1,6 @@
 "use client";
+import { SiteIcon } from "@/components/site-icon";
+
 
 import Image from "next/image";
 import Link from "next/link";
@@ -64,7 +66,7 @@ export function ApplyLandingPage() {
           <div className={styles.campusGrid}>
             {campuses.map((item, index) => <article className={`${styles.card}${campus === item.id ? ` ${styles.selected}` : ""}`} key={item.id}>
               <div className={styles.photo}><Image src={item.image} alt={`${item.name} campus`} fill sizes="(max-width: 600px) 100vw, (max-width: 1080px) 50vw, 30vw" priority={index < 2} /><span className={styles.location}><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M16 8c0 4-6 9-6 9S4 12 4 8a6 6 0 0 1 12 0Z" /><circle cx="10" cy="8" r="2" /></svg>{item.location}</span></div>
-              <div className={styles.cardBody}><h3>{item.name}</h3><p className={styles.programmeLabel}>Explore programmes</p><ul>{item.programmes.map(id => <li key={id}>{programmes.find(p => p.id === id)?.title}{id === "btech" ? " (B.Tech)" : ""}</li>)}</ul><button className={styles.campusButton} type="button" onClick={() => chooseCampus(item.id)} aria-label={`Apply at ${item.name}`}>{campus === item.id ? "Campus selected" : "Apply here"}<span aria-hidden="true">{campus === item.id ? "✓" : "↗"}</span></button></div>
+              <div className={styles.cardBody}><h3>{item.name}</h3><p className={styles.programmeLabel}>Explore programmes</p><ul>{item.programmes.map(id => <li key={id}>{programmes.find(p => p.id === id)?.title}{id === "btech" ? " (B.Tech)" : ""}</li>)}</ul><button className={styles.campusButton} type="button" onClick={() => chooseCampus(item.id)} aria-label={`Apply at ${item.name}`}>{campus === item.id ? "Campus selected" : "Apply here"}<span aria-hidden="true"><SiteIcon name={campus === item.id ? "check" : "external"} /></span></button></div>
             </article>)}
           </div>
           <p className={styles.availability}>Programme levels, eligibility and intake availability vary by campus. Our admissions team can help you confirm the right option.</p>

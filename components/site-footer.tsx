@@ -1,3 +1,4 @@
+import { SiteIcon } from "@/components/site-icon";
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
@@ -27,7 +28,7 @@ export function SiteFooter() {
       <div className="footer-intro">
         <Link className="footer-brand" href="/" aria-label={`${siteConfig.name} home`}>
           <Image className="footer-logo" src="/iths-logo.webp" alt="ITHS logo" width={515} height={290} />
-          <span className="footer-brand-name">Institute of Translational <span style={{ whiteSpace: "nowrap" }}>Health Science</span></span>
+          <span className="footer-brand-name">Institute of<br />Translational Health<br />Science</span>
         </Link>
         <p>Degrees and diplomas are awarded by the partner university associated with each programme.</p>
         <Link className="footer-contact" href="/enquire/">Enquire with ITHS <span aria-hidden="true">↗</span></Link>
@@ -45,8 +46,8 @@ export function SiteFooter() {
 
       <div className="footer-group footer-contact-group">
         <h2>Contact Us</h2>
-        <a className="footer-contact-item" href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`}><span aria-hidden="true">☎</span>{siteConfig.admissionsPhone}</a>
-        <a className="footer-contact-item" href={`mailto:${siteConfig.admissionsEmail}`}><span aria-hidden="true">✉</span>{siteConfig.admissionsEmail}</a>
+        <a className="footer-contact-item" href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`}><span aria-hidden="true"><SiteIcon name="phone" /></span>{siteConfig.admissionsPhone}</a>
+        <a className="footer-contact-item" href={`mailto:${siteConfig.admissionsEmail}`}><span aria-hidden="true"><SiteIcon name="mail" /></span>{siteConfig.admissionsEmail}</a>
         <Link className="footer-contact-item" href="/contact/"><span aria-hidden="true">↗</span>Contact admissions</Link>
         <Link className="footer-contact-cta" href="/enquire/">Send an enquiry</Link>
       </div>

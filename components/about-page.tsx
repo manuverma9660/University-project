@@ -1,23 +1,24 @@
+import { SiteIcon } from "@/components/site-icon";
 import Image from "next/image";
 import Link from "next/link";
 import { leadership } from "@/lib/site-content";
 import styles from "./about-page.module.css";
 
 const highlights = [
-  { icon: "🏛️", value: "UGC", label: "Recognized University Partner" },
-  { icon: "🔬", value: "15+", label: "Research Patents Filed" },
-  { icon: "🏅", value: "95%", label: "Placement Support" },
-  { icon: "🧬", value: "1st", label: "Nutrigenetics in India" },
-  { icon: "🏫", value: "4", label: "Campuses Across India" },
+  { icon: <SiteIcon name="university" />, value: "UGC", label: "Recognized University Partner" },
+  { icon: <SiteIcon name="microscope" />, value: "15+", label: "Research Patents Filed" },
+  { icon: <SiteIcon name="award" />, value: "95%", label: "Placement Support" },
+  { icon: <SiteIcon name="dna" />, value: "1st", label: "Nutrigenetics in India" },
+  { icon: <SiteIcon name="university" />, value: "4", label: "Campuses Across India" },
 ];
 
 const values = [
-  { icon: "🔬", title: "Excellence", text: "Set high standards for learning, scientific enquiry and student achievement." },
-  { icon: "🤝", title: "Integrity", text: "Act with honesty, openness and responsibility in everything we do." },
-  { icon: "💡", title: "Innovation", text: "Welcome new thinking and keep developing how we teach and learn." },
-  { icon: "🎯", title: "Industry Focus", text: "Connect academic learning with the needs of professional practice." },
-  { icon: "🌱", title: "Student Success", text: "Put student development and career aspirations at the centre." },
-  { icon: "🌍", title: "Global Impact", text: "Build knowledge and skills that can contribute to better health." },
+  { icon: <SiteIcon name="microscope" />, title: "Excellence", text: "Set high standards for learning, scientific enquiry and student achievement." },
+  { icon: <SiteIcon name="handshake" />, title: "Integrity", text: "Act with honesty, openness and responsibility in everything we do." },
+  { icon: <SiteIcon name="lightbulb" />, title: "Innovation", text: "Welcome new thinking and keep developing how we teach and learn." },
+  { icon: <SiteIcon name="target" />, title: "Industry Focus", text: "Connect academic learning with the needs of professional practice." },
+  { icon: <SiteIcon name="leaf" />, title: "Student Success", text: "Put student development and career aspirations at the centre." },
+  { icon: <SiteIcon name="globe" />, title: "Global Impact", text: "Build knowledge and skills that can contribute to better health." },
 ];
 
 export function AboutPage() {
@@ -60,8 +61,8 @@ export function AboutPage() {
       <div className={styles.container}>
         <div className={styles.sectionHead}><p className={styles.badge}>Our Purpose</p><h2 id="about-purpose-title">Our <span>Mission &amp; Vision</span></h2><p>A shared purpose for learning, discovery and healthcare.</p></div>
         <div className={styles.purposeGrid}>
-          <article className={styles.purposeCard}><span className={styles.icon} aria-hidden="true">🎯</span><h3>Our Mission</h3><p>Prepare students for health science practice through clinical learning, faculty guidance and connections with industry.</p></article>
-          <article className={styles.purposeCard}><span className={styles.icon} aria-hidden="true">🚀</span><h3>Our Vision</h3><p>Advance health science education and research while developing knowledgeable, capable and compassionate professionals.</p></article>
+          <article className={styles.purposeCard}><span className={styles.icon} aria-hidden="true"><SiteIcon name="target" /></span><h3>Our Mission</h3><p>Prepare students for health science practice through clinical learning, faculty guidance and connections with industry.</p></article>
+          <article className={styles.purposeCard}><span className={styles.icon} aria-hidden="true"><SiteIcon name="rocket" /></span><h3>Our Vision</h3><p>Advance health science education and research while developing knowledgeable, capable and compassionate professionals.</p></article>
         </div>
       </div>
     </section>

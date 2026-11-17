@@ -6,7 +6,9 @@ import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 import "./homepage.css";
 import "./header.css";
+import "./home-sections.css";
 import "./page-visual-motion.css";
+import "./responsive.css";
 
 export const metadata: Metadata = {
   title: {

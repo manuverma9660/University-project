@@ -1,3 +1,4 @@
+import { SiteIcon } from "@/components/site-icon";
 import Link from "next/link";
 import Image from "next/image";
 import { campuses, departments, leadership, programmeCategories, universityPartners } from "@/lib/site-content";
@@ -75,7 +76,7 @@ export function LeadershipProfiles({ variant = "cards" }: { variant?: "cards" | 
       <div className="leadership-photo-wrap"><img className="leadership-profile-photo" src={person.image} alt={person.name} />{!showcase && <span className="leadership-badge">{person.badge}</span>}</div>
       <div className={showcase ? "leadership-showcase-content" : "leadership-profile-content"}><h2>{person.name}</h2><span className="leadership-role">{person.title}</span>
         {showcase ? <p>{person.description}</p> : <><ul className="leadership-credentials">{person.credentials.map(item => <li key={item}>{item}</li>)}</ul><p>{person.description}</p><blockquote>{person.quote}</blockquote></>}
-        {showcase && <ul className="leadership-showcase-credentials">{person.credentials.map((item, credentialIndex) => <li key={item}><span aria-hidden="true">{credentialIndex === 0 ? "✦" : "▣"}</span>{item}</li>)}</ul>}
+        {showcase && <ul className="leadership-showcase-credentials">{person.credentials.map((item, credentialIndex) => <li key={item}><span aria-hidden="true"><SiteIcon name={credentialIndex === 0 ? "award" : "certificate"} /></span>{item}</li>)}</ul>}
       </div>
     </article>)}
   </div>;

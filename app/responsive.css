@@ -1,0 +1,21 @@
+.site-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: -.15em;
+}
+
+@media (max-width: 1080px) {
+  /* Keep form text readable and prevent focus zoom on mobile browsers. */
+  #main-content input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+  #main-content select,
+  #main-content textarea {
+    min-width: 0;
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  #main-content input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+  #main-content select {
+    min-height: 44px;
+  }
+}

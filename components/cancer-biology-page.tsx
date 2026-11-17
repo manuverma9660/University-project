@@ -1,3 +1,4 @@
+import { SiteIcon } from "@/components/site-icon";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/enquiry-form";
 
@@ -26,13 +27,13 @@ const careerSteps = [
 ];
 
 const reasons = [
-  ["🔬", "Research labs", "Practical learning in a research-focused setting."],
-  ["🎓", "University partner", "Study in association with Rayat Bahra University."],
-  ["🧬", "Cancer research", "Explore tumor biology, cancer genetics, and oncology research."],
-  ["🤝", "Industry connections", "Learn about research across pharmaceutical and biotechnology settings."],
-  ["💼", "Career guidance", "Get guidance as you explore relevant career pathways."],
-  ["🎓", "Further study", "Build a foundation for advanced study and doctoral research."],
-];
+  ["microscope", "Research labs", "Practical learning in a research-focused setting."],
+  ["graduation", "University partner", "Study in association with Rayat Bahra University."],
+  ["dna", "Cancer research", "Explore tumor biology, cancer genetics, and oncology research."],
+  ["handshake", "Industry connections", "Learn about research across pharmaceutical and biotechnology settings."],
+  ["briefcase", "Career guidance", "Get guidance as you explore relevant career pathways."],
+  ["graduation", "Further study", "Build a foundation for advanced study and doctoral research."],
+] as const;
 
 const faqs = [
   ["What is a Cancer Biology course?", "Cancer Biology studies how cancer develops and progresses at the molecular and cellular level. The subject includes tumor biology, cancer genetics, and research methods."],
@@ -142,7 +143,7 @@ export function CancerBiologyPage() {
           <h2>Why Choose ITHS for <em>Cancer Biology</em></h2>
           <p>Explore research-focused learning and academic support.</p>
         </header>
-        <div className="cancer-why-grid">{reasons.map(([icon, title, text]) => <article key={title}><span aria-hidden="true">{icon}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+        <div className="cancer-why-grid">{reasons.map(([icon, title, text]) => <article key={title}><span aria-hidden="true"><SiteIcon name={icon} /></span><h3>{title}</h3><p>{text}</p></article>)}</div>
       </div>
     </section>
 

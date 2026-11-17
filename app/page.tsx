@@ -1,4 +1,5 @@
-﻿import Link from "next/link";
+import { SiteIcon } from "@/components/site-icon";
+import Link from "next/link";
 import Image from "next/image";
 import { HomeEnquiryForm } from "@/components/home-enquiry-form";
 import { HomeProgrammes } from "@/components/home-programmes";
@@ -7,7 +8,7 @@ import { siteConfig } from "@/lib/site-config";
 import { HomeAdmissionsProcess } from "@/components/home-admissions-process";
 import { CampusLifeSlideshow, campusLifeSlideGroups } from "@/components/campus-life-slideshow";
 import { btechCourseHref, courseCatalogue } from "@/lib/course-catalogue";
-import { PartnerUniversitiesCarousel } from "@/components/partner-universities-carousel";
+import { PartnerUniversitiesSection } from "@/components/partner-universities-section";
 import { ResearchPatentSlider } from "@/components/research-patent-slider";
 import { HomeFaqAccordion } from "@/components/home-faq-accordion";
 import { labPhotos } from "@/lib/lab-photos";
@@ -99,7 +100,7 @@ export default function HomePage() {
 
     <HomeAboutSection />
 
-    <section className="home-section home-partners" id="partners"><div className="container"><div className="home-centered-heading"><p className="eyebrow">How degrees are awarded</p><h2>Our partner universities</h2><p>Specialist teaching at ITHS, in collaboration with a partner university that awards your qualification.</p></div><PartnerUniversitiesCarousel /><Link className="text-link home-centered-link" href="/partnerships/university-partners/">All partnerships <span aria-hidden="true">&rarr;</span></Link></div></section>
+    <PartnerUniversitiesSection />
 
     <section className="home-section" id="departments"><div className="container"><SectionHead eyebrow="Academics" title="Departments and programmes" description="Find your direction in health science, from your first degree to advanced study." href="/academics/" link="All departments" /><HomeProgrammes /></div></section>
     <section className="home-scholarship" id="iths-set" aria-labelledby="home-scholarship-title">
@@ -161,7 +162,7 @@ export default function HomePage() {
       { title: "Stem Cell Science", href: "/academics/stem-cell-regenerative-medicine/", role: "Regenerative Medicine Specialist", image: "/stem-cell.webp" },
       { title: "Molecular Diagnostics", href: "/academics/molecular-medicine/", role: "Molecular Geneticist & Lab Consultant", image: "/images/about-iths-dna-research.webp" },
       { title: "Neuroscience Research", href: "/academics/neuroscience/", role: "Neurobiologist & Clinical Researcher", image: "/images/about-iths-biomedical.webp" }
-    ].map((item, index) => <Link href={item.href} className="home-career-card" key={`loop-${item.title}-${index}`} tabIndex={-1} aria-hidden="true"><Image src={item.image} alt="" fill sizes="(max-width: 760px) 82vw, 390px" className="home-career-image" /><span className="home-career-shade" aria-hidden="true" /><div className="home-career-content"><h3>{item.title}</h3><p>{item.role}</p></div></Link>)}</div></div><div className="home-careers-actions"><Link className="button button-primary" href="/placed-students/">Explore placement support <span aria-hidden="true">&rarr;</span></Link><Link className="text-link" href="/academics/">All departments <span aria-hidden="true">&rarr;</span></Link></div></div></section>
+    ].map((item, index) => <Link href={item.href} className="home-career-card" key={`loop-${item.title}-${index}`} tabIndex={-1} aria-hidden="true"><Image src={item.image} alt="" fill sizes="(max-width: 760px) 82vw, 390px" className="home-career-image" /><span className="home-career-shade" aria-hidden="true" /><div className="home-career-content"><h3>{item.title}</h3><p>{item.role}</p></div></Link>)}</div></div><div className="home-careers-actions"><Link className="button button-primary" href="/placed-students/">Explore placement support <span aria-hidden="true">&rarr;</span></Link><Link className="button button-outline" href="/academics/">All departments <span aria-hidden="true">&rarr;</span></Link></div></div></section>
 
     <section className="home-section home-life" aria-labelledby="home-life-title"><div className="container home-life-mosaic"><article className="home-life-tile home-life-intro-tile"><p className="eyebrow">Campus life</p><h2 id="home-life-title">Life at <span>ITHS</span></h2><p>Learning together, sharing ideas and discovering a community.</p><Link className="home-life-tile-link" href="/events/">ITHS events <span aria-hidden="true">&rarr;</span></Link></article><Link href="/events/" className="home-life-tile home-life-feature"><CampusLifeSlideshow slides={campusLifeSlideGroups.featured} direction="left" startDelayMs={0} /><span className="home-life-caption"><small>Campus event</small><strong>Life and learning at ITHS</strong><span>Explore moments from our campus community.</span></span></Link><Link href="/iths-teachers-day-2026-celebration/" className="home-life-tile home-life-photo home-life-teachers"><CampusLifeSlideshow slides={campusLifeSlideGroups.community} direction="down" startDelayMs={1200} /><span className="home-life-photo-label">Campus community</span></Link><Link href="/campuses/" className="home-life-tile home-life-photo home-life-students"><CampusLifeSlideshow slides={campusLifeSlideGroups.studentLearning} direction="up" startDelayMs={2400} /><span className="home-life-photo-label">Student learning</span></Link><Link href="/events/" className="home-life-tile home-life-photo home-life-learning"><CampusLifeSlideshow slides={campusLifeSlideGroups.learning} direction="right" startDelayMs={3600} /><span className="home-life-photo-label">Science in action</span></Link></div></section>
     <section className="home-section home-guidance" id="guidance" aria-labelledby="home-guidance-title">
@@ -201,7 +202,7 @@ export default function HomePage() {
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
                 <div className="home-why-highlight">
-                  <span className="home-why-sparkle" aria-hidden="true">✦</span>
+                  <span className="home-why-sparkle" aria-hidden="true"><SiteIcon name="sparkles" /></span>
                   <span>{item.highlight}</span>
                 </div>
               </div>

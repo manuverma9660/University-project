@@ -1,3 +1,4 @@
+import { SiteIcon } from "@/components/site-icon";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/enquiry-form";
 
@@ -77,7 +78,7 @@ export function NutrigeneticsPage() {
 
     <section className="molecular-careers"><div className="molecular-inner molecular-career-grid"><div><span className="molecular-eyebrow">CAREER PATHWAYS</span><h2>Where can this field lead?</h2><p>Graduates may explore nutrition, wellness, research, education, and industry roles. Specific job eligibility depends on qualifications, experience, and professional rules.</p></div><div className="molecular-career-list">{careers.map(career => <p key={career}>{career}</p>)}</div></div></section>
 
-    <section className="molecular-benefits molecular-inner"><header className="molecular-heading"><span className="molecular-eyebrow">WHY ITHS</span><h2>Study Nutrigenetics at ITHS</h2></header><div className="molecular-benefit-grid">{benefits.map(([title, text]) => <article key={title}><span aria-hidden="true">✦</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+    <section className="molecular-benefits molecular-inner"><header className="molecular-heading"><span className="molecular-eyebrow">WHY ITHS</span><h2>Study Nutrigenetics at ITHS</h2></header><div className="molecular-benefit-grid">{benefits.map(([title, text]) => <article key={title}><span aria-hidden="true"><SiteIcon name="sparkles" /></span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
 
     <section className="molecular-faq"><div className="molecular-inner"><header className="molecular-heading"><span className="molecular-eyebrow">QUESTIONS</span><h2>Nutrigenetics FAQs</h2></header><div className="molecular-faq-list">{faqs.map(([question, answer], i) => <details key={question} open={i === 0}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div></section>
 

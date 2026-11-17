@@ -521,7 +521,7 @@ h1 em, h2 em { color: var(--color-accent); font-weight: 400; }
 .campus-landing-hero h2 em { color: var(--color-accent); font-style: normal; }
 .campus-landing-hero-copy > p { max-width: 620px; color: var(--color-muted); font-size: 17px; line-height: 1.6; }
 .campus-landing-hero-copy > ul { display: grid; gap: 9px; margin: 20px 0 26px; padding: 0; list-style: none; color: var(--color-primary); font-size: 14px; font-weight: var(--weight-semibold); }
-.campus-landing-hero-copy > ul li::before { margin-right: 10px; color: var(--color-accent); content: "✓"; }
+.campus-landing-hero-copy > ul li::before { margin-right: 10px; color: var(--color-accent); content: ""; display: inline-block; width: 10px; height: 6px; border-left: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg); flex-shrink: 0; vertical-align: .2em; }
 .campus-landing-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
 .campus-landing-actions .text-link { color: var(--color-primary); font-size: 14px; font-weight: var(--weight-bold); }
 .campus-landing-hero-image { display: block; width: 100%; height: 390px; border-radius: 20px; background: #e9edf4; object-fit: cover; }
@@ -557,7 +557,7 @@ h1 em, h2 em { color: var(--color-accent); font-weight: 400; }
 .cancer-programme-meta b { margin-inline: 4px; }
 .cancer-programme-card ul { display: grid; gap: 10px; margin: 0 0 24px; padding: 0; list-style: none; }
 .cancer-programme-card li { position: relative; padding-left: 24px; font-size: 14px; line-height: 1.45; }
-.cancer-programme-card li::before { position: absolute; left: 0; color: var(--color-primary); content: "✓"; font-weight: var(--weight-bold); }
+.cancer-programme-card li::before { position: absolute; top: 6px; left: 0; color: var(--color-primary); content: ""; display: inline-block; width: 10px; height: 6px; border-left: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg); flex-shrink: 0; vertical-align: .2em; font-weight: var(--weight-bold); }
 .cancer-programme-card > a { display: flex; justify-content: space-between; gap: 10px; margin-top: auto; padding: 13px 16px; border-radius: 8px; background: var(--color-primary); color: white; font-size: 14px; font-weight: var(--weight-bold); }
 .cancer-programme-card-featured > a { background: var(--color-accent); }
 .cancer-course-careers { width: 100vw; margin-inline: calc(50% - 50vw); padding-block: 72px 84px; background: var(--color-primary); color: white; }
