@@ -5,7 +5,7 @@
 .page h2 span, .hero h1 span { color: var(--about-red); }
 .page h3 { color: var(--about-navy); font-size: 22px; }
 .page p { margin: 14px 0 0; }
-.hero { display:grid; min-height:410px; grid-template-columns:1fr 1fr; align-items:stretch; overflow:hidden; background:#102748; text-align:left; }
+.hero { display:grid; min-height:410px; grid-template-columns:2fr 3fr; align-items:stretch; overflow:hidden; background:#102748; text-align:left; }
 .heroImage { position:relative; grid-column:2; grid-row:1; min-height:410px; overflow:hidden; }
 .heroImage img { object-fit:cover; object-position:center 45%; }
 .heroImage::after { position:absolute; inset:0; background:linear-gradient(270deg,transparent 52%,#102748 100%); content:""; }

@@ -314,7 +314,7 @@ h1 em, h2 em { color: var(--color-accent); font-weight: 400; }
 .faq-list summary { display: flex; justify-content: space-between; gap: 20px; color: var(--color-primary); font-weight: var(--weight-semibold); cursor: pointer; list-style: none; }
 .faq-list summary::-webkit-details-marker { display: none; }
 .faq-list summary span { color: var(--color-accent); font-size: 20px; }
-.faq-list details[open] summary span { transform: rotate(45deg); }
+.faq-list details[open] summary span { /* handled by smooth animation block below */ }
 .faq-list details p { color: var(--color-muted); font-size: 14px; }
 
 /* Shared page templates */
@@ -599,7 +599,7 @@ h1 em, h2 em { color: var(--color-accent); font-weight: 400; }
 .cancer-faq-list summary { display: flex; justify-content: space-between; gap: 20px; padding-block: 18px; color: #111827; font-weight: var(--weight-bold); cursor: pointer; list-style: none; }
 .cancer-faq-list summary::-webkit-details-marker { display: none; }
 .cancer-faq-list summary span { color: var(--color-accent); font-size: 20px; transition: transform .15s ease; }
-.cancer-faq-list details[open] summary span { transform: rotate(45deg); }
+.cancer-faq-list details[open] summary span { /* handled by smooth animation block below */ }
 .cancer-faq-list details p { margin: 0; padding: 0 0 18px; color: var(--color-muted); font-size: 14px; line-height: 1.6; }
 .cancer-course-cta { width: 100vw; margin-inline: calc(50% - 50vw); padding-block: 76px; background: var(--color-accent); color: white; text-align: center; }
 .cancer-course-cta h2 { margin: 0 0 12px; color: white; font-size: clamp(30px, 3.4vw, 44px); }
@@ -1051,3 +1051,81 @@ h1 em, h2 em { color: var(--color-accent); font-weight: 400; }
 .directory-card-image { position:relative; width:calc(100% + 44px); height:165px; flex:0 0 165px; overflow:hidden; margin:-22px -22px 4px; background:#edf1f6; }
 .directory-card-image img { object-fit:cover; transition:transform .25s ease; }
 .directory-card:hover .directory-card-image img { transform:scale(1.04); }
+
+
+/* ── Smooth FAQ accordion animation (all details/summary FAQ lists) ── */
+.molecular-faq-list details,
+.cancer-faq-list details,
+.faq-list details,
+.home-faq-list details {
+  overflow: hidden;
+}
+
+/* Modern browsers: interpolate-size for height animation */
+@supports (interpolate-size: allow-keywords) {
+  .molecular-faq-list details,
+  .cancer-faq-list details,
+  .faq-list details,
+  .home-faq-list details {
+    interpolate-size: allow-keywords;
+  }
+
+  .molecular-faq-list details::details-content,
+  .cancer-faq-list details::details-content,
+  .faq-list details::details-content,
+  .home-faq-list details::details-content {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease, content-visibility 0.35s ease allow-discrete;
+  }
+
+  .molecular-faq-list details[open]::details-content,
+  .cancer-faq-list details[open]::details-content,
+  .faq-list details[open]::details-content,
+  .home-faq-list details[open]::details-content {
+    height: auto;
+  }
+}
+
+/* Fallback: grid trick for older browsers */
+@supports not (interpolate-size: allow-keywords) {
+  .molecular-faq-list details > p,
+  .cancer-faq-list details > p,
+  .faq-list details > p,
+  .home-faq-list details > p {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+    overflow: hidden;
+  }
+
+  .molecular-faq-list details > p > *,
+  .cancer-faq-list details > p > *,
+  .faq-list details > p > *,
+  .home-faq-list details > p > * {
+    overflow: hidden;
+  }
+
+  .molecular-faq-list details[open] > p,
+  .cancer-faq-list details[open] > p,
+  .faq-list details[open] > p,
+  .home-faq-list details[open] > p {
+    grid-template-rows: 1fr;
+  }
+}
+
+/* + icon rotation smooth */
+.molecular-faq-list summary span,
+.cancer-faq-list summary span,
+.faq-list summary span,
+.home-faq-list summary span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.molecular-faq-list details[open] summary span,
+.cancer-faq-list details[open] summary span,
+.faq-list details[open] summary span,
+.home-faq-list details[open] summary span {
+  transform: rotate(45deg);
+}
