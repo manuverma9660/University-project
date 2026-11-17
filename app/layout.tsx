@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SiteMotion } from "@/components/site-motion";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 import "./homepage.css";
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <SiteHeader />
         {children}
         <SiteFooter />
+        <SiteMotion />
       </body>
     </html>
   );

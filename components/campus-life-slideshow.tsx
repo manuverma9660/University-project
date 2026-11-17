@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { labPhotos } from "@/lib/lab-photos";
+import { useVisibleAutoplay } from "./use-visible-autoplay";
 
 const labPhotoPositions: Record<string, string> = Object.fromEntries(
   Object.values(labPhotos).map(photo => [photo.src, photo.position]),
@@ -48,6 +49,7 @@ const fallbackSlideGroups: Record<SlideDirection, readonly string[]> = {
 };
 
 export function CampusLifeSlideshow({ slides, direction = "left", startDelayMs = 0 }: { slides?: readonly string[]; direction?: SlideDirection; startDelayMs?: number }) {
+  const { ref: slideshowRef, playing } = useVisibleAutoplay<HTMLDivElement>();
   // Keep each tile on its own photo set even during a page refresh without props.
   const safeSlides = slides?.length ? slides : fallbackSlideGroups[direction];
   const movesPositive = direction === "right" || direction === "down";
@@ -65,6 +67,7 @@ export function CampusLifeSlideshow({ slides, direction = "left", startDelayMs =
     : { width: `${loopedSlides.length * 100}%`, transform: `translateX(${step}%)` };
 
   useEffect(() => {
+    if (!playing) return;
     let interval: number | undefined;
     const startTimer = window.setTimeout(() => {
       interval = window.setInterval(() => {
@@ -76,7 +79,7 @@ export function CampusLifeSlideshow({ slides, direction = "left", startDelayMs =
       window.clearTimeout(startTimer);
       if (interval !== undefined) window.clearInterval(interval);
     };
-  }, [movesPositive, startDelayMs, safeSlides.length]);
+  }, [movesPositive, startDelayMs, safeSlides.length, playing]);
 
   useEffect(() => {
     const reachedLoopEnd = movesPositive ? activeSlide === 0 : activeSlide === safeSlides.length;
@@ -92,7 +95,7 @@ export function CampusLifeSlideshow({ slides, direction = "left", startDelayMs =
   }, [activeSlide, movesPositive, safeSlides.length]);
 
   return (
-    <div className="home-life-slideshow" aria-hidden="true">
+    <div ref={slideshowRef} className="home-life-slideshow" aria-hidden="true">
       <div
         className={`home-life-track${isVertical ? " is-vertical" : ""}${isResetting ? " is-resetting" : ""}`}
         style={trackStyle}

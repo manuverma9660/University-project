@@ -1,1 +1,52 @@
 main#main-content > section:first-child h1 { max-width:740px; font-size:clamp(38px,4vw,60px); line-height:1.08; letter-spacing:-.04em; text-wrap:balance; }
+
+:root {
+  --motion-ease: cubic-bezier(.22, 1, .36, 1);
+  --motion-quick: 220ms;
+}
+
+/* Individual translate leaves existing carousel transforms and card scale intact. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-motion="pending"] { opacity: 0; translate: 0 18px; }
+  [data-motion="visible"] { animation: site-reveal 620ms var(--motion-ease) var(--reveal-delay, 0ms) both; }
+
+  .button,
+  .site-header .header-actions a {
+    transition-duration: var(--motion-quick);
+    transition-timing-function: var(--motion-ease);
+  }
+
+  .site-header .main-nav {
+    transition: transform 360ms var(--motion-ease), visibility 360ms;
+  }
+
+  main input:not([type="checkbox"]):not([type="radio"]),
+  main select,
+  main textarea {
+    transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .home-faq-item { transition: background-color 240ms ease; }
+  .home-faq-body { transition-timing-function: var(--motion-ease); }
+  .home-partner-track.is-transitioning { transition: transform 700ms var(--motion-ease); }
+  .home-life-track { transition-timing-function: var(--motion-ease); }
+}
+
+@keyframes site-reveal {
+  from { opacity: 0; translate: 0 18px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  main a.button:hover { transform: translateY(-2px); }
+  main a.button:active { transform: translateY(0); }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+  [data-motion="visible"] { animation-duration: 440ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-motion] { opacity: 1; translate: none; animation: none; }
+}

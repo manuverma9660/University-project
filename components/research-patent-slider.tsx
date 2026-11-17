@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./research-patent-slider.module.css";
+import { useVisibleAutoplay } from "./use-visible-autoplay";
 
 const patents = [
   { src: "/research/patents/lit-antioxidant.webp", alt: "LIT-Antioxidant certificate of registration of design displayed on the ITHS website" },
@@ -7,7 +10,8 @@ const patents = [
 ];
 
 export function ResearchPatentSlider() {
-  return <div className={`home-research-visual ${styles.slider}`} role="region" aria-roledescription="carousel" aria-label="ITHS patents and research documents">
+  const { ref, playing } = useVisibleAutoplay<HTMLDivElement>();
+  return <div ref={ref} data-playing={playing} className={`home-research-visual ${styles.slider}`} role="region" aria-roledescription="carousel" aria-label="ITHS patents and research documents">
     <div className={styles.viewport}>
       <div className={styles.track} aria-live="off">
         {[0, 1].map(copy => <div className={styles.group} key={copy} aria-hidden={copy === 1 ? true : undefined}>

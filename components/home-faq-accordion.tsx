@@ -18,6 +18,7 @@ export function HomeFaqAccordion({ faqs }: { faqs: [string, string][] | string[]
             <button
               type="button"
               className="home-faq-question"
+              id={`faq-question-${index}`}
               onClick={() => toggle(index)}
               aria-expanded={isOpen}
               aria-controls={`faq-answer-${index}`}
@@ -30,7 +31,7 @@ export function HomeFaqAccordion({ faqs }: { faqs: [string, string][] | string[]
                 </svg>
               </span>
             </button>
-            <div id={`faq-answer-${index}`} className="home-faq-body" role="region">
+            <div id={`faq-answer-${index}`} className="home-faq-body" role="region" aria-labelledby={`faq-question-${index}`} aria-hidden={!isOpen} inert={!isOpen}>
               <div className="home-faq-body-inner">
                 <p>{answer}</p>
               </div>
