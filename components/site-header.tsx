@@ -320,17 +320,18 @@ export function SiteHeader() {
                   <svg
                     className="home-nav-icon"
                     viewBox="0 0 24 24"
-                    width="20"
-                    height="20"
+                    width="22"
+                    height="22"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="2.2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     aria-hidden="true"
                   >
-                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
+                    <path d="M3.5 10.5 12 3.5l8.5 7" />
+                    <path d="M5.5 9v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9" />
+                    <path d="M10 21v-5a2 2 0 0 1 4 0v5" />
                   </svg>
                   <span className="home-link-text">Home</span>
                 </Link>
