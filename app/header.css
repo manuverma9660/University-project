@@ -211,6 +211,14 @@
   .site-header .header-actions .header-apply { min-width: 0; min-height: 44px; padding-inline: 12px; font-size: 11px; }
   .site-header .mobile-menu-toggle { width: 44px; height: 44px; flex-basis: 44px; }
 }
+@media (max-width: 1080px) {
+  .site-header .main-nav .direct-nav-link::after,
+  .site-header .main-nav .nav-trigger::after,
+  .site-header .main-nav .placement-nav-link::after {
+    display: none !important;
+    content: none !important;
+  }
+}
 .header-menu-backdrop { display: none; }
 .header-mega-feature, .header-mega-cards { display: none; }
 @media (min-width: 1200px) {
