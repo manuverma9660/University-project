@@ -195,7 +195,7 @@ export function SiteChatbot() {
             />
             <span className={styles.onlinePulse} />
           </div>
-          <span className={styles.triggerLabel}>Chat & Call</span>
+          <span className={styles.triggerLabel}>Talk to us</span>
         </button>
       )}
 
