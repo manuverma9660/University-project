@@ -604,7 +604,7 @@
 }
 
 body:has([data-notice-dock]) {
-  --notice-dock-height: calc(64px + env(safe-area-inset-bottom, 0px));
+  --notice-dock-height: calc(56px + env(safe-area-inset-bottom, 0px));
   padding-bottom: calc(var(--notice-dock-height) + 10px);
 }
 
