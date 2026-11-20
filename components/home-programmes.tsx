@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { departments } from "@/lib/site-content";
 import { getProgrammeHref } from "@/lib/course-catalogue";
+import { SiteIcon } from "@/components/site-icon";
 
 export const departmentImages = ["/clinical-embryology.webp", "/cancer-biology.webp", "/nutrigenetics.webp", "/stem-cell.webp", "/images/about-iths-dna-research.webp", "/images/about-iths-biomedical.webp"];
 
@@ -34,15 +35,17 @@ function programmeLevel(programme: string) {
 }
 
 function DepartmentMark({ index }: { index: number }) {
+  if (index === 2) return <SiteIcon name="leaf" />;
+
   const drawings = [
     <><path d="m12 3 5 4-4 5-5-4 4-5ZM7 10l-2 3 3 3 3-3M16 11a5 5 0 0 1-2 9H4M10 17v3M3 22h16" /></>,
-    <><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="3" /><path d="m7 5 1 2m9 10 2 1M4 13h3m10-4 2-1" /></>,
-    <><path d="M20 4C9 3 3 8 6 15c7 4 14-1 14-11ZM4 21 16 9M10 15l-1-5m1 5 5 1" /></>,
+    <><circle cx="9" cy="9" r="5.5" /><circle cx="9" cy="9" r="1.8" /><circle cx="16.5" cy="15.5" r="3.5" /><circle cx="16.5" cy="15.5" r="1" /><circle cx="17" cy="6" r="1" /></>,
+    <><path d="M6 4c0 5 12 11 12 16M18 4c0 5-12 11-12 16M7.5 7h9M10 10h4M10 14h4M7.5 17h9" /><path d="M15.2 5.2c.8-2 3-2.8 5.1-2.6-.1 2.4-1.4 4.1-4 4.8M15.4 5.3l3.1-1.6" /></>,
     <><path d="M7 3c0 7 10 11 10 18M17 3c0 7-10 11-10 18M8 6h8M8 18h8M10 10h4m-4 4h4" /></>,
     <><circle cx="12" cy="12" r="3" /><circle cx="5" cy="5" r="2" /><circle cx="19" cy="5" r="2" /><circle cx="5" cy="19" r="2" /><circle cx="19" cy="19" r="2" /><path d="m7 7 3 3m4 0 3-3M7 17l3-3m4 0 3 3" /></>,
     <><path d="M12 5C7 1 4 5 5 8c-5 2-3 8 0 8-2 4 3 7 7 4V5Zm0 0c5-4 8 0 7 3 5 2 3 8 0 8 2 4-3 7-7 4M8 8l4 3m0 4-5 2m9-9-4 3m0 4 5 2" /></>,
   ];
-  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">{drawings[index]}</svg>;
+  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{drawings[index]}</svg>;
 }
 
 export function HomeProgrammes() {
