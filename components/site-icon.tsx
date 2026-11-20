@@ -1,9 +1,11 @@
 import type { ReactNode } from "react";
 
 const artwork = {
+  home: <><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></>,
   university: <><path d="m3 9 9-6 9 6H3ZM4 21h16M6 10v8m6-8v8m6-8v8M4 18h16" /></>,
   trophy: <><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" /><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" /><path d="M4 22h16" /><path d="M10 14.66V17c0 .55-.45 1-1 1H8v4h8v-4h-1c-.55 0-1-.45-1-1v-2.34" /><path d="M18 4H6v7a6 6 0 0 0 12 0V4Z" /></>,
-  microscope: <><path d="M6 18h8" /><path d="M3 22h18" /><path d="m14 22 .77-4.3a5 5 0 0 0-1.43-4.48L11 11" /><path d="m12 6 3 3" /><path d="m8.5 7.5 7 7" /><path d="m10 4 5 5" /><path d="m13 1 5 5" /></>,
+  // Lucide microscope: https://lucide.dev/icons/microscope (ISC license).
+  microscope: <><path d="M6 18h8" /><path d="M3 22h18" /><path d="M14 22a7 7 0 1 0 0-14h-1" /><path d="M9 14h2" /><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z" /><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3" /></>,
   award: <><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" /></>,
   dna: <><path d="M6 3c0 8 12 10 12 18M18 3c0 8-12 10-12 18M7 5h10M9 9h6M9 15h6M7 19h10" /></>,
   handshake: <><path d="m11 17 2 2a1 1 0 0 0 1.42 0l4.58-4.58a1 1 0 0 0 0-1.42l-2.58-2.58a1 1 0 0 0-1.42 0L13 12.42" /><path d="m16 8 4.58 4.58a1 1 0 0 1 0 1.42l-2.58 2.58a1 1 0 0 1-1.42 0L12 12" /><path d="M7 11 2.42 6.42a1 1 0 0 1 0-1.42L5 2.42a1 1 0 0 1 1.42 0L11 7" /><path d="m2 16 4.58-4.58a1 1 0 0 1 1.42 0l2.58 2.58a1 1 0 0 1 0 1.42L6 20" /></>,

@@ -309,7 +309,31 @@ export function SiteHeader() {
             <nav ref={navRef} id="primary-navigation" className={`main-nav${mobileOpen ? " mobile-open" : ""}`} aria-label="Main navigation">
               <div className="mobile-drawer-top"><Brand compact /><button type="button" aria-label="Close navigation menu" onClick={() => { setMobileOpen(false); setOpenMenu(null); }}><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="m6 6 12 12M18 6 6 18" /></svg></button></div>
               <div className="container nav-inner">
-                <Link className={`home-link${pathname === "/" ? " is-active" : ""}`} href="/" aria-current={pathname === "/" ? "page" : undefined} onClick={() => setMobileOpen(false)}>Home</Link>
+                <Link
+                  className={`home-link${pathname === "/" ? " is-active" : ""}`}
+                  href="/"
+                  aria-label="Home"
+                  title="Home"
+                  aria-current={pathname === "/" ? "page" : undefined}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <svg
+                    className="home-nav-icon"
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
+                  <span className="home-link-text">Home</span>
+                </Link>
                 {navigation.map(group => (
                   group.direct ? <Link className={`direct-nav-link${pathname.startsWith(group.href) ? " is-active" : ""}`} href={group.href} key={group.label} onClick={() => setMobileOpen(false)}>{group.label}</Link> : <div className={`nav-dropdown${openMenu === group.label ? " menu-open" : ""}${group.label === "News" ? " nav-dropdown-align-right" : ""}`} key={group.label} onMouseEnter={() => hoverMenu(group.label)} onMouseLeave={() => leaveMenu(group.label)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpenMenu(current => current === group.label ? null : current); }}>
                     <button type="button" className={`nav-trigger${pathname.startsWith(group.href) || group.items?.some(item => item.href.split(/[?#]/)[0] === pathname) || group.columns?.some(column => column.items.some(item => item.href.split(/[?#]/)[0] === pathname)) ? " is-active" : ""}`} aria-expanded={openMenu === group.label} aria-controls={`nav-menu-${group.label.toLowerCase().replaceAll(" ", "-").replaceAll("@", "at")}`} onClick={() => toggleMenu(group.label)}>{group.label}<span className="nav-chevron" aria-hidden="true" /></button>

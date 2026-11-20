@@ -147,6 +147,37 @@
 }
 
 .site-header .home-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  padding: 0 10px;
+  color: #101026;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: none;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+
+.site-header .home-link:hover,
+.site-header .home-link.is-active {
+  color: var(--header-accent, #cf1420);
+}
+
+.site-header .home-link .home-nav-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  stroke-width: 2.1px;
+  transition: transform 0.18s ease;
+}
+
+.site-header .home-link:hover .home-nav-icon {
+  transform: translateY(-1px);
+}
+
+.site-header .home-link .home-link-text {
   display: none;
 }
 
@@ -284,6 +315,12 @@
   background: #ffffff;
   background-image: none;
   box-shadow: none;
+}
+
+.reference-home .home-admissions-process > .container {
+  width: 100%;
+  max-width: none;
+  padding-inline: clamp(16px, 2vw, 32px);
 }
 
 .home-section-head {
@@ -3256,7 +3293,7 @@
 }
 
 .home-faq {
-  background: #f6f7fa;
+  background: #fff;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -3922,6 +3959,20 @@
 
   .site-header .home-link {
     display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+
+  .site-header .home-link .home-link-text {
+    display: inline;
+  }
+
+  .site-header .home-link .home-nav-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--header-accent, #cf1420);
+    flex-shrink: 0;
   }
 
   .site-header .nav-dropdown>.nav-trigger,

@@ -29,21 +29,32 @@
 .sectionHead > p:not(.badge) { color: #536175; font-size: 16px; }
 .badge { display: inline-flex; align-items: center; justify-content: center; padding: 6px 17px; border-radius: 999px; background: #0c192a; color: #fff; font-size: 11px; font-weight: 700; line-height: 1.5; }
 .sectionHead > .badge { margin: 0 0 22px; letter-spacing: .035em; text-transform: uppercase; }
-.leaders { display: grid; max-width: 980px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-inline: auto; }
-.leader { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1.5px solid var(--about-navy); border-radius: 15px; background: #f5f7f9; }
-.portrait { position: relative; height: 300px; flex-shrink: 0; background: #fff; }
-.portrait > .badge { position: absolute; z-index: 1; top: 16px; left: 16px; }
-.portrait > img { padding: 20px 35px 0; object-fit: contain; object-position: bottom; }
-.leaderBody { flex: 1; padding: 26px; background: #f5f7f9; }
-.leaderBody .role { margin: 8px 0 17px; color: #18273b; font-size: 15px; font-weight: 600; }
-.credentials { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 18px; padding: 0; list-style: none; }
-.credentials li { max-width: 100%; padding: 5px 11px; border-radius: 999px; background: #0c192a; color: #fff; font-size: 11px; line-height: 1.55; }
-.leaderBody > p:not(.role) { font-size: 14px; line-height: 1.8; }
-.leaderBody blockquote { margin: 18px 0 0; padding-left: 14px; border-left: 3px solid var(--about-red); color: #394960; font-size: 14px; line-height: 1.8; }
-.leaderBody .inlineLink { margin-top: 14px; }
+.leaders { display: grid; max-width: 1100px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-inline: auto; }
+.leader { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid #e0e6ed; border-radius: 20px; background: #fff; box-shadow: 0 8px 28px #10274806; transition: border-color .25s ease, box-shadow .25s ease; }
+.portrait { position: relative; height: 260px; flex-shrink: 0; overflow: hidden; border-bottom: 1px solid #edf0f4; background: #fff; }
+.portrait > .badge { position: absolute; z-index: 1; top: 20px; left: 20px; padding: 7px 12px; border: 1px solid #e5262a20; border-radius: 7px; background: #fff4f4; color: #b51d26; }
+.portrait > img { padding: 26px 36px 0; object-fit: contain; object-position: bottom; }
+.leaderBody { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: 28px; background: #fff; }
+.leaderBody h3 { font-size: clamp(22px, 2vw, 26px); }
+.leaderBody .role { margin: 7px 0 20px; color: #b51d26; font-size: 13px; font-weight: 700; }
+.credentials { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 6px; padding: 0; list-style: none; }
+.credentials li { max-width: 100%; padding: 6px 10px; border: 1px solid #e6ebf1; border-radius: 6px; background: #f6f8fb; color: #46576d; font-size: 11px; line-height: 1.55; }
+.leaderBody > p:not(.role) { color: #526175; font-size: 14px; line-height: 1.8; }
+.leaderBody blockquote { position: relative; width: 100%; margin: 22px 0 24px; padding: 17px 18px; border-left: 3px solid var(--about-red); border-radius: 0 10px 10px 0; background: #f7f9fc; color: #34475f; font-size: 14px; line-height: 1.75; }
+.leaderBody .inlineLink { width: 100%; justify-content: space-between; gap: 16px; margin-top: auto; padding: 13px 16px; border: 1px solid #dce3ec; border-radius: 9px; background: #fff; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.leaderBody .inlineLink span { display: grid; width: 25px; height: 25px; place-items: center; border-radius: 50%; background: #fff0f1; }
+.leaderBody .inlineLink:hover { border-color: var(--about-navy); background: var(--about-navy); color: #fff; }
+@media (hover: hover) { .leader:hover { border-color: #c6d1df; box-shadow: 0 14px 36px #1027480d; } }
+.purposeSection { background: var(--about-navy); }
+.purposeSection .sectionHead h2 { color: #fff; }
+.purposeSection .sectionHead > p:not(.badge) { color: #d8e2ef; }
+.purposeSection .sectionHead > .badge { background: #ffffff12; color: #fff; border: 1px solid #ffffff26; }
 .purposeGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-.purposeCard { min-width: 0; padding: 30px 28px; border: 1.5px solid var(--about-navy); border-radius: 13px; text-align: center; }
-.purposeCard p { max-width: 470px; margin: 15px auto 0; }
+.purposeCard { display: grid; min-width: 0; grid-template-columns: 56px minmax(0, 1fr); grid-template-rows: auto 1fr; align-items: center; gap: 18px; padding: 30px; border: 1px solid #e2e7ee; border-radius: 16px; background: #fafbfd; text-align: left; transition: border-color .25s ease; }
+.purposeCard > .icon { display: grid; width: 56px; height: 56px; place-items: center; margin: 0; border-radius: 14px; background: #fcecee; color: #c81d29; font-size: 29px; }
+.purposeCard h3 { color: var(--about-navy); font-size: clamp(23px, 2vw, 27px); }
+.purposeCard p { grid-column: 1 / -1; align-self: start; max-width: 490px; margin: 0; padding-top: 18px; border-top: 1px solid #e6ebf1; color: #536175; font-size: 16px; line-height: 1.8; }
+@media (hover: hover) { .purposeCard:hover { border-color: #c7d1de; } }
 .valuesGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .valueCard { min-width: 0; padding: 28px 24px; border-radius: 14px; background: #fff; text-align: center; }
 .valueCard p { margin-top: 12px; font-size: 15px; line-height: 1.65; }
@@ -81,10 +92,10 @@
   .highlight { min-height: 155px; padding: 20px 10px; }
   .highlight p { font-size: 12px; }
   .valuesGrid { grid-template-columns: minmax(0, 1fr); }
-  .portrait { height: 265px; }
+  .portrait { height: 240px; }
   .portrait > img { padding-inline: 20px; }
   .purposeCard { padding: 28px 22px; }
   .actions { flex-direction: column; align-items: center; }
   .actions a { width: min(100%, 260px); }
 }
-@media (prefers-reduced-motion: reduce) { .actions a { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .actions a, .leader, .leaderBody .inlineLink, .purposeCard { transition: none; } }

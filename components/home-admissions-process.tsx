@@ -1,5 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import styles from "./home-admissions-process.module.css";
+
+const journeyPath = "M8 24C75 24 100 64 150 64S300 144 450 64 600-16 750 64 900 144 1050 64C1110 32 1140 24 1192 24";
 
 const steps = [
   { title: "Register & Apply", description: "Fill the online application form with your details", icon: "apply" },
@@ -18,6 +23,41 @@ function StepIcon({ type }: { type: typeof steps[number]["icon"] }) {
 }
 
 export function HomeAdmissionsProcess() {
+  const carTrack = useRef<SVGSVGElement>(null);
+  const road = useRef<SVGPathElement>(null);
+  const [activeStep, setActiveStep] = useState(-1);
+
+  useEffect(() => {
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let frame = 0;
+    let previousStep = -1;
+    const roadLength = road.current?.getTotalLength() ?? 0;
+    const stepPositions = [150, 450, 750, 1050];
+
+    // Read the car's SVG clock so the highlight follows its actual arrival.
+    const syncHighlight = () => {
+      const progress = ((carTrack.current?.getCurrentTime() ?? 0) % 12) / 12;
+      const position = road.current?.getPointAtLength(progress * roadLength);
+      const nextStep = motionPreference.matches || !position ? -1 : stepPositions.findIndex(x => Math.abs(position.x - x) <= 32);
+      if (nextStep !== previousStep) {
+        previousStep = nextStep;
+        setActiveStep(nextStep);
+      }
+      if (!motionPreference.matches) frame = requestAnimationFrame(syncHighlight);
+    };
+    const restart = () => {
+      cancelAnimationFrame(frame);
+      syncHighlight();
+    };
+
+    restart();
+    motionPreference.addEventListener("change", restart);
+    return () => {
+      cancelAnimationFrame(frame);
+      motionPreference.removeEventListener("change", restart);
+    };
+  }, []);
+
   return <>
     <header className={styles.heading}>
       <p className={styles.badge}>ADMISSION PROCESS</p>
@@ -26,12 +66,25 @@ export function HomeAdmissionsProcess() {
     </header>
     <div className={styles.journey}>
       <svg className={styles.path} viewBox="0 0 1200 128" fill="none" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M8 24C75 24 100 64 150 64S300 144 450 64 600-16 750 64 900 144 1050 64 1140 24 1192 24" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 6" />
+        <path ref={road} d={journeyPath} stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 6" />
         <circle cx="8" cy="24" r="3.5" fill="currentColor" />
         <path d="m1185 20 9 4-9 4Z" fill="currentColor" />
       </svg>
+      <svg ref={carTrack} className={styles.carTrack} viewBox="0 0 1200 128" fill="none" preserveAspectRatio="none" aria-hidden="true">
+        <g className={styles.car}>
+          <animateMotion dur="12s" repeatCount="indefinite" calcMode="paced" path={journeyPath} rotate="auto" />
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.01;.98;1" dur="12s" repeatCount="indefinite" />
+          <g transform="translate(-22 -24)">
+            <path d="m7 12 5-9h17l8 9h3a4 4 0 0 1 4 4v7H0v-7a4 4 0 0 1 4-4Z" fill="#cf1420" stroke="#fff" strokeWidth="2" strokeLinejoin="round" />
+            <path d="m14 6-3 6h10V6Zm10 0v6h9l-6-6Z" fill="#eaf3ff" />
+            <path d="M37 16h5" stroke="#ffe9a8" strokeWidth="3" strokeLinecap="round" />
+            <circle cx="10" cy="23" r="5" fill="#1a1a41" stroke="#fff" strokeWidth="2" />
+            <circle cx="34" cy="23" r="5" fill="#1a1a41" stroke="#fff" strokeWidth="2" />
+          </g>
+        </g>
+      </svg>
       <ol className={styles.steps}>
-        {steps.map((step, index) => <li className={styles.step} key={step.icon}>
+        {steps.map((step, index) => <li className={`${styles.step}${activeStep === index ? ` ${styles.active}` : ""}`} key={step.icon}>
           <span className={styles.icon}><StepIcon type={step.icon} /></span>
           <p className={styles.number}>Step {index + 1}</p>
           <h3>{step.title}</h3>

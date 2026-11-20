@@ -57,7 +57,7 @@ export function AboutPage() {
       </div>
     </section>
 
-    <section className={styles.section} aria-labelledby="about-purpose-title">
+    <section className={`${styles.section} ${styles.purposeSection}`} aria-labelledby="about-purpose-title">
       <div className={styles.container}>
         <div className={styles.sectionHead}><p className={styles.badge}>Our Purpose</p><h2 id="about-purpose-title">Our <span>Mission &amp; Vision</span></h2><p>A shared purpose for learning, discovery and healthcare.</p></div>
         <div className={styles.purposeGrid}>
