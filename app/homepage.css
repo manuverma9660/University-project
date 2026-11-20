@@ -186,6 +186,11 @@
   transform: translateY(-1px);
 }
 
+.site-header .home-link::after {
+  display: none !important;
+  content: none !important;
+}
+
 .site-header .nav-dropdown>.nav-trigger,
 .site-header .direct-nav-link {
   min-height: 100px;
