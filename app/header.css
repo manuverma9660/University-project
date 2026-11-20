@@ -109,13 +109,15 @@
 .site-header .brand-inner > .brand { transition: none; }
 .site-header .brand-inner > .brand:hover { opacity: 1; }
 .site-header .nav-inner { min-height: 98px; justify-content: center; gap: 16px; }
-.site-header .nav-dropdown > .nav-trigger, .site-header .direct-nav-link, .site-header .home-link { min-height: 98px; gap: 9px; padding-inline: 8px; color: var(--header-muted); font-size: 16px; font-weight: 700; }
+.site-header .nav-dropdown > .nav-trigger, .site-header .direct-nav-link, .site-header .home-link { min-height: 98px; gap: 7px; padding-inline: 8px; color: var(--header-muted); font-size: 16px; font-weight: 700; }
 .site-header .nav-trigger.is-active, .site-header .nav-trigger:hover, .site-header .menu-open > .nav-trigger { color: var(--header-navy); }
 .site-header .nav-trigger::after, .site-header .direct-nav-link::after, .site-header .home-link::after { bottom: 20px; height: 2px; background: var(--header-accent); }
-.site-header .home-link { display: inline-flex; align-items: center; justify-content: center; padding-inline: 10px; background: transparent !important; border: 0 !important; box-shadow: none !important; color: var(--header-navy, #10063f); cursor: pointer; text-decoration: none; transition: color .18s ease; }
-.site-header .home-link .home-nav-icon { width: 22px; height: 22px; display: block; color: var(--header-navy, #10063f); stroke: currentColor; transition: color .18s ease, transform .18s ease; }
-.site-header .home-link:hover .home-nav-icon, .site-header .home-link.is-active .home-nav-icon { color: var(--header-accent, #cf1420); transform: translateY(-1px); }
-.site-header .home-link .home-link-text { display: none; }
+.site-header .home-link { display: inline-flex; align-items: center; justify-content: center; padding-inline: 8px; background: transparent !important; border: 0 !important; box-shadow: none !important; color: var(--header-navy, #10063f); cursor: pointer; text-decoration: none; transition: color .18s ease; }
+.site-header .home-link .home-nav-icon { width: 22px; height: 22px; display: block; color: var(--header-navy, #10063f); stroke: currentColor; stroke-width: 2.4; fill: none; flex-shrink: 0; transition: color .18s ease, transform .18s ease; }
+.site-header .home-link .home-link-text { display: none !important; }
+.site-header .home-link:hover .home-nav-icon, .site-header .home-link.is-active .home-nav-icon { color: var(--header-accent, #cf1420); }
+.site-header .home-link:hover .home-nav-icon { transform: translateY(-1px); }
+.site-header .home-link::after { right: 8px; bottom: 20px; left: 8px; height: 2px; background: var(--header-accent, #cf1420); }
 .site-header .placement-nav-link:hover, .site-header .direct-nav-link:hover, .site-header .nav-trigger:hover { color: var(--header-accent); }
 .site-header .home-link:hover::after, .site-header .placement-nav-link:hover::after, .site-header .direct-nav-link:hover::after, .site-header .nav-trigger:hover::after, .site-header .nav-dropdown.menu-open > .nav-trigger::after, .site-header .home-link.is-active::after, .site-header .placement-nav-link.is-active::after, .site-header .direct-nav-link.is-active::after, .site-header .nav-trigger.is-active::after { transform:scaleX(1); }
 .site-header .nav-chevron { width: 6px; height: 6px; transition: transform .24s ease; }
@@ -168,7 +170,7 @@
   .site-header .nav-dropdown > .nav-trigger, .site-header .direct-nav-link { min-height: 53px; color: var(--header-navy); font-size: 15px; }
   .site-header .home-link { display: flex; align-items: center; justify-content: flex-start; gap: 12px; width: 100%; min-height: 53px; padding: 0 4px; background: transparent !important; border: 0 !important; border-bottom: 1px solid #ececf2 !important; box-shadow: none !important; color: var(--header-navy, #10063f); font-size: 15px; font-weight: 700; }
   .site-header .home-link .home-link-text { display: inline; color: var(--header-navy, #10063f); }
-  .site-header .home-link .home-nav-icon { width: 20px; height: 20px; color: var(--header-navy, #10063f); flex-shrink: 0; }
+  .site-header .home-link .home-nav-icon { width: 20px; height: 20px; color: var(--header-navy, #10063f); stroke: currentColor; stroke-width: 2.4; fill: none; flex-shrink: 0; }
   .site-header .home-link:hover, .site-header .home-link:hover .home-nav-icon, .site-header .home-link:hover .home-link-text { color: var(--header-accent, #cf1420) !important; }
   .site-header .mobile-menu-toggle { border-radius: 50%; background: var(--header-navy); }
   .site-header .header-actions .header-apply { min-width: 120px; min-height: 42px; padding-inline: 17px; font-size: 13px; }

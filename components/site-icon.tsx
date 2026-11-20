@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 const artwork = {
-  home: <><path d="M3.5 10.5 12 3.5l8.5 7" /><path d="M5.5 9v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9" /><path d="M10 21v-5a2 2 0 0 1 4 0v5" /></>,
+  home: <><path d="M2.5 11 12 3.5l9.5 7.5" /><path d="M5 9.5V20a1.5 1.5 0 0 0 1.5 1.5h3.5v-4.5a2 2 0 0 1 4 0v4.5h3.5a1.5 1.5 0 0 0 1.5-1.5V9.5" /></>,
   university: <><path d="m3 9 9-6 9 6H3ZM4 21h16M6 10v8m6-8v8m6-8v8M4 18h16" /></>,
   trophy: <><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" /><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" /><path d="M4 22h16" /><path d="M10 14.66V17c0 .55-.45 1-1 1H8v4h8v-4h-1c-.55 0-1-.45-1-1v-2.34" /><path d="M18 4H6v7a6 6 0 0 0 12 0V4Z" /></>,
   // Lucide microscope: https://lucide.dev/icons/microscope (ISC license).

@@ -324,14 +324,13 @@ export function SiteHeader() {
                     height="22"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2.2"
+                    strokeWidth="2.4"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     aria-hidden="true"
                   >
-                    <path d="M3.5 10.5 12 3.5l8.5 7" />
-                    <path d="M5.5 9v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9" />
-                    <path d="M10 21v-5a2 2 0 0 1 4 0v5" />
+                    <path d="M2.5 11 12 3.5l9.5 7.5" />
+                    <path d="M5 9.5V20a1.5 1.5 0 0 0 1.5 1.5h3.5v-4.5a2 2 0 0 1 4 0v4.5h3.5a1.5 1.5 0 0 0 1.5-1.5V9.5" />
                   </svg>
                   <span className="home-link-text">Home</span>
                 </Link>
