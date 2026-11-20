@@ -350,6 +350,23 @@
   margin-bottom: 0;
 }
 
+.messageList {
+  margin: 6px 0;
+  padding-left: 20px;
+}
+
+.messageList li + li {
+  margin-top: 3px;
+}
+
+.messageList li::marker {
+  color: #cf1420;
+}
+
+.bubbleUser .messageList li::marker {
+  color: #fff;
+}
+
 .bubbleBot strong {
   color: #10063f;
 }

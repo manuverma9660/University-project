@@ -174,6 +174,28 @@ export function SiteChatbot() {
     setMessages([INITIAL_MESSAGE]);
   };
 
+  const renderInline = (text: string) => text.split(/(\*\*[^*]+\*\*)/g).map((part, index) =>
+    part.startsWith("**") && part.endsWith("**")
+      ? <strong key={index}>{part.slice(2, -2)}</strong>
+      : part,
+  );
+
+  const renderMessageText = (text: string) => text.split("\n\n").map((paragraph, paragraphIndex) => {
+    const lines = paragraph.split("\n");
+    const bulletItems = lines.map(line => line.match(/^\s*[•*-]\s+(.+)$/));
+    const numberedItems = lines.map(line => line.match(/^\s*\d+\.\s+(.+)$/));
+
+    if (bulletItems.every(Boolean)) {
+      return <ul className={styles.messageList} key={paragraphIndex}>{bulletItems.map((item, index) => <li key={index}>{renderInline(item![1])}</li>)}</ul>;
+    }
+
+    if (numberedItems.every(Boolean)) {
+      return <ol className={styles.messageList} key={paragraphIndex}>{numberedItems.map((item, index) => <li key={index}>{renderInline(item![1])}</li>)}</ol>;
+    }
+
+    return <p key={paragraphIndex}>{lines.map((line, index) => <span key={index}>{renderInline(line)}{index < lines.length - 1 && <br />}</span>)}</p>;
+  });
+
   return (
     <div className={styles.chatbotWrapper} ref={containerRef}>
       {/* Floating Trigger Button (Shown only when chat is closed) */}
@@ -294,16 +316,7 @@ export function SiteChatbot() {
                   </div>
                 )}
                 <div className={`${styles.bubble} ${msg.sender === "user" ? styles.bubbleUser : styles.bubbleBot}`}>
-                  {msg.text.split("\n\n").map((para, idx) => (
-                    <p key={idx}>
-                      {para.split("\n").map((line, lIdx) => (
-                        <span key={lIdx}>
-                          {line}
-                          {lIdx < para.split("\n").length - 1 && <br />}
-                        </span>
-                      ))}
-                    </p>
-                  ))}
+                  {renderMessageText(msg.text)}
 
                   {/* Actions buttons inside message */}
                   {msg.actions && msg.actions.length > 0 && (
