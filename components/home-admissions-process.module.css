@@ -35,7 +35,8 @@
 
 .journey {
   position: relative;
-  margin-top: 42px;
+  max-width: 1080px;
+  margin: 42px auto 0;
 }
 
 .path {

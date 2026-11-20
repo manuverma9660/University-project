@@ -322,12 +322,6 @@
   box-shadow: none;
 }
 
-.reference-home .home-admissions-process > .container {
-  width: 100%;
-  max-width: none;
-  padding-inline: clamp(16px, 2vw, 32px);
-}
-
 .home-section-head {
   display: flex;
   flex-wrap: wrap;
