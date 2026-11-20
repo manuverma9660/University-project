@@ -1,0 +1,32 @@
+.section { position: fixed; inset: auto 0 2px; z-index: 998; width: min(1600px, calc(100% - 56px)); margin-inline: auto; height: var(--notice-dock-height, 64px); padding-bottom: env(safe-area-inset-bottom, 0px); background: #161616; color: #fff; box-shadow: 0 4px 24px #b91c1c33; }
+.inner { display: grid; height: 100%; grid-template-columns: 210px minmax(0, 1fr); align-items: stretch; }
+.heading { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; padding: 0 20px; border-left: 4px solid #ef4444; border-right: 1px solid #ffffff20; background: #dc2626; }
+.heading strong { color: #fff; font-size: 16px; font-weight: 800; line-height: 1; letter-spacing: .015em; text-transform: uppercase; white-space: nowrap; }
+.viewport { display: flex; align-items: center; min-width: 0; overflow: hidden; margin-right: 36px; }
+.track { display: flex; width: max-content; animation: notice-scroll 95s linear infinite; }
+.list { display: flex; flex: 0 0 auto; align-items: center; margin: 0; padding: 0; list-style: none; }
+.list li { display: flex; flex: 0 0 auto; align-items: center; }
+.list li::after { content: ""; width: 4px; height: 4px; flex: 0 0 4px; border-radius: 50%; background: #ffffff60; margin-inline: 32px; }
+.notice { display: inline-flex; align-items: center; gap: 10px; padding-block: 12px; color: #fff; font-size: 18px; font-weight: 500; line-height: 1.4; white-space: nowrap; text-decoration: none; }
+.apply { color: #fff; font-size: inherit; font-weight: 800; }
+.close { position: absolute; top: -18px; right: -8px; display: grid; place-items: center; width: 44px; height: 44px; padding: 10px; border: 2px solid #fff; border-radius: 50%; background: #dc2626; color: #fff; box-shadow: 0 2px 8px #1a1a4126; cursor: pointer; }
+.close svg { width: 18px; height: 18px; }
+.close:hover { background: #b91c1c; }
+.viewport:hover .track { animation-play-state: paused; }
+.section button:focus-visible { outline: 2px solid #fff; outline-offset: -3px; }
+@keyframes notice-scroll { to { transform: translateX(-50%); } }
+@media (max-width: 760px) {
+  .section { width: calc(100% - 28px); }
+  .inner { grid-template-columns: 130px minmax(0, 1fr); }
+  .heading { padding-inline: 10px; }
+  .heading strong { font-size: 12px; }
+  .notice { font-size: 15px; }
+  .viewport { margin-right: 18px; }
+  .list li::after { margin-inline: 22px; }
+  .close { width: 34px; height: 34px; top: -15px; right: -5px; padding: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .viewport { overflow-x: auto; }
+  .track { animation: none; }
+  .copy { display: none; }
+}

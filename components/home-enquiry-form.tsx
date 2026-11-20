@@ -1,5 +1,6 @@
 "use client";
 
+import { SiteIcon } from "@/components/site-icon";
 import { useState, type FormEvent } from "react";
 import { campuses, departments } from "@/lib/site-content";
 import { siteConfig } from "@/lib/site-config";
@@ -22,7 +23,7 @@ export function HomeEnquiryForm() {
     <label>Programme of interest<select name="programme" defaultValue="" required><option value="" disabled>Choose a programme</option>{departments.map(item => <optgroup key={item.href} label={item.shortTitle}>{item.programmes.map(programme => <option key={programme}>{programme.length > 12 ? programme : `${programme} ${item.shortTitle}`}</option>)}</optgroup>)}</select></label>
     <label>Preferred campus <small>(optional)</small><select name="campus" defaultValue="Not sure yet"><option>Not sure yet</option>{campuses.map(item => <option key={item.href}>{item.title}</option>)}</select></label>
     <label className="home-consent"><input type="checkbox" name="consent" required /><span>I agree that ITHS may use these details to answer my enquiry and help me with admissions.</span></label>
-    <button className="button button-red" type="submit">Prepare enquiry <span aria-hidden="true">&rarr;</span></button>
+    <button className="button button-red" type="submit">Prepare enquiry <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></button>
     <small className="home-form-note">Send your enquiry through your email app, or <a href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`}>call admissions</a>.</small>
     {emailLink && <div className="home-enquiry-result" role="status"><strong>Your enquiry is ready.</strong><p>Open your email app and send it to admissions. Your details have not been submitted yet.</p><a className="button button-primary" href={emailLink}>Open email to send</a></div>}
   </form>;

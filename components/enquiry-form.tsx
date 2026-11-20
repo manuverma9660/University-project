@@ -90,7 +90,7 @@ export function EnquiryForm({ compact = false, campaign = false, courseOptions =
     <label>{compact ? "Program Type" : "Programme of interest"}<select name="programme" defaultValue=""><option value="">{compact ? "Program Type..." : "Select a programme (optional)"}</option>{(compact ? courseOptions : departments.map(department => department.shortTitle)).map(option => <option key={option} value={option}>{option}</option>)}</select></label>
     {!compact && <label>Your message<textarea name="message" rows={4} maxLength={1500} placeholder="Share your question or story (optional)" /></label>}
     {!compact && <label className="consent-label"><input name="consent" type="checkbox" required /> I agree that ITHS may contact me about this enquiry.</label>}
-    <button className="button button-primary form-button" type="submit">{compact ? "Submit" : "Preview enquiry"}{!compact && <span aria-hidden="true">→</span>}</button>
+    <button className="button button-primary form-button" type="submit">{compact ? "Submit" : "Preview enquiry"}{!compact && <span aria-hidden="true"><SiteIcon name="arrowRight" /></span>}</button>
     {message && <p className="form-message form-info" role="status">{message}</p>}
   </form>;
 }

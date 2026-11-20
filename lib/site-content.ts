@@ -42,15 +42,15 @@ export const leadership = [
 ];
 
 export const campuses: { title: string; href: string; partner: string; location: string; status?: string }[] = [
-  { title: "Hoshiarpur", href: "/campuses/hoshiarpur/", partner: "Rayat Bahra Professional University", location: "Hoshiarpur, Punjab" },
   { title: "Bhopal", href: "/campuses/bhopal/", partner: "Scope Global Skills University", location: "Bhopal, Madhya Pradesh" },
-  { title: "Chandigarh (Mohali)", href: "/campuses/mohali/", partner: "Rayat Bahra University", location: "Chandigarh / Mohali, Punjab" },
   { title: "Shimla Hills (Waknaghat)", href: "/campuses/shimla-hills/", partner: "Bahra University", location: "Waknaghat, Himachal Pradesh" },
+  { title: "Hoshiarpur", href: "/campuses/hoshiarpur/", partner: "Rayat Bahra Professional University", location: "Hoshiarpur, Punjab" },
+  { title: "Chandigarh (Mohali)", href: "/campuses/mohali/", partner: "Rayat Bahra University", location: "Chandigarh / Mohali, Punjab" },
 ];
 
 export const universityPartners = [
   { name: "SCOPE Global Skills University", city: "Bhopal, Madhya Pradesh", logo: "https://www.translationalhealthscience.in/wp-content/uploads/2026/03/4.png" },
-  { name: "Rayat Bahra Professional University", city: "Hoshiarpur, Punjab", logo: "https://www.translationalhealthscience.in/wp-content/uploads/2026/03/3.png" },
   { name: "Bahra University", city: "Shimla, Himachal Pradesh", logo: "https://www.translationalhealthscience.in/wp-content/uploads/2026/03/2.png" },
+  { name: "Rayat Bahra Professional University", city: "Hoshiarpur, Punjab", logo: "https://www.translationalhealthscience.in/wp-content/uploads/2026/03/3.png" },
   { name: "Rayat Bahra University", city: "Mohali, Punjab", logo: "https://www.translationalhealthscience.in/wp-content/uploads/2026/03/1.png" },
 ];

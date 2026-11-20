@@ -1,5 +1,6 @@
 "use client";
 
+import { SiteIcon } from "@/components/site-icon";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -82,8 +83,8 @@ export function CampusLifeCarousel() {
       <div className="home-life-controls">
         <span>Moments from campus life at ITHS</span>
         <div>
-          <button type="button" onClick={() => move("right")} aria-label="Previous campus photos">←</button>
-          <button type="button" onClick={() => move("left")} aria-label="Next campus photos">→</button>
+          <button type="button" onClick={() => move("right")} aria-label="Previous campus photos"><SiteIcon name="arrowLeft" /></button>
+          <button type="button" onClick={() => move("left")} aria-label="Next campus photos"><SiteIcon name="arrowRight" /></button>
         </div>
       </div>
     </div>

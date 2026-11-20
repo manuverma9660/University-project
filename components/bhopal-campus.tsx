@@ -1,3 +1,4 @@
+import { SiteIcon } from "@/components/site-icon";
 import Link from "next/link";
 
 import { campusDetails, type CampusKey } from "@/lib/campus-details";
@@ -13,7 +14,7 @@ export function CampusLandingPage({ campus }: { campus: CampusKey }) {
         <h2>ITHS – {details.shortName}<br /><em>{details.campusName} Campus</em></h2>
         <p>{details.introduction}</p>
         <ul>{details.benefits.map(item => <li key={item}>{item}</li>)}</ul>
-        <div className="campus-landing-actions"><Link className="button button-primary" href="/apply/">Apply online <span aria-hidden="true">→</span></Link><Link className="text-link" href={`#${programmesId}`}>Explore programmes <span aria-hidden="true">↓</span></Link></div>
+        <div className="campus-landing-actions"><Link className="button button-primary" href="/apply/">Apply online <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link><Link className="text-link" href={`#${programmesId}`}>Explore programmes <span aria-hidden="true"><SiteIcon name="arrowDown" /></span></Link></div>
       </div>
       <img className="campus-landing-hero-image" src={details.image} alt={details.imageAlt} />
     </section>
@@ -23,7 +24,7 @@ export function CampusLandingPage({ campus }: { campus: CampusKey }) {
       <div className="campus-programme-grid">{details.programmes.map(programme => <article className="campus-programme-card" key={programme.name}>
         <span className="campus-programme-level">{programme.level}</span><h3>{programme.name}</h3><p>{programme.description}</p>
         <dl><div><dt>{programme.durationLabel ?? "Duration"}</dt><dd>{programme.duration}</dd></div><div><dt>Eligibility</dt><dd>{programme.eligibility}</dd></div></dl>
-        <Link href="/enquire/">Ask about this programme <span aria-hidden="true">→</span></Link>
+        <Link href="/enquire/">Ask about this programme <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link>
       </article>)}</div>
     </section>
 
@@ -34,7 +35,7 @@ export function CampusLandingPage({ campus }: { campus: CampusKey }) {
 
     <section className="campus-location">
       <div><p className="eyebrow">Campus partner</p><h2>{details.partner}</h2><p>{details.partnerDescription}</p><p className="campus-address">{details.address}</p></div>
-      <Link className="button button-primary" href="/enquire/">Contact admissions <span aria-hidden="true">→</span></Link>
+      <Link className="button button-primary" href="/enquire/">Contact admissions <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link>
     </section>
   </div>;
 }

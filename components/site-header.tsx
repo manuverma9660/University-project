@@ -1,5 +1,6 @@
 "use client";
 
+import { SiteIcon } from "@/components/site-icon";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -121,7 +122,7 @@ function HeaderSearch({ onOpen }: { onOpen: () => void }) {
                         setQuery("");
                       }}
                     >
-                      {page.title}<span aria-hidden="true">&rarr;</span>
+                      {page.title}<span aria-hidden="true"><SiteIcon name="arrowRight" /></span>
                     </Link>
                   </li>
                 ))}
@@ -138,7 +139,14 @@ function MegaMenuContent({ group, close }: { group: NavigationGroup; close: () =
   const columns = group.columns ?? [{ title: group.label, items: group.items ?? [] }];
   const items = columns.flatMap(column => column.items);
   // Reuse the published navigation and existing site copy for every panel.
-  const cards = items.filter(item => item.href !== group.href).slice(0, 3);
+  const isCampuses = group.label === "Campuses";
+  const cards = items.filter(item => item.href !== group.href).slice(0, isCampuses ? 4 : 3);
+  const campusCardImages: Record<string, string> = {
+    "/campuses/bhopal/": "/images/campuses/bhopal.jpg",
+    "/campuses/shimla-hills/": "/images/campuses/shimla-hills.jpg",
+    "/campuses/hoshiarpur/": "/images/campuses/hoshiarpur.jpg",
+    "/campuses/mohali/": "/images/campuses/chandigarh-mohali.jpg",
+  };
   const menuImages: Record<string, string> = {
     About: "/images/about-iths-dna-research.webp",
     Courses: "/clinical-embryology.webp",
@@ -152,7 +160,7 @@ function MegaMenuContent({ group, close }: { group: NavigationGroup; close: () =
     <div className="header-mega-top">
       <Link className="header-mega-feature" href={group.href} onClick={close}>
         {group.label !== "Research" && <Image src={image} alt="" fill sizes="(min-width: 1081px) 500px, 1px" />}
-        <div><span>{siteConfig.shortName}</span><h2>{group.label}</h2>{pageDescriptions[group.href] && <p>{pageDescriptions[group.href]}</p>}<strong>{group.label} <span aria-hidden="true">&rarr;</span></strong></div>
+        <div><span>{siteConfig.shortName}</span><h2>{group.label}</h2>{pageDescriptions[group.href] && <p>{pageDescriptions[group.href]}</p>}<strong>{group.label} <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></strong></div>
       </Link>
       <div className={`header-mega-links${columns.length === 1 ? " header-mega-links-single" : ""}`}>
         {columns.map(column => <div className="mega-column" key={column.title}>
@@ -162,11 +170,14 @@ function MegaMenuContent({ group, close }: { group: NavigationGroup; close: () =
         </div>)}
       </div>
     </div>
-    {!!cards.length && <div className="header-mega-cards">{cards.map((item, index) => <Link className="header-mega-card" href={item.href} key={item.href} onClick={close}>
-      <span>{group.label}</span><h3>{item.title}</h3>{item.description && <p>{item.description}</p>}
-      {index === 2 && group.label !== "Research" && <Image src={group.label === "Admission" ? "/admissions/visuals/eligibility.svg" : group.label === "About" ? "/images/about-iths-biomedical.webp" : "/iths-learning-02.webp"} alt="" fill sizes="350px" />}
-      <span className="header-mega-card-arrow" aria-hidden="true">&rarr;</span>
-    </Link>)}</div>}
+    {!!cards.length && <div className={`header-mega-cards${cards.length === 4 ? " header-mega-cards-4" : ""}`}>{cards.map((item, index) => {
+      const cardImage = isCampuses ? campusCardImages[item.href] : (index === 2 && group.label !== "Research" ? (group.label === "Admission" ? "/admissions/visuals/eligibility.svg" : group.label === "About" ? "/images/about-iths-biomedical.webp" : "/iths-learning-02.webp") : undefined);
+      return <Link className="header-mega-card" href={item.href} key={item.href} onClick={close}>
+        <span>{group.label}</span><h3>{item.title}</h3>{item.description && <p>{item.description}</p>}
+        {cardImage && <Image src={cardImage} alt="" fill sizes="350px" />}
+        <span className="header-mega-card-arrow" aria-hidden="true"><SiteIcon name="arrowRight" /></span>
+      </Link>;
+    })}</div>}
   </>;
 }
 
@@ -299,8 +310,6 @@ export function SiteHeader() {
               </div>
               <div className="header-utility-actions">
                 <HeaderSearch onOpen={() => { setOpenMenu(null); setMobileOpen(false); }} />
-                <a className="header-contact-link" href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`} aria-label={`Call admissions at ${siteConfig.admissionsPhone}`} title={`Call ${siteConfig.admissionsPhone}`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.79a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.83.56 2.79.69A2 2 0 0 1 22 16.92Z" /></svg></a>
-                <a className="header-whatsapp-link" href="https://wa.me/917696614978" target="_blank" rel="noreferrer" aria-label={`WhatsApp admissions at ${siteConfig.admissionsPhone}`} title="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" strokeWidth="1.6" d="M12 3a9 9 0 0 0-7.72 13.62L3 21l4.5-1.18A9 9 0 1 0 12 3Z" /><path fill="currentColor" stroke="none" d="M8.4 7.2c-.5 0-1.2.9-1.2 1.9 0 2.8 4.4 7.1 7.5 7.1 1.1 0 2.3-.9 2.3-1.7 0-.2-.1-.4-.4-.5l-2-1c-.3-.1-.5-.1-.7.2l-.8.9c-1.3-.5-3.1-2.1-3.7-3.4l.9-.9c.2-.2.3-.4.1-.7l-.9-1.7c-.2-.2-.5-.2-1.1-.2Z" /></svg></a>
               </div>
             </div>
           </div>
@@ -310,29 +319,12 @@ export function SiteHeader() {
               <div className="mobile-drawer-top"><Brand compact /><button type="button" aria-label="Close navigation menu" onClick={() => { setMobileOpen(false); setOpenMenu(null); }}><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="m6 6 12 12M18 6 6 18" /></svg></button></div>
               <div className="container nav-inner">
                 <Link
-                  className={`home-link${pathname === "/" ? " is-active" : ""}`}
+                  className={`direct-nav-link${pathname === "/" ? " is-active" : ""}`}
                   href="/"
-                  aria-label="Home"
-                  title="Home"
                   aria-current={pathname === "/" ? "page" : undefined}
                   onClick={() => setMobileOpen(false)}
                 >
-                  <svg
-                    className="home-nav-icon"
-                    viewBox="0 0 24 24"
-                    width="22"
-                    height="22"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M2.5 11 12 3.5l9.5 7.5" />
-                    <path d="M5 9.5V20a1.5 1.5 0 0 0 1.5 1.5h3.5v-4.5a2 2 0 0 1 4 0v4.5h3.5a1.5 1.5 0 0 0 1.5-1.5V9.5" />
-                  </svg>
-                  <span className="home-link-text">Home</span>
+                  Home
                 </Link>
                 {navigation.map(group => (
                   group.direct ? <Link className={`direct-nav-link${pathname.startsWith(group.href) ? " is-active" : ""}`} href={group.href} key={group.label} onClick={() => setMobileOpen(false)}>{group.label}</Link> : <div className={`nav-dropdown${openMenu === group.label ? " menu-open" : ""}${group.label === "News" ? " nav-dropdown-align-right" : ""}`} key={group.label} onMouseEnter={() => hoverMenu(group.label)} onMouseLeave={() => leaveMenu(group.label)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpenMenu(current => current === group.label ? null : current); }}>
@@ -342,7 +334,15 @@ export function SiteHeader() {
                     </div></>}
                   </div>
                 ))}
-                <div className="mobile-drawer-quick-links" aria-label="More ITHS pages">{headerUtilityLinks.map(link => <Link href={link.href} key={link.href} onClick={() => { setMobileOpen(false); setOpenMenu(null); }}>{link.title}</Link>)}</div>
+                <div className="mobile-drawer-quick-links" aria-label="More ITHS pages">
+                  {headerUtilityLinks
+                    .filter(link => link.href !== "/campuses/" && link.title !== "Our Campuses")
+                    .map(link => (
+                      <Link href={link.href} key={link.href} onClick={() => { setMobileOpen(false); setOpenMenu(null); }}>
+                        {link.title}
+                      </Link>
+                    ))}
+                </div>
               </div>
               <div className="mobile-drawer-actions"><Link className="button button-red" href="/enquire/" onClick={() => { setMobileOpen(false); setOpenMenu(null); }}>Enquire now</Link><Link className="button button-primary" href="/apply/" onClick={() => { setMobileOpen(false); setOpenMenu(null); }}>Apply online</Link></div></nav>
           </div>

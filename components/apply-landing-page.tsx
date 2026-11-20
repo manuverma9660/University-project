@@ -18,8 +18,8 @@ const programmes = [
 
 const campuses = [
   { id: "bhopal", name: "SCOPE Global Skills University", location: "Bhopal, Madhya Pradesh", image: "/images/campuses/bhopal.jpg", programmes: ["embryology"] },
-  { id: "hoshiarpur", name: "Rayat Bahra Professional University", location: "Hoshiarpur, Punjab", image: "/images/campuses/hoshiarpur.jpg", programmes: ["embryology"] },
   { id: "shimla", name: "Bahra University", location: "Shimla Hills, Himachal Pradesh", image: "/images/campuses/shimla-hills.jpg", programmes: ["embryology", "stem-cell"] },
+  { id: "hoshiarpur", name: "Rayat Bahra Professional University", location: "Hoshiarpur, Punjab", image: "/images/campuses/hoshiarpur.jpg", programmes: ["embryology"] },
   { id: "mohali", name: "Rayat Bahra University", location: "Chandigarh (Mohali), Punjab", image: "/images/campuses/chandigarh-mohali.jpg", programmes: ["embryology", "nutrition", "stem-cell", "cancer", "btech"] },
 ];
 
@@ -83,9 +83,9 @@ export function ApplyLandingPage() {
               <label>Preferred campus <span>*</span><select name="campus" value={campus} required onChange={event => setCampus(event.target.value)}><option value="" disabled>Select campus</option>{availableCampuses.map(item => <option key={item.id} value={item.id}>{item.id === "mohali" ? "Chandigarh (Mohali)" : item.id === "shimla" ? "Shimla Hills" : item.id === "bhopal" ? "Bhopal" : "Hoshiarpur"}</option>)}</select></label>
             </div>
             <label className={styles.consent}><input name="consent" type="checkbox" required /><span>I agree that ITHS may contact me about my application and programme choices.</span></label>
-            <button className={styles.submit} type="submit">Prepare application <span aria-hidden="true">→</span></button>
+            <button className={styles.submit} type="submit">Prepare application <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></button>
             <p className={styles.formNote}>We’ll prepare an email for you to send to admissions. This form does not submit or save your details online.</p>
-            {emailLink && <div className={styles.result} role="status"><strong>Your application enquiry is ready.</strong><p>Send the prepared email to continue with admissions.</p><a href={emailLink}>Open email to send <span aria-hidden="true">↗</span></a></div>}
+            {emailLink && <div className={styles.result} role="status"><strong>Your application enquiry is ready.</strong><p>Send the prepared email to continue with admissions.</p><a href={emailLink}>Open email to send <span aria-hidden="true"><SiteIcon name="arrowUpRight" /></span></a></div>}
             <div className={styles.divider}><span>Or connect directly</span></div>
             <a className={styles.whatsapp} href="https://wa.me/917696614978" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.3 7.9L3 21l1.6-4.7A9 9 0 1 1 21 11.5Z" /><path d="m8.5 7.5 1.5 3-1 1a7 7 0 0 0 3 3l1-1 3 1.5" /></svg>Chat on WhatsApp</a>
             <a className={styles.call} href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`}>Call admissions <strong>{siteConfig.admissionsPhone}</strong></a>

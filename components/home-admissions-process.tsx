@@ -1,3 +1,4 @@
+import { SiteIcon } from "@/components/site-icon";
 import Link from "next/link";
 import styles from "./home-admissions-process.module.css";
 
@@ -39,6 +40,6 @@ export function HomeAdmissionsProcess() {
         </li>)}
       </ol>
     </div>
-    <div className={styles.action}><Link href="/apply/" className="button button-red">START YOUR APPLICATION <span aria-hidden="true">&rarr;</span></Link></div>
+    <div className={styles.action}><Link href="/apply/" className="button button-red">START YOUR APPLICATION <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link></div>
   </>;
 }

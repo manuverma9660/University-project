@@ -37,7 +37,7 @@ export function AboutPage() {
           <h2 id="about-why-title">Why Choose <span>ITHS</span></h2>
           <p>Discover a practical approach to health science: clinical exposure, experienced teachers and laboratory learning that connects your studies with professional practice.</p>
           <p>Explore specialist disciplines and get guidance on the next step from education to a career in health science.</p>
-          <Link className={styles.inlineLink} href="/academics/">Explore our departments <span aria-hidden="true">&rarr;</span></Link>
+          <Link className={styles.inlineLink} href="/academics/">Explore our departments <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link>
         </div>
         <div className={styles.highlights} aria-label="ITHS highlights">
           {highlights.map(item => <div className={styles.highlight} key={item.label}><span className={styles.icon} aria-hidden="true">{item.icon}</span><strong>{item.value}</strong><p>{item.label}</p></div>)}
@@ -51,7 +51,7 @@ export function AboutPage() {
         <div className={styles.leaders}>
           {leadership.map(person => <article className={styles.leader} key={person.href}>
             <div className={styles.portrait}><span className={styles.badge}>{person.badge}</span><Image src={person.title === "Founder" ? "/home/founder.png" : "/home/director.webp"} alt={person.name} fill sizes="(max-width: 760px) 90vw, 450px" /></div>
-            <div className={styles.leaderBody}><h3>{person.name}</h3><p className={styles.role}>{person.title}</p><ul className={styles.credentials}>{person.credentials.map(credential => <li key={credential}>{credential}</li>)}</ul><p>{person.description}</p><blockquote>{person.quote}</blockquote><Link className={styles.inlineLink} href={person.href}>Read {person.title.toLowerCase()}&apos;s message <span aria-hidden="true">&rarr;</span></Link></div>
+            <div className={styles.leaderBody}><h3>{person.name}</h3><p className={styles.role}>{person.title}</p><ul className={styles.credentials}>{person.credentials.map(credential => <li key={credential}>{credential}</li>)}</ul><p>{person.description}</p><blockquote>{person.quote}</blockquote><Link className={styles.inlineLink} href={person.href}>Read {person.title.toLowerCase()}&apos;s message <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link></div>
           </article>)}
         </div>
       </div>
@@ -74,6 +74,6 @@ export function AboutPage() {
       </div>
     </section>
 
-    <section className={styles.cta} aria-labelledby="about-cta-title"><div className={styles.container}><h2 id="about-cta-title">Be Part of the ITHS Family</h2><p>Explore your next step in health science.</p><div className={styles.actions}><Link href="/apply/">Apply Now <span aria-hidden="true">&rarr;</span></Link><Link href="/contact/">Contact Us <span aria-hidden="true">&rarr;</span></Link></div></div></section>
+    <section className={styles.cta} aria-labelledby="about-cta-title"><div className={styles.container}><h2 id="about-cta-title">Be Part of the ITHS Family</h2><p>Explore your next step in health science.</p><div className={styles.actions}><Link href="/apply/">Apply Now <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link><Link href="/contact/">Contact Us <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link></div></div></section>
   </main>;
 }

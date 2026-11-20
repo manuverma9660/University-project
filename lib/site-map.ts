@@ -19,7 +19,17 @@ export const navigation: NavigationGroup[] = [
       { title: "Programmes", items: pages([["All Programmes", "/programmes/"], ["Undergraduate", "/programmes/undergraduate/"], ["Postgraduate", "/programmes/postgraduate/"], ["Diploma", "/programmes/diploma/"], ["Doctoral (PhD)", "/programmes/doctoral/"], ["Certificate Programmes", "/programmes/certificate/"], ["PG Diploma", "/programmes/pg-diploma/"], ["Fellowship Programmes", "/programmes/fellowship/"], ["Training Programmes", "/programmes/training/"]]) },
     ]
   },
-  { label: "Campuses", href: "/campuses/", items: pages([["All Campuses", "/campuses/"], ["Hoshiarpur", "/campuses/hoshiarpur/"], ["Bhopal", "/campuses/bhopal/"], ["Mohali", "/campuses/mohali/"], ["Shimla Hills (Waknaghat)", "/campuses/shimla-hills/"]]) },
+  {
+    label: "Campuses",
+    href: "/campuses/",
+    items: [
+      { title: "Scope Global Skills University", href: "/campuses/bhopal/", description: "Bhopal, Madhya Pradesh" },
+      { title: "Bahra University", href: "/campuses/shimla-hills/", description: "Shimla Hills (Waknaghat)" },
+      { title: "Rayat Bahra Professional University", href: "/campuses/hoshiarpur/", description: "Hoshiarpur, Punjab" },
+      { title: "Rayat Bahra University", href: "/campuses/mohali/", description: "Mohali, Punjab" },
+      { title: "All Campuses Overview", href: "/campuses/", description: "Explore all 4 partner campuses" },
+    ],
+  },
   {
     label: "Admission", href: "/admissions/", columns: [
       { title: "Find your course", items: pages([["Courses After 10th", "/admissions/courses-after-10th/"], ["Courses After 10+2", "/admissions/courses-after-12th/"], ["Courses After Graduation", "/admissions/courses-after-graduation/"], ["Courses After Post Graduation", "/admissions/courses-after-post-graduation/"], ["Industry Embedded Courses", "/admissions/industry-embedded-courses/"], ["Lateral Entry Programmes", "/admissions/lateral-entry-programmes/"], ["Specialised Courses", "/admissions/specialised-courses/"]]) },

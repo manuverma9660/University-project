@@ -53,7 +53,7 @@ export function CancerBiologyPage() {
           <h1>Cancer Biology Course</h1>
           <h2>Oncology &amp; <em>Research Scientist</em></h2>
           <p>Explore cancer biology through study of oncology, tumor biology, and research science. ITHS lists B.Sc. and M.Sc. pathways.</p>
-          <div className="molecular-hero-actions"><Link href="/apply/">Apply now <span aria-hidden="true">→</span></Link><a href="tel:+917696614978">Call 76966 14978</a></div>
+          <div className="molecular-hero-actions"><Link href="/apply/">Apply now <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link><a href="tel:+917696614978">Call 76966 14978</a></div>
         </div>
         <div className="molecular-form-wrap"><EnquiryForm compact campaign courseOptions={["BSc Cancer Biology", "MSc Cancer Biology"]} /></div>
       </div>
@@ -84,14 +84,14 @@ export function CancerBiologyPage() {
             <h3>B.Sc. Cancer Biology</h3>
             <p className="cancer-programme-meta">3 years <b>·</b> Full-time <b>·</b> After 12th</p>
             <ul><li>10+2 with PCB; 50% aggregate listed</li><li>Research science foundation</li><li>Laboratory learning</li><li>Pathway to postgraduate study</li></ul>
-            <Link href="/enquire/">Ask about B.Sc. <span aria-hidden="true">→</span></Link>
+            <Link href="/enquire/">Ask about B.Sc. <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link>
           </article>
           <article className="cancer-programme-card cancer-programme-card-featured">
             <span className="cancer-programme-level">Postgraduate</span>
             <h3>M.Sc. Cancer Biology</h3>
             <p className="cancer-programme-meta">2 years <b>·</b> Full-time <b>·</b> After graduation</p>
             <ul><li>B.Sc. Life Sciences listed</li><li>Other eligible backgrounds may apply</li><li>Advanced cancer research</li><li>Dissertation project</li></ul>
-            <Link href="/enquire/">Ask about M.Sc. <span aria-hidden="true">→</span></Link>
+            <Link href="/enquire/">Ask about M.Sc. <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link>
           </article>
         </div>
       </div>
@@ -117,7 +117,7 @@ export function CancerBiologyPage() {
         </header>
         <ol className="cancer-path-steps">{careerSteps.map(([number, title, text]) => <li key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></li>)}</ol>
         <p className="cancer-path-note">Course choice, research experience, and career steps vary by student.</p>
-        <Link className="button button-primary" href="/apply/">Apply online <span aria-hidden="true">→</span></Link>
+        <Link className="button button-primary" href="/apply/">Apply online <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link>
       </div>
     </section>
 
@@ -153,7 +153,7 @@ export function CancerBiologyPage() {
           <span className="cancer-course-label">FAQ</span>
           <h2>Cancer Biology <em>Questions</em></h2>
         </header>
-        <div className="cancer-faq-list">{faqs.map(([question, answer], index) => <details key={question} open={index === 0}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
+        <div className="cancer-faq-list">{faqs.map(([question, answer], index) => <details key={question} open={index === 0}><summary>{question}<span aria-hidden="true"><SiteIcon name="plus" /></span></summary><p>{answer}</p></details>)}</div>
       </div>
     </section>
 
@@ -161,7 +161,7 @@ export function CancerBiologyPage() {
       <div className="cancer-course-inner">
         <h2>Start Your Cancer Biology Journey</h2>
         <p>Explore the programme and ask admissions about the next steps.</p>
-        <div><Link className="button" href="/apply/">Apply now <span aria-hidden="true">→</span></Link><a className="button" href="tel:+917696614978">Call admissions</a></div>
+        <div><Link className="button" href="/apply/">Apply now <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link><a className="button" href="tel:+917696614978">Call admissions</a></div>
       </div>
     </section>
 
@@ -169,10 +169,10 @@ export function CancerBiologyPage() {
       <div className="cancer-course-inner">
         <h2>Explore related pages</h2>
         <div className="related-links">
-          <Link href="/academics/cancer-biology/">Cancer Biology department <span aria-hidden="true">&#8599;</span></Link>
-          <Link href="/programmes/">All programmes <span aria-hidden="true">&#8599;</span></Link>
-          <Link href="/campuses/mohali/">Chandigarh (Mohali) campus <span aria-hidden="true">&#8599;</span></Link>
-          <Link href="/admissions/eligibility/">Admissions eligibility <span aria-hidden="true">&#8599;</span></Link>
+          <Link href="/academics/cancer-biology/">Cancer Biology department <span aria-hidden="true"><SiteIcon name="arrowUpRight" /></span></Link>
+          <Link href="/programmes/">All programmes <span aria-hidden="true"><SiteIcon name="arrowUpRight" /></span></Link>
+          <Link href="/campuses/mohali/">Chandigarh (Mohali) campus <span aria-hidden="true"><SiteIcon name="arrowUpRight" /></span></Link>
+          <Link href="/admissions/eligibility/">Admissions eligibility <span aria-hidden="true"><SiteIcon name="arrowUpRight" /></span></Link>
         </div>
       </div>
     </section>

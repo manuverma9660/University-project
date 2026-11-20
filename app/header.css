@@ -94,7 +94,7 @@
   height: 16px;
   stroke-width: 2.3;
 }
-.header-search-panel { position: absolute; z-index: 50; top: calc(100% + 10px); left: 0; width: 330px; max-width: calc(100vw - 24px); padding: 12px; border-radius: 13px; background: #fff; color: var(--header-navy); box-shadow: 0 12px 35px #10063f26; animation: header-menu-in .18s ease both; }
+.header-search-panel { position: absolute; z-index: 50; top: calc(100% + 10px); right: 0; left: auto; width: 330px; max-width: calc(100vw - 24px); padding: 12px; border-radius: 13px; background: #fff; color: var(--header-navy); box-shadow: 0 12px 35px #10063f26; animation: header-menu-in .18s ease both; }
 .header-search-form { display: flex; align-items: center; gap: 10px; }
 .header-search-form input { width: 100%; min-width: 0; height: 45px; padding: 0 15px; border: 1px solid #dedce9; border-radius: 11px; background: #fff; color: var(--header-navy); font-size: 16px; }
 .header-search-form input:focus-visible { outline: 2px solid var(--header-accent); outline-offset: 1px; }
@@ -257,6 +257,11 @@
   .header-mega-links-single .mega-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; align-content: start; }
   .header-mega-links-single .mega-column > p, .header-mega-links-single .mega-column > small { grid-column: 1 / -1; }
   .header-mega-cards { display: grid; min-height: 0; grid-template-columns: 1fr 1fr 2fr; gap: clamp(14px, 1.042vw, 20px); margin-top: 0; }
+  .header-mega-cards-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 14px !important; }
+  .header-mega-cards-4 .header-mega-card { padding: 14px 16px !important; justify-content: flex-end; }
+  .header-mega-cards-4 .header-mega-card h3 { font-size: 15px !important; line-height: 1.3 !important; margin-top: 8px !important; letter-spacing: -0.01em !important; }
+  .header-mega-cards-4 .header-mega-card p { margin-top: 4px !important; font-size: 11.5px !important; color: #dbd7ef !important; line-height: 1.35 !important; }
+  .header-mega-cards-4 .header-mega-card-arrow { top: 14px !important; right: 14px !important; font-size: 18px !important; }
   .header-mega-card { position: relative; isolation: isolate; display: flex; min-height: 0; flex-direction: column; justify-content: center; overflow: hidden; padding: clamp(18px, 1.302vw, 25px); border-radius: 21px; background: var(--header-navy); color: white; transition: transform .22s ease, box-shadow .22s ease; }
   .header-mega-card:hover { transform: translateY(-4px); box-shadow: 0 10px 22px #10063f26; }
   .header-mega-card > span:first-child { color: var(--header-accent); font-size: 11px; font-weight: 700; text-transform: uppercase; }

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { departments } from "@/lib/site-content";
 import { getProgrammeHref } from "@/lib/course-catalogue";
 
@@ -17,6 +17,22 @@ const descriptions = [
   "Study the brain and nervous system, and explore the biological questions connecting neuroscience and human health.",
 ];
 
+const departmentFocus = [
+  ["Reproductive science", "Embryology", "Fertility care"],
+  ["Cell biology", "Cancer research", "Molecular science"],
+  ["Genetics", "Nutrition science", "Personalised health"],
+  ["Stem cell science", "Tissue engineering", "Regeneration"],
+  ["Human genetics", "Diagnostics", "Molecular health"],
+  ["Brain science", "Nervous system", "Human health"],
+];
+
+function programmeLevel(programme: string) {
+  if (programme.startsWith("B.")) return "Undergraduate";
+  if (programme.startsWith("M.")) return "Postgraduate";
+  if (programme.startsWith("PhD")) return "Doctoral research";
+  return "Postgraduate diploma";
+}
+
 function DepartmentMark({ index }: { index: number }) {
   const drawings = [
     <><path d="m12 3 5 4-4 5-5-4 4-5ZM7 10l-2 3 3 3 3-3M16 11a5 5 0 0 1-2 9H4M10 17v3M3 22h16" /></>,
@@ -30,48 +46,71 @@ function DepartmentMark({ index }: { index: number }) {
 }
 
 export function HomeProgrammes() {
-  const [department, setDepartment] = useState("");
-  const [level, setLevel] = useState("");
   const [selected, setSelected] = useState(0);
   const resultRef = useRef<HTMLDivElement>(null);
-  const available = departments.map((item, index) => ({ ...item, index, matched: item.programmes.filter(programme => !level || programme.startsWith(level)) }))
-    .filter(item => (!department || item.href === department) && item.matched.length);
-  const active = available.find(item => item.index === selected) ?? available[0];
-  const count = available.reduce((total, item) => total + item.matched.length, 0);
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
 
-  function findProgrammes(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    resultRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "nearest" });
+  useEffect(() => {
+    const header = document.querySelector<HTMLElement>(".site-header");
+    if (!header) return;
+    // The utility row scrolls away; only the remaining header needs clearance.
+    const updateOffset = () => {
+      const style = window.getComputedStyle(header);
+      const offset = ["sticky", "fixed"].includes(style.position)
+        ? Math.max(0, header.getBoundingClientRect().height + (parseFloat(style.top) || 0))
+        : 0;
+      resultRef.current?.style.setProperty("--department-header-height", `${offset}px`);
+    };
+    const observer = new ResizeObserver(updateOffset);
+    observer.observe(header);
+    window.addEventListener("resize", updateOffset);
+    updateOffset();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateOffset);
+    };
+  }, []);
+
+  function selectDepartment(index: number) {
+    setSelected(index);
+    // Wait for the selected panel to render before measuring its scroll target.
+    window.requestAnimationFrame(() => {
+      const panel = panelRef.current;
+      const tabs = tabsRef.current;
+      if (!panel || !tabs) return;
+      const stickyTop = parseFloat(window.getComputedStyle(tabs).top) || 0;
+      const top = window.scrollY + panel.getBoundingClientRect().top
+        - stickyTop - tabs.getBoundingClientRect().height - 16;
+      window.scrollTo({ top, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+    });
   }
+  const available = departments.map((item, index) => ({ ...item, index, matched: item.programmes }));
+  const active = available.find(item => item.index === selected) ?? available[0];
 
   return <>
-    <form className="home-programme-filters" onSubmit={findProgrammes}>
-      <label>Department<select value={department} onChange={event => setDepartment(event.target.value)}><option value="">All departments</option>{departments.map(item => <option key={item.href} value={item.href}>{item.shortTitle}</option>)}</select></label>
-      <label>Programme type<select value={level} onChange={event => setLevel(event.target.value)}><option value="">All types</option>{["B.Sc", "B.Tech", "M.Sc", "PG Diploma", "PhD"].map(item => <option key={item}>{item}</option>)}</select></label>
-      <button className="button button-primary" type="submit">Find programmes <span aria-hidden="true">&rarr;</span></button>
-      <p role="status">{count} programme{count === 1 ? "" : "s"} match. Choose a department or programme type to explore your options.</p>
-    </form>
     <div className="home-department-explorer" ref={resultRef}>
-      <div className="home-department-tabs" role="tablist" aria-label="Academic departments" aria-orientation="horizontal">
-        {available.map((item, index) => <button key={item.href} id={`department-tab-${item.index}`} role="tab" type="button" aria-selected={active?.index === item.index} aria-controls="home-department-panel" tabIndex={active?.index === item.index ? 0 : -1} onClick={() => setSelected(item.index)} onKeyDown={event => {
+      <div className="home-department-tabs" ref={tabsRef} role="tablist" aria-label="Academic departments" aria-orientation="horizontal">
+        {available.map((item, index) => <button key={item.href} id={`department-tab-${item.index}`} role="tab" type="button" aria-selected={active?.index === item.index} aria-controls="home-department-panel" tabIndex={active?.index === item.index ? 0 : -1} onClick={() => selectDepartment(item.index)} onKeyDown={event => {
           let next = index;
           if (event.key === "ArrowDown" || event.key === "ArrowRight") next = (index + 1) % available.length;
           else if (event.key === "ArrowUp" || event.key === "ArrowLeft") next = (index - 1 + available.length) % available.length;
           else if (event.key === "Home") next = 0;
           else if (event.key === "End") next = available.length - 1;
           else return;
-          event.preventDefault(); setSelected(available[next].index);
-          document.getElementById(`department-tab-${available[next].index}`)?.focus();
+          event.preventDefault(); selectDepartment(available[next].index);
+          document.getElementById(`department-tab-${available[next].index}`)?.focus({ preventScroll: true });
         }}><span className="home-department-tab-icon" aria-hidden="true"><DepartmentMark index={item.index} /></span><span className="home-department-tab-label">{item.shortTitle}</span></button>)}
       </div>
-      {active ? <article className="home-department-panel" id="home-department-panel" role="tabpanel" aria-labelledby={`department-tab-${active.index}`} tabIndex={0}>
-        <div className="home-department-image" key={`image-${active.index}`}><Image src={departmentImages[active.index]} alt={`${active.shortTitle} study and laboratory learning`} style={{ objectPosition: active.index < 4 ? "right center" : "center" }} fill sizes="(max-width: 760px) 100vw, 85vw" /></div>
-        <div className="home-department-content" key={`copy-${active.index}`}><p className="eyebrow">Explore your discipline</p><h3>{active.title}</h3><p>{descriptions[active.index]}</p>
-          <ul>{active.matched.map(programme => <li key={programme}><Link href={getProgrammeHref(active.href, programme)}>{programme.length > 12 ? programme : `${programme} ${active.shortTitle}`}</Link></li>)}</ul>
-          <div className="home-button-row"><Link className="button button-red" href={`/enquire/?department=${encodeURIComponent(active.shortTitle)}`}>Enquire</Link><Link className="home-outline-button" href={active.href}>View department <span aria-hidden="true">&rarr;</span></Link></div>
+      <article ref={panelRef} className="home-department-panel" id="home-department-panel" role="tabpanel" aria-labelledby={`department-tab-${active.index}`} tabIndex={0}>
+        <div className="home-department-image" key={`image-${active.index}`}><Image src={departmentImages[active.index]} alt={`${active.shortTitle} study and laboratory learning`} style={{ objectPosition: active.index < 4 ? "right center" : "center" }} fill sizes="(max-width: 760px) 90vw, 40vw" /><div className="department-image-caption"><span>Discover your discipline</span><p>Curiosity today.<br />Possibility tomorrow.</p></div></div>
+        <div className="home-department-content" key={`copy-${active.index}`}><p className="eyebrow">Department spotlight</p><span className="department-spotlight-icon" aria-hidden="true"><DepartmentMark index={active.index} /></span><h3>{active.shortTitle}</h3><p>{descriptions[active.index]}</p>
+          <div className="department-focus" aria-label="Areas of study">{departmentFocus[active.index].map(focus => <span key={focus}>{focus}</span>)}</div>
+          <div className="home-button-row"><Link className="button button-red" href={active.href}>Explore department</Link><Link className="department-enquiry-link" href={`/enquire/?department=${encodeURIComponent(active.shortTitle)}`}>Talk to admissions</Link></div>
         </div>
-      </article> : <div className="home-empty" role="status"><h3>No programmes match these filters</h3><p>Choose another department or programme type.</p><button className="button button-primary" type="button" onClick={() => { setDepartment(""); setLevel(""); }}>Reset filters</button></div>}
+        <div className="department-study-options"><div className="department-options-heading"><div><p className="eyebrow">Choose your pathway</p><h4>Make your next move.</h4></div><span>{active.matched.length} study option{active.matched.length === 1 ? "" : "s"}</span></div><ul>{active.matched.map(programme => <li key={programme}><Link href={getProgrammeHref(active.href, programme)}><span>{programmeLevel(programme)}</span><h5>{programme}</h5><span className="department-option-action">View programme <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="m8 5 5 5-5 5" /></svg></span></Link></li>)}</ul></div>
+      </article>
+      <div className="home-course-paths"><strong>Where are you<br />starting from?</strong><Link href="/admissions/courses-after-12th/">After 10+2</Link><Link href="/admissions/courses-after-graduation/">After graduation</Link><Link href="/admissions/courses-after-post-graduation/">After post graduation</Link><Link href="/admissions/lateral-entry-programmes/">Lateral entry</Link></div>
     </div>
-    <div className="home-course-paths"><strong>Find your course</strong><Link href="/admissions/courses-after-12th/">After 10+2 <span aria-hidden="true">&rarr;</span></Link><Link href="/admissions/courses-after-graduation/">After graduation <span aria-hidden="true">&rarr;</span></Link><Link href="/admissions/courses-after-post-graduation/">After post graduation <span aria-hidden="true">&rarr;</span></Link><Link href="/admissions/lateral-entry-programmes/">Lateral entry <span aria-hidden="true">&rarr;</span></Link></div>
   </>;
 }

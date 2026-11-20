@@ -1,5 +1,6 @@
 "use client";
 
+import { SiteIcon } from "@/components/site-icon";
 import { useState, type FormEvent } from "react";
 import { courseCatalogue } from "@/lib/course-catalogue";
 
@@ -25,7 +26,7 @@ export function ApplicationPreviewForm() {
       <label>Highest qualification<select name="qualification" defaultValue="" required><option value="" disabled>Select qualification</option><option>Class 10</option><option>Class 12</option><option>Undergraduate degree</option><option>Postgraduate degree</option></select></label>
     </div>
     <label className="consent-label"><input type="checkbox" required /> I agree that ITHS may contact me about admissions.</label>
-    <button className="button button-primary form-button" type="submit">Preview application <span aria-hidden="true">→</span></button>
+    <button className="button button-primary form-button" type="submit">Preview application <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></button>
     {submitted && <PreviewNotice message="Frontend preview only. Your application has not been submitted or saved." />}
   </form>;
 }
@@ -42,7 +43,7 @@ export function IthsSetPreviewForm() {
     <label>Email address<input name="email" type="email" autoComplete="email" required /></label>
     <label>Mobile number<input name="phone" type="tel" inputMode="tel" pattern="[0-9+() -]{10,18}" autoComplete="tel" required /></label>
     <label>Programme of interest<select name="programme" defaultValue="" required><option value="" disabled>Select a programme</option>{courseCatalogue.map(item => <option key={item.href}>{item.title}</option>)}</select></label>
-    <button className="button button-primary form-button" type="submit">Preview registration <span aria-hidden="true">→</span></button>
+    <button className="button button-primary form-button" type="submit">Preview registration <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></button>
     {submitted && <PreviewNotice message="Frontend preview only. Registration is not open through this form yet; your details have not been sent." />}
   </form>;
 }

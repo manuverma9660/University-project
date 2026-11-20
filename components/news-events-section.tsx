@@ -1,5 +1,6 @@
 "use client";
 
+import { SiteIcon } from "@/components/site-icon";
 import { useEffect, useState } from "react";
 
 const nutritionArticle = "https://www.translationalhealthscience.in/nutrition-matters-2026/";
@@ -44,10 +45,10 @@ export function NewsEventsSection() {
       {nutritionPhotos.map((photo, index) => <button className="news-events-gallery-photo" type="button" key={photo.image} aria-label={`Open photo ${index + 1}: ${photo.alt}`} onClick={() => setActivePhoto(index)}><img src={photo.image} alt={photo.alt} loading={index > 3 ? "lazy" : "eager"} /></button>)}
     </div>
     {activePhoto !== null && <div className="event-lightbox" role="dialog" aria-modal="true" aria-label="Event photo viewer" onMouseDown={event => { if (event.target === event.currentTarget) setActivePhoto(null); }}>
-      <div className="event-lightbox-toolbar"><span>{activePhoto + 1} / {nutritionPhotos.length}</span><button type="button" onClick={() => setActivePhoto(null)} aria-label="Close photo viewer">×</button></div>
-      <button className="event-lightbox-arrow event-lightbox-prev" type="button" aria-label="Previous photo" onClick={() => setActivePhoto((activePhoto - 1 + nutritionPhotos.length) % nutritionPhotos.length)}>‹</button>
+      <div className="event-lightbox-toolbar"><span>{activePhoto + 1} / {nutritionPhotos.length}</span><button type="button" onClick={() => setActivePhoto(null)} aria-label="Close photo viewer"><SiteIcon name="close" /></button></div>
+      <button className="event-lightbox-arrow event-lightbox-prev" type="button" aria-label="Previous photo" onClick={() => setActivePhoto((activePhoto - 1 + nutritionPhotos.length) % nutritionPhotos.length)}><SiteIcon name="chevronLeft" /></button>
       <figure className="event-lightbox-figure"><img src={nutritionPhotos[activePhoto].image} alt={nutritionPhotos[activePhoto].alt} /><figcaption>{nutritionPhotos[activePhoto].alt}</figcaption></figure>
-      <button className="event-lightbox-arrow event-lightbox-next" type="button" aria-label="Next photo" onClick={() => setActivePhoto((activePhoto + 1) % nutritionPhotos.length)}>›</button>
+      <button className="event-lightbox-arrow event-lightbox-next" type="button" aria-label="Next photo" onClick={() => setActivePhoto((activePhoto + 1) % nutritionPhotos.length)}><SiteIcon name="chevronRight" /></button>
     </div>}
   </section>;
 }

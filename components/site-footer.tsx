@@ -31,24 +31,31 @@ export function SiteFooter() {
           <span className="footer-brand-name">Institute of<br />Translational Health<br />Science</span>
         </Link>
         <p>Degrees and diplomas are awarded by the partner university associated with each programme.</p>
-        <Link className="footer-contact" href="/enquire/">Enquire with ITHS <span aria-hidden="true">↗</span></Link>
+        <div className="footer-socials" role="group" aria-label="Social media">
+          <a href="https://www.facebook.com/TranslationalHealthScience" target="_blank" rel="noopener noreferrer" aria-label="ITHS on Facebook (opens in a new tab)"><SiteIcon name="facebook" /></a>
+          <a href="https://www.instagram.com/translationalhealthscience" target="_blank" rel="noopener noreferrer" aria-label="ITHS on Instagram (opens in a new tab)"><SiteIcon name="instagram" /></a>
+          <a href="https://x.com/ITHScience" target="_blank" rel="noopener noreferrer" aria-label="ITHS on X (opens in a new tab)"><SiteIcon name="x" /></a>
+          <a href="https://www.youtube.com/@TranslationalHealthScience" target="_blank" rel="noopener noreferrer" aria-label="ITHS on YouTube (opens in a new tab)"><SiteIcon name="youtube" /></a>
+        </div>
       </div>
 
-      <div className="footer-group">
-        <h2>Programmes</h2>
-        {programmeLinks.map(item => <Link href={item.href} key={item.href}>{item.title}</Link>)}
-      </div>
+      <div className="footer-link-groups">
+        <div className="footer-group">
+          <h2>Programmes</h2>
+          {programmeLinks.map(item => <Link href={item.href} key={item.href}>{item.title}</Link>)}
+        </div>
 
-      <div className="footer-group">
-        <h2>Quick Links</h2>
-        {quickLinks.map(item => <Link href={item.href} key={item.href}>{item.title}</Link>)}
+        <div className="footer-group">
+          <h2>Quick Links</h2>
+          {quickLinks.map(item => <Link href={item.href} key={item.href}>{item.title}</Link>)}
+        </div>
       </div>
 
       <div className="footer-group footer-contact-group">
         <h2>Contact Us</h2>
         <a className="footer-contact-item" href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`}><span aria-hidden="true"><SiteIcon name="phone" /></span>{siteConfig.admissionsPhone}</a>
         <a className="footer-contact-item" href={`mailto:${siteConfig.admissionsEmail}`}><span aria-hidden="true"><SiteIcon name="mail" /></span>{siteConfig.admissionsEmail}</a>
-        <Link className="footer-contact-item" href="/contact/"><span aria-hidden="true">↗</span>Contact admissions</Link>
+        <Link className="footer-contact-item" href="/contact/"><span aria-hidden="true"><SiteIcon name="arrowUpRight" /></span>Contact admissions</Link>
         <Link className="footer-contact-cta" href="/enquire/">Send an enquiry</Link>
       </div>
     </div>

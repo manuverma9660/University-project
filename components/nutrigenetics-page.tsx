@@ -38,7 +38,7 @@ export function NutrigeneticsPage() {
           <h1>Nutrigenetics &amp; Personalised Nutrition</h1>
           <h2>Understand your genes. <em>Personalise nutrition.</em></h2>
           <p>Explore how genetic variation and nutrition interact, and how research in this field can inform more individual approaches to health.</p>
-          <div className="molecular-hero-actions"><Link href="/apply/">Apply now <span aria-hidden="true">→</span></Link><a href="tel:+917696614978">Call 76966 14978</a></div>
+          <div className="molecular-hero-actions"><Link href="/apply/">Apply now <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link><a href="tel:+917696614978">Call 76966 14978</a></div>
           <small>B.Sc. after 12th · M.Sc. after a relevant bachelor’s degree</small>
         </div>
         <div className="molecular-form-wrap"><EnquiryForm compact courseOptions={["BSc Nutrigenetics and Personalized Nutrition", "MSc Nutrigenetics and Personalized Nutrition", "PhD Nutrigenetics and Personalized Nutrition", "PG Diploma Nutrigenetics and Personalized Nutrition"]} /></div>
@@ -57,8 +57,8 @@ export function NutrigeneticsPage() {
     <section className="molecular-pathways"><div className="molecular-inner">
       <header className="molecular-heading"><span className="molecular-eyebrow">STUDY PATHWAYS</span><h2>Choose your course pathway</h2><p>Find the option that matches your academic background.</p></header>
       <div className="molecular-course-grid">
-        <article><span>UNDERGRADUATE · AFTER 12TH</span><h3>B.Sc. Nutrigenetics</h3><p className="molecular-course-meta">3 years · duration listed on reference page</p><ul><li>12th with PCB, as listed</li><li>Foundations in genetics and nutrition</li><li>Explore personalised nutrition research</li><li>Ask admissions about current eligibility and campus</li></ul><Link href="/enquire/">Ask about B.Sc. <span>→</span></Link></article>
-        <article><span>POSTGRADUATE · AFTER GRADUATION</span><h3>M.Sc. Nutrigenetics &amp; Personalised Nutrition</h3><p className="molecular-course-meta">2 years · duration listed on reference page</p><ul><li>Relevant bachelor’s degree, as listed</li><li>Advanced study in genetics and nutrition</li><li>Research-led learning</li><li>Confirm accepted degrees with admissions</li></ul><Link href="/enquire/">Ask about M.Sc. <span>→</span></Link></article>
+        <article><span>UNDERGRADUATE · AFTER 12TH</span><h3>B.Sc. Nutrigenetics</h3><p className="molecular-course-meta">3 years · duration listed on reference page</p><ul><li>12th with PCB, as listed</li><li>Foundations in genetics and nutrition</li><li>Explore personalised nutrition research</li><li>Ask admissions about current eligibility and campus</li></ul><Link href="/enquire/">Ask about B.Sc. <span><SiteIcon name="arrowRight" /></span></Link></article>
+        <article><span>POSTGRADUATE · AFTER GRADUATION</span><h3>M.Sc. Nutrigenetics &amp; Personalised Nutrition</h3><p className="molecular-course-meta">2 years · duration listed on reference page</p><ul><li>Relevant bachelor’s degree, as listed</li><li>Advanced study in genetics and nutrition</li><li>Research-led learning</li><li>Confirm accepted degrees with admissions</li></ul><Link href="/enquire/">Ask about M.Sc. <span><SiteIcon name="arrowRight" /></span></Link></article>
       </div>
     </div></section>
 
@@ -80,10 +80,10 @@ export function NutrigeneticsPage() {
 
     <section className="molecular-benefits molecular-inner"><header className="molecular-heading"><span className="molecular-eyebrow">WHY ITHS</span><h2>Study Nutrigenetics at ITHS</h2></header><div className="molecular-benefit-grid">{benefits.map(([title, text]) => <article key={title}><span aria-hidden="true"><SiteIcon name="sparkles" /></span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
 
-    <section className="molecular-faq"><div className="molecular-inner"><header className="molecular-heading"><span className="molecular-eyebrow">QUESTIONS</span><h2>Nutrigenetics FAQs</h2></header><div className="molecular-faq-list">{faqs.map(([question, answer], i) => <details key={question} open={i === 0}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div></section>
+    <section className="molecular-faq"><div className="molecular-inner"><header className="molecular-heading"><span className="molecular-eyebrow">QUESTIONS</span><h2>Nutrigenetics FAQs</h2></header><div className="molecular-faq-list">{faqs.map(([question, answer], i) => <details key={question} open={i === 0}><summary>{question}<span aria-hidden="true"><SiteIcon name="plus" /></span></summary><p>{answer}</p></details>)}</div></div></section>
 
-    <section className="molecular-cta"><div className="molecular-inner"><span className="molecular-eyebrow">YOUR NEXT STEP</span><h2>Explore a future in personalised nutrition.</h2><p>Ask ITHS admissions about current courses, entry requirements, and campus availability.</p><div><Link href="/enquire/">Enquire about admissions <span>→</span></Link><a href="tel:+917696614978">Call 76966 14978</a></div></div></section>
+    <section className="molecular-cta"><div className="molecular-inner"><span className="molecular-eyebrow">YOUR NEXT STEP</span><h2>Explore a future in personalised nutrition.</h2><p>Ask ITHS admissions about current courses, entry requirements, and campus availability.</p><div><Link href="/enquire/">Enquire about admissions <span><SiteIcon name="arrowRight" /></span></Link><a href="tel:+917696614978">Call 76966 14978</a></div></div></section>
 
-    <section className="molecular-related molecular-inner"><h2>Explore related pages</h2><div><Link href="/academics/">All departments <span>↗</span></Link><Link href="/programmes/">All programmes <span>↗</span></Link><Link href="/campuses/mohali/">Mohali campus <span>↗</span></Link><Link href="/admissions/eligibility/">Admissions eligibility <span>↗</span></Link></div></section>
+    <section className="molecular-related molecular-inner"><h2>Explore related pages</h2><div><Link href="/academics/">All departments <span><SiteIcon name="arrowUpRight" /></span></Link><Link href="/programmes/">All programmes <span><SiteIcon name="arrowUpRight" /></span></Link><Link href="/campuses/mohali/">Mohali campus <span><SiteIcon name="arrowUpRight" /></span></Link><Link href="/admissions/eligibility/">Admissions eligibility <span><SiteIcon name="arrowUpRight" /></span></Link></div></section>
   </div>;
 }

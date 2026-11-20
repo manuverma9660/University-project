@@ -34,7 +34,7 @@ export function MolecularMedicinePage() {
           <h1>Molecular Medicine</h1>
           <h2>Decode life. <em>Design cures.</em></h2>
           <p>Study disease at the level of genes, proteins, and cells—the science behind modern diagnosis and precision treatment.</p>
-          <div className="molecular-hero-actions"><Link href="/apply/">Apply now <span aria-hidden="true">→</span></Link><a href="tel:+917696614978">Call 76966 14978</a></div>
+          <div className="molecular-hero-actions"><Link href="/apply/">Apply now <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link><a href="tel:+917696614978">Call 76966 14978</a></div>
           <small>Undergraduate B.Sc. after 12th · Postgraduate M.Sc. after graduation</small>
         </div>
         <div className="molecular-form-wrap"><EnquiryForm compact courseOptions={["BSc Molecular Medicine", "MSc Molecular Medicine", "PG Diploma Genetic Counselling"]} /></div>
@@ -53,8 +53,8 @@ export function MolecularMedicinePage() {
       <div className="molecular-inner">
         <header className="molecular-heading"><span className="molecular-eyebrow">TWO PATHS, ONE FIELD</span><h2>Choose your course path</h2><p>Pick the pathway that matches your current education.</p></header>
         <div className="molecular-course-grid">
-          <article><span>UNDERGRADUATE · AFTER 12TH</span><h3>B.Sc. Molecular Medicine</h3><p className="molecular-course-meta">3 years · 6 semesters · No NEET required</p><ul><li>For students with Biology (PCB)</li><li>Foundations in genetics, biochemistry, and diagnostics</li><li>Laboratory training from the first year</li><li>Pathway to industry roles or postgraduate study</li></ul><Link href="/enquire/">Ask about B.Sc. <span>→</span></Link></article>
-          <article><span>POSTGRADUATE · AFTER B.Sc.</span><h3>M.Sc. Molecular Medicine</h3><p className="molecular-course-meta">2 years · 4 semesters + research project</p><ul><li>For graduates in life or biomedical sciences</li><li>Advanced genomics, drug discovery, and disease modelling</li><li>Supervised research dissertation</li><li>Foundation for research careers or a Ph.D.</li></ul><Link href="/enquire/">Ask about M.Sc. <span>→</span></Link></article>
+          <article><span>UNDERGRADUATE · AFTER 12TH</span><h3>B.Sc. Molecular Medicine</h3><p className="molecular-course-meta">3 years · 6 semesters · No NEET required</p><ul><li>For students with Biology (PCB)</li><li>Foundations in genetics, biochemistry, and diagnostics</li><li>Laboratory training from the first year</li><li>Pathway to industry roles or postgraduate study</li></ul><Link href="/enquire/">Ask about B.Sc. <span><SiteIcon name="arrowRight" /></span></Link></article>
+          <article><span>POSTGRADUATE · AFTER B.Sc.</span><h3>M.Sc. Molecular Medicine</h3><p className="molecular-course-meta">2 years · 4 semesters + research project</p><ul><li>For graduates in life or biomedical sciences</li><li>Advanced genomics, drug discovery, and disease modelling</li><li>Supervised research dissertation</li><li>Foundation for research careers or a Ph.D.</li></ul><Link href="/enquire/">Ask about M.Sc. <span><SiteIcon name="arrowRight" /></span></Link></article>
         </div>
       </div>
     </section>
@@ -79,11 +79,11 @@ export function MolecularMedicinePage() {
       <div className="molecular-inner molecular-career-grid"><div><span className="molecular-eyebrow">AFTER THE DEGREE</span><h2>Where can Molecular Medicine lead?</h2><p>Both degrees open pathways across diagnostics, research, biotechnology, and pharmaceutical industries. Your qualification and experience shape the roles available to you.</p></div><div className="molecular-career-list"><p>Molecular biologist / lab analyst</p><p>Research assistant or scientist</p><p>Clinical / diagnostic technologist</p><p>Quality control associate</p><p>Genome analyst or clinical research associate</p></div></div>
     </section>
 
-    <section className="molecular-faq"><div className="molecular-inner"><header className="molecular-heading"><span className="molecular-eyebrow">QUESTIONS</span><h2>Frequently asked questions</h2></header><div className="molecular-faq-list">{faqs.map(([question, answer], i) => <details key={question} open={i === 0}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div></section>
+    <section className="molecular-faq"><div className="molecular-inner"><header className="molecular-heading"><span className="molecular-eyebrow">QUESTIONS</span><h2>Frequently asked questions</h2></header><div className="molecular-faq-list">{faqs.map(([question, answer], i) => <details key={question} open={i === 0}><summary>{question}<span aria-hidden="true"><SiteIcon name="plus" /></span></summary><p>{answer}</p></details>)}</div></div></section>
 
-    <section className="molecular-cta"><div className="molecular-inner"><span className="molecular-eyebrow">YOUR NEXT STEP</span><h2>Start with the course that fits you.</h2><p>Ask ITHS admissions about current eligibility, campus, and application details.</p><div><Link href="/enquire/">Enquire about admissions <span>→</span></Link><a href="tel:+917696614978">Call 76966 14978</a></div></div></section>
+    <section className="molecular-cta"><div className="molecular-inner"><span className="molecular-eyebrow">YOUR NEXT STEP</span><h2>Start with the course that fits you.</h2><p>Ask ITHS admissions about current eligibility, campus, and application details.</p><div><Link href="/enquire/">Enquire about admissions <span><SiteIcon name="arrowRight" /></span></Link><a href="tel:+917696614978">Call 76966 14978</a></div></div></section>
 
-    <section className="molecular-related molecular-inner"><h2>Explore related pages</h2><div><Link href="/programmes/">All programmes <span>↗</span></Link><Link href="/campuses/mohali/">Mohali campus <span>↗</span></Link><Link href="/admissions/eligibility/">Admissions eligibility <span>↗</span></Link><Link href="/academics/">All departments <span>↗</span></Link></div></section>
+    <section className="molecular-related molecular-inner"><h2>Explore related pages</h2><div><Link href="/programmes/">All programmes <span><SiteIcon name="arrowUpRight" /></span></Link><Link href="/campuses/mohali/">Mohali campus <span><SiteIcon name="arrowUpRight" /></span></Link><Link href="/admissions/eligibility/">Admissions eligibility <span><SiteIcon name="arrowUpRight" /></span></Link><Link href="/academics/">All departments <span><SiteIcon name="arrowUpRight" /></span></Link></div></section>
   </div>;
 }
 

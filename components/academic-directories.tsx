@@ -8,7 +8,7 @@ export function DepartmentDirectory() {
   return <div className="directory-grid">
     {departments.map((department, index) => { const course = courseCatalogue.find(item => item.departmentHref === department.href); return <Link className="directory-card" href={department.href} key={department.href}>
       {course && <div className="directory-card-image"><Image src={course.image} alt="" fill sizes="(max-width: 760px) 90vw, 33vw" /></div>}<span className="directory-number">0{index + 1}</span><h2>{department.shortTitle}</h2><p>{department.description}</p>
-      <div className="directory-tags">{department.programmes.map(programme => <span key={programme}>{programme}</span>)}</div><b>Explore department <span aria-hidden="true">↗</span></b>
+      <div className="directory-tags">{department.programmes.map(programme => <span key={programme}>{programme}</span>)}</div><b>Explore department <span aria-hidden="true"><SiteIcon name="arrowUpRight" /></span></b>
     </Link>; })}
   </div>;
 }
@@ -16,7 +16,7 @@ export function DepartmentDirectory() {
 export function ProgrammeDirectory({ href }: { href: string }) {
   const category = programmeCategories.find(item => item.href === href);
   if (!category) return <div className="programme-category-grid">
-    {programmeCategories.map(item => <Link href={item.href} className="programme-category-card" key={item.href}><span>{item.levels.length ? item.levels.join(" · ") : "Programme information"}</span><h2>{item.title}</h2><b>View pathway <span aria-hidden="true">↗</span></b></Link>)}
+    {programmeCategories.map(item => <Link href={item.href} className="programme-category-card" key={item.href}><span>{item.levels.length ? item.levels.join(" · ") : "Programme information"}</span><h2>{item.title}</h2><b>View pathway <span aria-hidden="true"><SiteIcon name="arrowUpRight" /></span></b></Link>)}
   </div>;
 
   const offerings = departments.flatMap(department => {
@@ -26,7 +26,7 @@ export function ProgrammeDirectory({ href }: { href: string }) {
 
   return <>
     {offerings.length ? <div className="directory-grid">
-      {offerings.map(department => <Link className="directory-card" href={getProgrammeHref(department.href, department.matched.length === 1 ? department.matched[0] : "")} key={department.href}><span className="directory-number">{category.title}</span><h2>{department.shortTitle}</h2><p>{department.description}</p><div className="directory-tags">{department.matched.map(programme => <span key={programme}>{programme}</span>)}</div><b>View department <span aria-hidden="true">↗</span></b></Link>)}
+      {offerings.map(department => <Link className="directory-card" href={getProgrammeHref(department.href, department.matched.length === 1 ? department.matched[0] : "")} key={department.href}><span className="directory-number">{category.title}</span><h2>{department.shortTitle}</h2><p>{department.description}</p><div className="directory-tags">{department.matched.map(programme => <span key={programme}>{programme}</span>)}</div><b>View department <span aria-hidden="true"><SiteIcon name="arrowUpRight" /></span></b></Link>)}
     </div> : <div className="content-notice"><strong>Programme details pending from ITHS</strong><p>Specific {category.title.toLowerCase()} offerings will be listed here when confirmed for the 2026–27 admission cycle.</p></div>}
   </>;
 }
@@ -35,7 +35,7 @@ export function CampusDirectory() {
   return <div className="campus-grid">
     {campuses.map((campus, index) => <Link href={campus.href} className="campus-card" key={campus.href}>
       <span className="directory-number">CAMPUS 0{index + 1}</span>{campus.status && <span className="content-pending">{campus.status}</span>}
-      <h2>{campus.title}</h2><p>{campus.location}</p><strong>In collaboration with</strong><p>{campus.partner}</p><b>Explore campus <span aria-hidden="true">↗</span></b>
+      <h2>{campus.title}</h2><p>{campus.location}</p><strong>In collaboration with</strong><p>{campus.partner}</p><b>Explore campus <span aria-hidden="true"><SiteIcon name="arrowUpRight" /></span></b>
     </Link>)}
   </div>;
 }
@@ -52,8 +52,8 @@ export function CampusProfile({ href }: { href: string }) {
   return <>
     <h2>{campus.title} campus</h2>
     <p>{campus.location} · In collaboration with {campus.partner}</p>
-    <div className="campus-detail-panel"><h3>Programmes listed for this campus</h3><ul>{(offerings[href] ?? []).map(programme => <li key={programme}>{programme}</li>)}</ul><p>Listings follow the ITHS admissions page. Confirm current availability, eligibility, fees, and the awarding university directly with admissions.</p><Link href="/admissions/">Ask about campus programmes <span>→</span></Link></div>
-    <Link className="text-link" href="/campuses/">All campuses <span>→</span></Link>
+    <div className="campus-detail-panel"><h3>Programmes listed for this campus</h3><ul>{(offerings[href] ?? []).map(programme => <li key={programme}>{programme}</li>)}</ul><p>Listings follow the ITHS admissions page. Confirm current availability, eligibility, fees, and the awarding university directly with admissions.</p><Link href="/admissions/">Ask about campus programmes <span><SiteIcon name="arrowRight" /></span></Link></div>
+    <Link className="text-link" href="/campuses/">All campuses <span><SiteIcon name="arrowRight" /></span></Link>
   </>;
 }
 

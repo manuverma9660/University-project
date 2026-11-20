@@ -1,6 +1,22 @@
 import type { ReactNode } from "react";
 
 const artwork = {
+  facebook: <path fill="currentColor" stroke="none" d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.027 4.388 11.022 10.125 11.927v-8.437H7.078v-3.49h3.047V9.413c0-3.026 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.971H15.83c-1.49 0-1.955.931-1.955 1.887v2.263h3.328l-.532 3.49h-2.796V24C19.612 23.095 24 18.1 24 12.073Z" />,
+  instagram: <><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></>,
+  x: <path fill="currentColor" stroke="none" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.64 7.584H.47l8.6-9.835L0 1.154h7.594l5.243 6.932 6.064-6.933ZM17.61 20.644h2.039L6.486 3.24H4.298L17.61 20.644Z" />,
+  youtube: <><rect x="1" y="4.5" width="22" height="15" rx="4" fill="currentColor" stroke="none" /><path d="m10 8.5 6 3.5-6 3.5Z" fill="#fff" stroke="none" /></>,
+  arrowRight: <path d="M4 12h16m-6-6 6 6-6 6" />,
+  arrowLeft: <path d="M20 12H4m6-6-6 6 6 6" />,
+  arrowUpRight: <path d="M5 19 19 5M5 5h14v14" />,
+  arrowDown: <path d="M12 4v16m-6-6 6 6 6-6" />,
+  arrowUp: <path d="M12 20V4m-6 6 6-6 6 6" />,
+  chevronLeft: <path d="m15 5-7 7 7 7" />,
+  chevronRight: <path d="m9 5 7 7-7 7" />,
+  plus: <path d="M12 5v14M5 12h14" />,
+  minus: <path d="M5 12h14" />,
+  close: <path d="m6 6 12 12M18 6 6 18" />,
+  book: <><path d="M12 5v16M12 5C9 3 5 3 2 4v15c3-1 7-1 10 2 3-3 7-3 10-2V4c-3-1-7-1-10 1Z" /></>,
+  star: <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z" />,
   home: <><path d="M2.5 11 12 3.5l9.5 7.5" /><path d="M5 9.5V20a1.5 1.5 0 0 0 1.5 1.5h3.5v-4.5a2 2 0 0 1 4 0v4.5h3.5a1.5 1.5 0 0 0 1.5-1.5V9.5" /></>,
   university: <><path d="m3 9 9-6 9 6H3ZM4 21h16M6 10v8m6-8v8m6-8v8M4 18h16" /></>,
   trophy: <><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" /><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" /><path d="M4 22h16" /><path d="M10 14.66V17c0 .55-.45 1-1 1H8v4h8v-4h-1c-.55 0-1-.45-1-1v-2.34" /><path d="M18 4H6v7a6 6 0 0 0 12 0V4Z" /></>,
