@@ -81,12 +81,19 @@
 .steps p { margin: 15px 0 0; font-size: 14px; }
 .faqSection { padding-block: 60px; background: #f3f6fa; }
 .faqs { display: grid; max-width: 900px; gap: 12px; margin-inline: auto; }
-.faqs details { padding: 0 24px; border: 1px solid #dce4ee; border-radius: 10px; background: #fff; }
-.faqs summary { display: flex; min-height: 65px; align-items: center; justify-content: space-between; gap: 20px; padding-block: 17px; color: var(--campus-navy); font-size: 15px; font-weight: 600; line-height: 1.5; list-style: none; cursor: pointer; }
-.faqs summary::-webkit-details-marker { display: none; }
-.faqs summary > span { flex: 0 0 auto; color: var(--campus-red); font-size: 23px; }
-.faqs details[open] summary > span { transform: rotate(45deg); }
-.faqs details > p { margin: 0; padding-bottom: 22px; font-size: 14px; }
+.faqItem { overflow: hidden; padding-inline: 24px; border: 1px solid #dce4ee; border-radius: 10px; background: #fff; }
+.faqHeading { margin: 0; }
+.faqQuestion { display: flex; width: 100%; min-height: 65px; align-items: center; justify-content: space-between; gap: 20px; padding-block: 17px; border: 0; background: transparent; color: var(--campus-navy); font: inherit; font-size: 15px; font-weight: 600; line-height: 1.5; text-align: left; cursor: pointer; }
+.faqToggle { display: grid; flex: 0 0 24px; width: 24px; height: 24px; place-items: center; color: var(--campus-red); transition: transform .35s cubic-bezier(.22, 1, .36, 1); }
+.faqToggle svg { width: 20px; height: 20px; }
+.faqItemOpen .faqToggle { transform: rotate(45deg); }
+.faqAnswer { display: grid; grid-template-rows: minmax(0, 0fr); transition: grid-template-rows .5s cubic-bezier(.22, 1, .36, 1); }
+.faqItemOpen .faqAnswer { grid-template-rows: minmax(0, 1fr); }
+.faqAnswerInner { overflow: hidden; }
+.faqAnswer p { margin: 0; padding-bottom: 22px; font-size: 14px; line-height: 1.7; color: #59677a; opacity: 0; transform: translateY(-5px); transition: opacity .3s ease, transform .3s ease; }
+.faqItemOpen .faqAnswer p { opacity: 1; transform: translateY(0); }
+.faqQuestion:focus-visible { outline: 2px solid var(--campus-red); outline-offset: -2px; }
+@media (prefers-reduced-motion: reduce) { .faqAnswer, .faqToggle, .faqAnswer p { transition: none; } }
 .cta { padding-block: 60px; background: var(--campus-navy); color: #dce6f5; }
 .cta > .container { display: flex; align-items: center; justify-content: space-between; gap: 45px; }
 .cta .eyebrow { color: #ff8c96; }

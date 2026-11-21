@@ -5,6 +5,7 @@ import { campusDetails, type CampusKey } from "@/lib/campus-details";
 import { campuses } from "@/lib/site-content";
 import { siteConfig } from "@/lib/site-config";
 import styles from "./campuses-page.module.css";
+import { CampusFaqAccordion } from "./campus-faq-accordion";
 
 const campusKeys: CampusKey[] = ["bhopal", "shimla", "hoshiarpur", "mohali"];
 const campusLinks = { mohali: "/campuses/mohali/", hoshiarpur: "/campuses/hoshiarpur/", shimla: "/campuses/shimla-hills/", bhopal: "/campuses/bhopal/" };
@@ -50,7 +51,7 @@ export function CampusesPage() {
 
     <section className={`${styles.section} ${styles.container}`} aria-labelledby="campus-visit-title"><header className={styles.sectionHead}><p className={styles.eyebrow}>Make an informed choice</p><h2 id="campus-visit-title">Plan your <span>next step.</span></h2></header><ol className={styles.steps}>{[["Choose your subject","Explore course details and check which campus offers the pathway you are considering."],["Speak with admissions","Discuss eligibility, fees, university details and the current intake before applying."],["Plan your visit","Ask about campus visits, accommodation and travel arrangements before you set off."]].map(([title,text],index)=><li key={title}><span aria-hidden="true">0{index+1}</span><h3>{title}</h3><p>{text}</p></li>)}</ol></section>
 
-    <section className={styles.faqSection} aria-labelledby="campus-faq-title"><div className={styles.container}><header className={styles.sectionHead}><p className={styles.eyebrow}>Campus questions</p><h2 id="campus-faq-title">A little more <span>clarity.</span></h2></header><div className={styles.faqs}>{questions.map(([question,answer],index)=><details key={question} open={index===0}><summary>{question}<span aria-hidden="true"><SiteIcon name="plus" /></span></summary><p>{answer}</p></details>)}</div></div></section>
+    <section className={styles.faqSection} aria-labelledby="campus-faq-title"><div className={styles.container}><header className={styles.sectionHead}><p className={styles.eyebrow}>Campus questions</p><h2 id="campus-faq-title">A little more <span>clarity.</span></h2></header><CampusFaqAccordion questions={questions} /></div></section>
 
     <section className={styles.cta} aria-labelledby="campus-cta-title"><div className={styles.container}><div><p className={styles.eyebrow}>Your future in health science</p><h2 id="campus-cta-title">Let&apos;s find your campus.</h2><p>Tell us what you want to study. We&apos;ll help you understand your options.</p></div><div className={styles.ctaActions}><Link className={styles.button} href="/enquire/">Enquire about a campus <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link><a className={styles.ctaPhone} href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`}>Call {siteConfig.admissionsPhone}</a><Link href="/apply/">Ready to apply? <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link></div></div></section>
   </main>;
