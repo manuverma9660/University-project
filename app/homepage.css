@@ -605,7 +605,6 @@
 
 body:has([data-notice-dock]) {
   --notice-dock-height: calc(56px + env(safe-area-inset-bottom, 0px));
-  padding-bottom: calc(var(--notice-dock-height) + 10px);
 }
 
 .home-facts {
@@ -3879,6 +3878,10 @@ body:has([data-notice-dock]) {
 .site-footer {
   background: var(--color-primary);
   color: #c5c9df;
+}
+
+.site-footer:has([data-notice-dock]) {
+  padding-bottom: var(--notice-dock-height, 56px);
 }
 
 .site-footer .footer-main {
