@@ -18,7 +18,7 @@ export function HomeNotices() {
   const [closed, setClosed] = useState(false);
   if (closed) return null;
 
-  return <aside className={styles.section} data-notice-dock aria-label="Latest announcements">
+  return <aside className={styles.section} aria-label="Latest announcements">
     <div className={styles.inner}>
       <div className={styles.heading}>
         <strong>Notices</strong>

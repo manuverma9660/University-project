@@ -603,11 +603,6 @@
   width: 100%;
 }
 
-body:has([data-notice-dock]) {
-  --notice-dock-height: calc(56px + env(safe-area-inset-bottom, 0px));
-  padding-bottom: calc(var(--notice-dock-height) + 10px);
-}
-
 .home-facts {
   background: #fff;
   color: #1a1a41;

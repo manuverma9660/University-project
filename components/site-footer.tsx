@@ -2,6 +2,7 @@ import { SiteIcon } from "@/components/site-icon";
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
+import { HomeNotices } from "@/components/home-notices";
 
 const programmeLinks = [
   { title: "All Programmes", href: "/programmes/" },
@@ -24,6 +25,7 @@ const quickLinks = [
 
 export function SiteFooter() {
   return <footer className="site-footer">
+    <HomeNotices />
     <div className="container footer-main">
       <div className="footer-intro">
         <Link className="footer-brand" href="/" aria-label={`${siteConfig.name} home`}>

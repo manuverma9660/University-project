@@ -13,7 +13,6 @@ import { ResearchPatentSlider } from "@/components/research-patent-slider";
 import { HomeFaqAccordion } from "@/components/home-faq-accordion";
 import { labPhotos } from "@/lib/lab-photos";
 import { HomeAboutSection } from "@/components/home-about-section";
-import { HomeNotices } from "@/components/home-notices";
 
 const faqs = [
   ["What does a partner university collaboration mean?", "ITHS runs programmes in collaboration with partner universities. The university associated with your programme awards the degree or diploma. Ask admissions to confirm the awarding university for your chosen programme and campus."],
@@ -238,6 +237,5 @@ export default function HomePage() {
       </div>
     </section>
     <Link className="home-floating-enquire" href="#home-enquiry"><span>Enquire now</span></Link>
-    <HomeNotices />
   </main>;
 }
