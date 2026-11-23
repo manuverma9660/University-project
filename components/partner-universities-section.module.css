@@ -1,9 +1,7 @@
 .section {
   position: relative;
   padding-block: 76px;
-  background:
-    radial-gradient(ellipse at 90% 10%, rgba(57, 77, 145, 0.13), transparent 34%),
-    linear-gradient(120deg, #e2e9f7 0%, #eaf0fa 52%, #dfe7f6 100%);
+  background: transparent;
 }
 
 .layout {
