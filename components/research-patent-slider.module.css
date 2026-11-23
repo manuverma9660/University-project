@@ -1,7 +1,7 @@
 .slider { min-width: 0; }
 .viewport { height: clamp(380px, 34vw, 500px); overflow: hidden; border-radius: 18px; }
 .track { display: flex; width: max-content; height: 100%; animation: patent-scroll 14s linear infinite; }
-.slider[data-playing="false"] .track, .slider:hover .track, .slider:focus-within .track { animation-play-state: paused; }
+.slider[data-playing="false"] .track { animation-play-state: paused; }
 .group { display: flex; flex: 0 0 auto; gap: 16px; height: 100%; padding-right: 16px; }
 .slide { position: relative; flex: 0 0 auto; height: 100%; aspect-ratio: 208 / 297; overflow: hidden; border-radius: 18px; }
 .slide img { object-fit: contain; }

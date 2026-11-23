@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import styles from "./research-patent-slider.module.css";
 import { useVisibleAutoplay } from "./use-visible-autoplay";
 
@@ -10,8 +11,17 @@ const patents = [
 ];
 
 export function ResearchPatentSlider() {
-  const { ref, playing } = useVisibleAutoplay<HTMLDivElement>();
-  return <div ref={ref} data-playing={playing} className={`home-research-visual ${styles.slider}`} role="region" aria-roledescription="carousel" aria-label="ITHS patents and research documents">
+  const { ref, playing: visiblePlaying } = useVisibleAutoplay<HTMLDivElement>();
+  const [pausedByClick, setPausedByClick] = useState(false);
+  const playing = visiblePlaying && !pausedByClick;
+  const togglePlayback = () => setPausedByClick(paused => !paused);
+
+  return <div ref={ref} data-playing={playing} className={`home-research-visual ${styles.slider}`} role="region" aria-roledescription="carousel" aria-label={`ITHS patents and research documents. ${playing ? "Click or press Enter to pause." : "Click or press Enter to resume."}`} tabIndex={0} onClick={togglePlayback} onKeyDown={event => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      togglePlayback();
+    }
+  }}>
     <div className={styles.viewport}>
       <div className={styles.track} aria-live="off">
         {[0, 1].map(copy => <div className={styles.group} key={copy} aria-hidden={copy === 1 ? true : undefined}>
