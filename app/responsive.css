@@ -22,19 +22,29 @@
 
 @media (max-width: 600px) {
   /* The brand row already has its own gutter; don't apply the container gutter twice. */
+  .site-header .brand-row {
+    padding: 0 !important;
+  }
+
   .site-header .brand-inner {
-    display: flex !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto auto;
     width: 100%;
     min-width: 0;
-    justify-content: space-between;
+    gap: 6px;
   }
 
   .site-header .brand-inner > .brand {
+    grid-column: 1;
+    grid-row: 1;
     min-width: 0;
-    flex: 1 1 auto;
+    width: 100%;
+    flex: 0 1 auto;
   }
 
   .site-header .brand-inner > .header-actions {
+    grid-column: 2;
+    grid-row: 1;
     display: flex;
     flex: 0 0 auto;
     gap: 6px;
@@ -57,6 +67,8 @@
   }
 
   .site-header .mobile-menu-toggle {
+    grid-column: 3;
+    grid-row: 1;
     display: grid !important;
     width: 40px;
     height: 40px;
@@ -66,9 +78,9 @@
   .home-intro-grid,
   .home-intro-copy,
   .home-enquiry-card {
-    width: 100%;
+    width: calc(100vw - 40px) !important;
     min-width: 0;
-    max-width: 100%;
+    max-width: calc(100vw - 40px) !important;
   }
 
   .home-intro-grid {
@@ -76,13 +88,14 @@
   }
 
   .home-intro-copy > p {
-    width: 100%;
+    width: 100% !important;
     max-width: 100% !important;
     overflow-wrap: anywhere;
   }
 
   .home-intro-copy > p:not(.home-intro-lede) {
-    max-width: 100%;
+    width: calc(100vw - 40px) !important;
+    max-width: calc(100vw - 40px) !important;
   }
 }
 
