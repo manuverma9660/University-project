@@ -50,8 +50,10 @@ function DepartmentMark({ index }: { index: number }) {
 
 export function HomeProgrammes() {
   const [selected, setSelected] = useState(0);
+  const [tabsStuck, setTabsStuck] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
+  const tabsShellRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -75,6 +77,25 @@ export function HomeProgrammes() {
     };
   }, []);
 
+  useEffect(() => {
+    const updateStickyState = () => {
+      const shell = tabsShellRef.current;
+      if (!shell) return;
+      const stickyTop = parseFloat(window.getComputedStyle(shell).top) || 0;
+      const bounds = shell.getBoundingClientRect();
+      const stuck = bounds.top <= stickyTop + 1 && bounds.bottom > stickyTop;
+      setTabsStuck(current => current === stuck ? current : stuck);
+    };
+
+    window.addEventListener("scroll", updateStickyState, { passive: true });
+    window.addEventListener("resize", updateStickyState);
+    updateStickyState();
+    return () => {
+      window.removeEventListener("scroll", updateStickyState);
+      window.removeEventListener("resize", updateStickyState);
+    };
+  }, []);
+
   function selectDepartment(index: number) {
     setSelected(index);
     // Wait for the selected panel to render before measuring its scroll target.
@@ -82,19 +103,29 @@ export function HomeProgrammes() {
       const panel = panelRef.current;
       const tabs = tabsRef.current;
       if (!panel || !tabs) return;
-      const stickyTop = parseFloat(window.getComputedStyle(tabs).top) || 0;
+      const stickyTop = parseFloat(window.getComputedStyle(tabs.parentElement ?? tabs).top) || 0;
       const top = window.scrollY + panel.getBoundingClientRect().top
         - stickyTop - tabs.getBoundingClientRect().height - 16;
       window.scrollTo({ top, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
     });
   }
+
+  function scrollDepartmentTabs(direction: -1 | 1) {
+    tabsRef.current?.scrollBy({
+      left: direction * Math.max(180, tabsRef.current.clientWidth * 0.72),
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+    });
+  }
+
   const available = departments.map((item, index) => ({ ...item, index, matched: item.programmes }));
   const active = available.find(item => item.index === selected) ?? available[0];
 
   return <>
     <div className="home-department-explorer" ref={resultRef}>
-      <div className="home-department-tabs" ref={tabsRef} role="tablist" aria-label="Academic departments" aria-orientation="horizontal">
-        {available.map((item, index) => <button key={item.href} id={`department-tab-${item.index}`} role="tab" type="button" aria-selected={active?.index === item.index} aria-controls="home-department-panel" tabIndex={active?.index === item.index ? 0 : -1} onClick={() => selectDepartment(item.index)} onKeyDown={event => {
+      <div className="home-department-tabs-shell" ref={tabsShellRef} data-stuck={tabsStuck ? "true" : undefined}>
+        <button className="home-department-tabs-arrow home-department-tabs-arrow-prev" type="button" aria-label="Scroll departments left" aria-controls="department-tabs" onClick={() => scrollDepartmentTabs(-1)}><SiteIcon name="arrowLeft" /></button>
+        <div className="home-department-tabs" id="department-tabs" ref={tabsRef} role="tablist" aria-label="Academic departments" aria-orientation="horizontal">
+          {available.map((item, index) => <button key={item.href} id={`department-tab-${item.index}`} role="tab" type="button" aria-selected={active?.index === item.index} aria-controls="home-department-panel" tabIndex={active?.index === item.index ? 0 : -1} onClick={() => selectDepartment(item.index)} onKeyDown={event => {
           let next = index;
           if (event.key === "ArrowDown" || event.key === "ArrowRight") next = (index + 1) % available.length;
           else if (event.key === "ArrowUp" || event.key === "ArrowLeft") next = (index - 1 + available.length) % available.length;
@@ -103,7 +134,9 @@ export function HomeProgrammes() {
           else return;
           event.preventDefault(); selectDepartment(available[next].index);
           document.getElementById(`department-tab-${available[next].index}`)?.focus({ preventScroll: true });
-        }}><span className="home-department-tab-icon" aria-hidden="true"><DepartmentMark index={item.index} /></span><span className="home-department-tab-label">{item.shortTitle}</span></button>)}
+          }}><span className="home-department-tab-icon" aria-hidden="true"><DepartmentMark index={item.index} /></span><span className="home-department-tab-label">{item.shortTitle}</span></button>)}
+        </div>
+        <button className="home-department-tabs-arrow home-department-tabs-arrow-next" type="button" aria-label="Scroll departments right" aria-controls="department-tabs" onClick={() => scrollDepartmentTabs(1)}><SiteIcon name="arrowRight" /></button>
       </div>
       <article ref={panelRef} className="home-department-panel" id="home-department-panel" role="tabpanel" aria-labelledby={`department-tab-${active.index}`} tabIndex={0}>
         <div className="home-department-image" key={`image-${active.index}`}><Image src={departmentImages[active.index]} alt={`${active.shortTitle} study and laboratory learning`} style={{ objectPosition: active.index < 4 ? "right center" : "center" }} fill sizes="(max-width: 760px) 90vw, 40vw" /><div className="department-image-caption"><span>Discover your discipline</span><p>Curiosity today.<br />Possibility tomorrow.</p></div></div>

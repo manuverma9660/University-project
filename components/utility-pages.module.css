@@ -11,8 +11,8 @@
 .hero p:last-child { max-width: 590px; margin: 20px 0 0; color: #dce6f5; font-size: 17px; }
 .section { padding-block: 60px; }
 .intro { max-width: 750px; margin: 18px 0 28px; }
-.faqList { display: grid; gap: 14px; }
-.faqList details { overflow: hidden; padding: 0 23px; border: 1px solid #dfe5ee; border-radius: 10px; }
+.faqList { display: grid; gap: 10px; }
+.faqList details { overflow: hidden; padding: 0 16px; border: 1px solid #dce2eb; border-radius: 12px; }
 .faqList details[open] { background: #f6f8fb; }
 .faqList summary { display: flex; min-height: 65px; align-items: center; justify-content: space-between; gap: 20px; padding-block: 17px; color: #102748; font-size: 16px; font-weight: 600; cursor: pointer; list-style: none; }
 .faqList summary::-webkit-details-marker { display: none; }

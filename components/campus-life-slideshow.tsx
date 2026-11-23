@@ -2,12 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { labPhotos } from "@/lib/lab-photos";
 import { useVisibleAutoplay } from "./use-visible-autoplay";
-
-const labPhotoPositions: Record<string, string> = Object.fromEntries(
-  Object.values(labPhotos).map(photo => [photo.src, photo.position]),
-);
 
 export const campusLifeSlideGroups = {
   featured: [
@@ -21,22 +16,22 @@ export const campusLifeSlideGroups = {
     "/home/campus-life-picked/IMG-20250825-WA0006.webp",
   ],
   studentLearning: [
-    labPhotos.microscopy.src,
-    labPhotos.pipetting.src,
-    labPhotos.nutrition.src,
     "/home/campus-life-picked/Clinical-Embryology-Students-Group-Activity-in-Chandigarh-Institute.webp",
     "/home/campus-life-picked/475166652_122195620580158140_5892494980320575969_n.webp",
     "/home/campus-life-picked/474939371_122195620796158140_8624839687051595811_n.webp",
     "/home/campus-life-picked/473711899_122193383012158140_2422036472395053674_n.webp",
+    "/home/campus-life-picked/IMG-20250825-WA0007.webp",
+    "/home/campus-life-picked/IMG-20250825-WA0010.webp",
+    "/home/campus-life-picked/IMG-20250825-WA0019.webp",
   ],
   learning: [
-    labPhotos.airflow.src,
-    labPhotos.equipment.src,
-    labPhotos.teachingLab.src,
-    "/home/campus-life-picked/IMG-20250825-WA0019.webp",
     "/home/campus-life-picked/IMG-20250825-WA0021.webp",
     "/home/campus-life-picked/IMG-20250825-WA0007.webp",
     "/home/campus-life-picked/IMG-20250825-WA0010.webp",
+    "/home/campus-life-picked/IMG-20250825-WA0019.webp",
+    "/home/campus-life-picked/475166652_122195620580158140_5892494980320575969_n.webp",
+    "/home/campus-life-picked/474939371_122195620796158140_8624839687051595811_n.webp",
+    "/home/campus-life-picked/473711899_122193383012158140_2422036472395053674_n.webp",
   ],
 } as const;
 
@@ -102,7 +97,7 @@ export function CampusLifeSlideshow({ slides, direction = "left", startDelayMs =
       >
         {loopedSlides.map((src, index) => (
           <div className="home-life-slide" key={`${src}-${index}`} style={isVertical ? { height: `${100 / loopedSlides.length}%` } : { width: `${100 / loopedSlides.length}%` }}>
-            <Image src={src} alt="" style={{ objectPosition: labPhotoPositions[src] }} fill loading="eager" sizes="(max-width: 760px) 100vw, 30vw" />
+            <Image src={src} alt="" fill loading="eager" sizes="(max-width: 760px) 100vw, 30vw" />
           </div>
         ))}
       </div>

@@ -40,7 +40,7 @@
 .credentials { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 6px; padding: 0; list-style: none; }
 .credentials li { max-width: 100%; padding: 6px 10px; border: 1px solid #e6ebf1; border-radius: 6px; background: #f6f8fb; color: #46576d; font-size: 11px; line-height: 1.55; }
 .leaderBody > p:not(.role) { color: #526175; font-size: 14px; line-height: 1.8; }
-.leaderBody blockquote { position: relative; width: 100%; margin: 22px 0 24px; padding: 17px 18px; border-left: 3px solid var(--about-red); border-radius: 0 10px 10px 0; background: #f7f9fc; color: #34475f; font-size: 14px; line-height: 1.75; }
+.leaderBody blockquote { position: relative; width: 100%; margin: 22px 0 24px; padding: 18px 22px; border: 0; border-radius: 12px; background: #f7f9fc; color: #34475f; font-size: 16px; font-weight: 700; line-height: 1.7; }
 .leaderBody .inlineLink { width: 100%; justify-content: space-between; gap: 16px; margin-top: auto; padding: 13px 16px; border: 1px solid #dce3ec; border-radius: 9px; background: #fff; transition: background .2s ease, color .2s ease, border-color .2s ease; }
 .leaderBody .inlineLink span { display: grid; width: 25px; height: 25px; place-items: center; border-radius: 50%; background: #fff0f1; }
 .leaderBody .inlineLink:hover { border-color: var(--about-navy); background: var(--about-navy); color: #fff; }

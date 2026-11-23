@@ -205,6 +205,7 @@ export function SiteChatbot() {
           className={styles.triggerButton}
           onClick={() => setIsOpen(true)}
           aria-label="Open admissions chatbot (Call & WhatsApp)"
+          title="Talk to ITHS Admissions"
         >
           <div className={styles.triggerLogoWrap}>
             <Image
@@ -217,7 +218,6 @@ export function SiteChatbot() {
             />
             <span className={styles.onlinePulse} />
           </div>
-          <span className={styles.triggerLabel}>Talk to us</span>
         </button>
       )}
 

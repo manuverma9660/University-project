@@ -10,40 +10,39 @@
 /* Floating Trigger Button (Shown only when chat is closed) */
 .triggerButton {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: 54px;
-  padding: 0 14px 0 8px;
-  border-radius: 999px;
-  border: 2px solid rgba(255, 255, 255, 0.25);
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   background: linear-gradient(135deg, #1a1a41 0%, #25264f 62%, #c81020 100%);
   color: #ffffff;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(26, 26, 65, 0.3), 0 2px 8px rgba(200, 16, 32, 0.2);
+  box-shadow: 0 8px 24px rgba(26, 26, 65, 0.32), 0 2px 8px rgba(200, 16, 32, 0.22);
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
 }
 
 .triggerButton:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 12px 30px rgba(26, 26, 65, 0.4), 0 4px 14px rgba(200, 16, 32, 0.3);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(26, 26, 65, 0.42), 0 4px 14px rgba(200, 16, 32, 0.32);
 }
 
 .triggerButton:active {
-  transform: translateY(-1px) scale(0.98);
+  transform: translateY(-1px) scale(0.96);
 }
 
 .triggerLogoWrap {
   position: relative;
   display: grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: #ffffff;
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
   flex-shrink: 0;
   transition: transform 0.25s ease;
 }
@@ -53,24 +52,17 @@
 }
 
 .triggerLogoImg {
-  width: 28px;
-  height: 16px;
+  width: 36px;
+  height: 21px;
   object-fit: contain;
   display: block;
-}
-
-.triggerLabel {
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.2px;
-  white-space: nowrap;
 }
 
 /* Online Pulse Dot on trigger */
 .onlinePulse {
   position: absolute;
-  top: -2px;
-  right: -2px;
+  top: 1px;
+  right: 1px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -130,7 +122,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid #cf1420;
+  border-bottom: 0;
 }
 
 .headerLeft {
@@ -576,17 +568,19 @@
   }
 
   .triggerButton {
-    height: 50px;
-    padding: 0 13px 0 7px;
-  }
-
-  .triggerLabel {
-    font-size: 14px;
+    width: 60px;
+    height: 60px;
+    padding: 0;
   }
 
   .triggerLogoWrap {
-    width: 34px;
-    height: 34px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .triggerLogoImg {
+    width: 32px;
+    height: 19px;
   }
 
   .chatWindow {

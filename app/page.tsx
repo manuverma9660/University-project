@@ -1,4 +1,4 @@
-import { SiteIcon } from "@/components/site-icon";
+﻿import { SiteIcon } from "@/components/site-icon";
 import Link from "next/link";
 import Image from "next/image";
 import { HomeEnquiryForm } from "@/components/home-enquiry-form";
@@ -77,7 +77,7 @@ export default function HomePage() {
     <section className="home-intro">
       <Image className="home-hero-photo" src={labPhotos.microscopy.src} alt={labPhotos.microscopy.alt} fill priority sizes="100vw" />
       <div className="container home-intro-grid">
-        <div className="home-intro-copy"><span className="home-admissions-pill"><span /> Admissions enquiries open</span><h1>Institute of<br />Translational<br />Health Science<span className="home-title-dot">.</span></h1><p className="home-intro-lede">Where laboratory science<br />meets a healthier tomorrow.</p><p>Explore specialised health science programmes, from B.Sc to PhD, with practical learning and partner university collaborations.</p><div className="home-button-row"><Link className="button button-red" href="/apply/">Apply now <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link><Link className="button button-outline-light" href="/iths-set/">ITHS-SET 2027</Link></div><div className="home-hero-footnote"><span aria-hidden="true">01 /</span> Learn in the classroom. Discover at the bench.</div></div>
+        <div className="home-intro-copy"><span className="home-admissions-pill"><span /> Admissions enquiries open</span><h1>Institute of<br />Translational<br />Health Science<span className="home-title-dot">.</span></h1><p className="home-intro-lede">Where laboratory science<br />meets a healthier tomorrow.</p><p>Explore specialised health science programmes, from B.Sc to PhD, with practical learning and partner university collaborations.</p><div className="home-button-row"><Link className="button button-red" href="/apply/">Apply now <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link><Link className="button button-outline-light" href="/iths-set/">ITHS-SET 2027</Link></div><div className="home-hero-footnote">Learn in the classroom. Discover at the bench.</div></div>
         <HomeEnquiryForm />
       </div>
     </section>
@@ -169,7 +169,7 @@ export default function HomePage() {
             <div className="home-guide-copy"><p className="eyebrow">Your study pathway</p><h3>Curious about clinical embryology &amp; ART?</h3><p className="home-guide-description">Get to know the subject, study options and laboratory learning.</p><span className="home-guide-action">Discover the pathway <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></span></div>
           </Link>
           <Link href="/partnerships/university-partners/" className="home-guide-card home-guide-compact">
-            <div className="home-guide-visual"><Image className="home-guide-photo" src="/images/campuses/chandigarh-mohali.jpg" alt="Rayat Bahra University campus, an ITHS university partner" fill sizes="(max-width: 480px) 40vw, (max-width: 900px) 35vw, 22vw" /></div>
+            <div className="home-guide-visual"><Image className="home-guide-photo" src="/home/university-academic-building.png" alt="University academic building with landscaped grounds" fill sizes="(max-width: 480px) 40vw, (max-width: 900px) 35vw, 22vw" /></div>
             <div className="home-guide-copy"><p className="eyebrow">Understanding your degree</p><h3>Who awards your degree?</h3><p className="home-guide-description">Meet the partner universities connected with your ITHS programme.</p><span className="home-guide-action">Meet our university partners <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></span></div>
           </Link>
         </div>
@@ -232,7 +232,7 @@ export default function HomePage() {
         </div>
         <div className="home-final-cta-actions">
           <p className="home-final-cta-actions-title">Start your application</p>
-          <div className="home-button-row"><Link className="button button-red" href="/apply/">Apply online <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link><a className="button button-outline-light" href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`}><span className="home-final-cta-phone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6.6 3h3l1.5 4-2 1.5a15 15 0 0 0 6.4 6.4l1.5-2 4 1.5v3c0 1.1-.9 2-2 2A16 16 0 0 1 4.6 5c0-1.1.9-2 2-2Z"/></svg></span>Talk to admissions</a></div>
+          <div className="home-button-row"><Link className="button button-red" href="/apply/">Apply online <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link><a className="button button-outline-light" href={`tel:${siteConfig.admissionsPhone.replaceAll(" ", "")}`}><span className="home-final-cta-phone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6.6 3h3l1.5 4-2 1.5a15 15 0 0 0 6.4 6.4l1.5-2 4 1.5v3c0 1.1-.9 2-2 2A16 16 0 0 1 4.6 5c0-1.1.9-2 2-2Z" /></svg></span>Talk to admissions</a></div>
           <a className="home-final-whatsapp" href="https://wa.me/917696614978" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.3 7.9L3 21l1.6-4.7A9 9 0 1 1 21 11.5Z" /><path d="m8.5 7.5 1.5 3-1 1a7 7 0 0 0 3 3l1-1 3 1.5c-.5 2-2 2-3 1.5a10 10 0 0 0-6-6c-.5-1-.5-2.5 1.5-3Z" /></svg><span>Prefer a quick chat? <strong>WhatsApp us</strong></span><span aria-hidden="true"><SiteIcon name="arrowRight" /></span></a>
         </div>
       </div>

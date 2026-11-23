@@ -51,7 +51,7 @@ export function AboutPage() {
         <div className={styles.leaders}>
           {leadership.map(person => <article className={styles.leader} key={person.href}>
             <div className={styles.portrait}><span className={styles.badge}>{person.badge}</span><Image src={person.title === "Founder" ? "/home/founder.png" : "/home/director.webp"} alt={person.name} fill sizes="(max-width: 760px) 90vw, 450px" /></div>
-            <div className={styles.leaderBody}><h3>{person.name}</h3><p className={styles.role}>{person.title}</p><ul className={styles.credentials}>{person.credentials.map(credential => <li key={credential}>{credential}</li>)}</ul><p>{person.description}</p><blockquote>{person.quote}</blockquote><Link className={styles.inlineLink} href={person.href}>Read {person.title.toLowerCase()}&apos;s message <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link></div>
+            <div className={styles.leaderBody}><h3>{person.name}</h3><p className={styles.role}>{person.title}</p><ul className={styles.credentials}>{person.credentials.map(credential => <li key={credential}>{credential}</li>)}</ul><p>{person.description}</p><blockquote>“{person.quote}”</blockquote><Link className={styles.inlineLink} href={person.href}>Read {person.title.toLowerCase()}&apos;s message <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link></div>
           </article>)}
         </div>
       </div>
