@@ -4198,13 +4198,19 @@ body:has([data-notice-dock]) {
   }
 
   .home-intro-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    min-width: 0;
     gap: 30px;
     padding-block: 35px 40px;
   }
 
   .home-intro-copy {
+    min-width: 0;
     padding-block: 10px 0;
+  }
+
+  .home-intro-copy > p {
+    max-width: 100%;
   }
 
   .home-intro h1 {
@@ -4529,6 +4535,7 @@ body:has([data-notice-dock]) {
   }
 
   .site-header .brand-inner {
+    width: 100%;
     min-height: 74px;
     gap: 10px;
   }
@@ -4559,8 +4566,15 @@ body:has([data-notice-dock]) {
     margin-left: auto;
   }
 
-  .header-actions .header-enquire {
+  .site-header .header-actions .header-enquire {
     display: none;
+  }
+
+  .site-header .mobile-menu-toggle {
+    display: grid;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
   }
 
   .header-actions a {
@@ -4582,6 +4596,19 @@ body:has([data-notice-dock]) {
 
   .reference-home .container {
     width: calc(100% - 36px);
+  }
+
+  .home-intro-grid,
+  .home-intro-copy,
+  .home-enquiry-card {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .home-intro-copy > p {
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 
   .home-enquiry-card {

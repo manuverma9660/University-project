@@ -19,3 +19,51 @@
     min-height: 44px;
   }
 }
+
+@media (max-width: 600px) {
+  /* The brand row already has its own gutter; don't apply the container gutter twice. */
+  .site-header .brand-inner {
+    display: flex !important;
+    width: 100%;
+    min-width: 0;
+    justify-content: space-between;
+  }
+
+  .site-header .brand-inner > .brand {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .site-header .header-actions .header-enquire {
+    display: none !important;
+  }
+
+  .site-header .mobile-menu-toggle {
+    display: grid !important;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+  }
+
+  .home-intro-grid,
+  .home-intro-copy,
+  .home-enquiry-card {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .home-intro-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-intro-copy > p {
+    width: 100%;
+    max-width: 100% !important;
+    overflow-wrap: anywhere;
+  }
+
+  .home-intro-copy > p:not(.home-intro-lede) {
+    max-width: 100%;
+  }
+}

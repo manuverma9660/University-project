@@ -359,7 +359,7 @@
   .site-header .utility-bar { display: none; }
 }
 @media (max-width: 600px) {
-  .site-header .brand-inner { display: flex; min-height: 76px; gap: 8px; padding-block: 10px; }
+  .site-header .brand-inner { display: flex; width: 100%; min-width: 0; min-height: 76px; gap: 8px; padding-block: 10px; }
   .site-header .brand-inner > .brand { min-width: 0; flex: 1 1 auto; margin-right: 0; gap: 6px; }
   .site-header .brand-inner > .brand .brand-logo-crop { width: 48px; }
   .site-header .brand-inner > .brand .brand-name { max-width: 102px; }
