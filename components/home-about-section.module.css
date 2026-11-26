@@ -1,5 +1,7 @@
 .section { position: relative; overflow: hidden; padding-block: 76px; background: #111c34; color: #d2dbea; scroll-margin-top: 100px; }
-.layout { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 5vw, 76px); }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); grid-template-areas: "visual copy"; align-items: center; gap: clamp(32px, 5vw, 76px); }
+.copy { grid-area: copy; }
+.visual { grid-area: visual; }
 .copy { min-width: 0; }
 .copy .eyebrow { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 24px; color: #eff3fa; font-size: 11px; font-weight: 700; letter-spacing: .14em; }
 .eyebrow > span { width: 7px; height: 7px; border-radius: 50%; background: #f13647; }
@@ -33,5 +35,5 @@
 .note h3 { margin: 0; color: #1a1a41; font-size: 22px; line-height: 1.25; letter-spacing: -.03em; }
 .note .degreeNote { max-width: 430px; margin: 12px 0 0; color: #657188; font-size: 12px; line-height: 1.7; }
 @media (max-width: 1080px) { .layout { gap: 30px; } .note { gap: 12px; padding: 20px; } .note h3 { font-size: 20px; } }
-@media (max-width: 900px) { .section { padding-block: 54px; } .layout { grid-template-columns: minmax(0, 1fr); gap: 32px; } .copy { max-width: 680px; } .copy h2 { max-width: 650px; font-size: clamp(34px, 5vw, 46px); } .visual { width: 100%; max-width: 680px; justify-self: center; } .photo { height: 360px; } }
+@media (max-width: 900px) { .section { padding-block: 54px; } .layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "copy" "visual"; gap: 32px; } .copy { max-width: 680px; } .copy h2 { max-width: 650px; font-size: clamp(34px, 5vw, 46px); } .visual { width: 100%; max-width: 680px; justify-self: center; } .photo { height: 360px; } }
 @media (max-width: 480px) { .section { padding-block: 44px; } .copy .eyebrow { margin-bottom: 19px; } .copy h2 { font-size: 34px; } .copy .lead { font-size: 17px; margin-top: 20px; } .features { gap: 10px 15px; } .actions { align-items: stretch; flex-direction: column; gap: 12px; margin-top: 24px; } .primary, .secondary { justify-content: center; width: 100%; } .photo { height: 310px; } .photo figcaption { left: 18px; bottom: 20px; gap: 9px; } .galleryLink { right: 18px; bottom: 22px; } .photoMark { display: none; } .note { padding: 20px 18px; } .noteIcon { display: none; } .note h3 { font-size: 22px; } }
