@@ -113,3 +113,16 @@
   }
   .site-header .mobile-menu-toggle { width: 36px; flex-basis: 36px; }
 }
+
+@media (max-width: 480px) {
+  /* Keep room for the mobile menu beside the Apply action on narrow phones. */
+  .site-header .header-actions .header-enquire {
+    display: none !important;
+  }
+
+  .home-intro-copy > p:not(.home-intro-lede) {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere;
+  }
+}
