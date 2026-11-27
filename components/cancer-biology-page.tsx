@@ -19,11 +19,11 @@ const careerRoles = [
 ];
 
 const careerSteps = [
-  ["01", "12th Science", "PCB background"],
-  ["02", "B.Sc. Cancer Biology", "3-year foundation"],
-  ["03", "M.Sc. Cancer Biology", "2-year advanced study"],
-  ["04", "Research experience", "Internship or project work"],
-  ["05", "Career or Ph.D.", "Choose your next step"],
+  ["12th Science", "PCB background"],
+  ["B.Sc. Cancer Biology", "3-year foundation"],
+  ["M.Sc. Cancer Biology", "2-year advanced study"],
+  ["Research experience", "Internship or project work"],
+  ["Career or Ph.D.", "Choose your next step"],
 ];
 
 const reasons = [
@@ -115,7 +115,7 @@ export function CancerBiologyPage() {
           <h2>How to Become a Cancer <em>Research Scientist</em></h2>
           <p>A possible study path from school to cancer research.</p>
         </header>
-        <ol className="cancer-path-steps">{careerSteps.map(([number, title, text]) => <li key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></li>)}</ol>
+        <ol className="cancer-path-steps">{careerSteps.map(([title, text]) => <li key={title}><h3>{title}</h3><p>{text}</p></li>)}</ol>
         <p className="cancer-path-note">Course choice, research experience, and career steps vary by student.</p>
         <Link className="button button-primary" href="/apply/">Apply online <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link>
       </div>

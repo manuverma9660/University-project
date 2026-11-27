@@ -3559,19 +3559,6 @@ h2 em {
   min-width: 0;
 }
 
-.cancer-path-steps li>span {
-  display: grid;
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 18px;
-  place-items: center;
-  border-radius: 7px;
-  background: #0b0b0b;
-  color: white;
-  font-size: 24px;
-  font-weight: var(--weight-bold);
-}
-
 .cancer-path-steps h3 {
   margin: 0 0 6px;
   color: var(--color-primary);
@@ -3883,11 +3870,6 @@ h2 em {
 .cancer-course-page .cancer-path-steps li:hover {
   transform: translateY(-4px);
   box-shadow: 0 15px 30px rgb(16 39 72 / 10%);
-}
-
-.cancer-course-page .cancer-path-steps li>span {
-  border-radius: 50%;
-  background: linear-gradient(145deg, #e5262a, #b91727);
 }
 
 .cancer-course-page .cancer-course-eligibility {
@@ -6346,27 +6328,16 @@ h2 em {
   }
 
   .cancer-path-steps li {
-    display: grid;
-    grid-template-columns: 42px minmax(0, 1fr);
-    align-items: center;
-    column-gap: 14px;
-    text-align: left;
-  }
-
-  .cancer-path-steps li>span {
-    grid-row: span 2;
-    width: 42px;
-    height: 42px;
-    margin: 0;
-    font-size: 20px;
+    display: block;
+    text-align: center;
   }
 
   .cancer-path-steps h3 {
-    align-self: end;
+    align-self: auto;
   }
 
   .cancer-path-steps p {
-    align-self: start;
+    align-self: auto;
   }
 
   .cancer-eligibility-grid article {
