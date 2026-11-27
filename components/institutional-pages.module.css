@@ -36,7 +36,7 @@
 .recordNote p { margin:5px 0 0; color:#64748b; font-size:13px; }
 .recordNote > a { display:inline-flex; flex:0 0 auto; gap:10px; color:var(--navy); font-size:13px; font-weight:800; text-decoration:none; }
 .recordNote > a span { color:var(--red); }
-.partnershipHero { position:relative; display:block; min-height:430px; background:linear-gradient(90deg,#0d2140f5 0%,#0d2140e8 42%,#0d2140a8 100%),url("/images/campuses/chandigarh-mohali.jpg") center 52%/cover no-repeat; }
+.partnershipHero { position:relative; display:block; min-height:430px; background:linear-gradient(90deg,#0d2140f5 0%,#0d2140e8 42%,#0d2140a8 100%),url("/images/partnerships-hero.png") center 52%/cover no-repeat; }
 .partnershipCopy { width:min(1280px,calc(100% - 80px)); max-width:1280px; margin:auto; padding:76px 0; }
 .partnershipCopy h1 { font-size:clamp(38px,4.4vw,56px); }
 .partnershipCopy > p:not(.eyebrow) { max-width:580px; margin:18px 0 0; color:#e2e9f3; font-size:17px; }
