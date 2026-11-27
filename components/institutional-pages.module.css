@@ -10,6 +10,7 @@
 .breadcrumbs > span:nth-child(even) { color:#d8202f; }
 .breadcrumbs > span[aria-current="page"] { color:#c8d5e5; }
 .eyebrow { margin:0 0 12px; color:var(--red); font-size:12px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.governanceHero .eyebrow { color:#fff; }
 .governanceHero h1,.partnershipCopy h1 { max-width:760px; margin:0; color:#fff; font-size:clamp(38px,5vw,62px); letter-spacing:-.04em; line-height:1.08; }
 .governanceHero h1::after { display:block; width:88px; height:5px; margin-top:24px; border-radius:3px; background:#d8202f; content:""; }
 .governanceHero .container > p:not(.eyebrow) { max-width:690px; margin:18px 0 0; color:#e2e9f3; font-size:17px; }
