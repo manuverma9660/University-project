@@ -1,4 +1,8 @@
 .page { --navy:#102748; --red:#d81624; color:#334155; background:#fff; font-family:Arial,Helvetica,sans-serif; line-height:1.7; }
+.awardsPage { background:#fff; }
+.awardsPage .section { background:#fff; }
+.awardsPage .milestoneGrid article,
+.awardsPage .disclosurePanel { background:#f2f5f9; }
 .container { width:min(1200px,calc(100% - 48px)); margin-inline:auto; }
 .hero { display:grid; grid-template-columns:1fr 1fr; min-height:420px; background:#0d2140; }
 .heroImage { position:relative; grid-column:2; grid-row:1; min-height:360px; overflow:hidden; }
@@ -8,6 +12,17 @@
 .eyebrow { margin:0 0 12px; color:var(--red); font-size:12px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
 .heroCopy h1 { margin:0; color:#fff; font-size:clamp(36px,4.4vw,58px); letter-spacing:-.04em; line-height:1.08; }
 .heroCopy > p:last-child { max-width:560px; margin:18px 0 0; color:#e1e8f2; font-size:17px; }
+.awardsHero { position:relative; display:flex; min-height:560px !important; align-items:center; overflow:hidden; margin:0; padding:0; border:0 !important; border-radius:0 !important; box-shadow:none !important; background:#10063f; }
+.awardsHero .heroImage { position:absolute; z-index:0; inset:0; grid-column:auto; grid-row:auto; min-height:0; margin:0; border:0; border-radius:0; box-shadow:none; }
+.awardsHero .heroImage img { object-position:center 46%; }
+.awardsHero .heroImage::after { position:absolute; inset:0; background:linear-gradient(90deg,#10063fe8 0%,#10063fc7 36%,#10063f60 70%,#10063f20 100%); content:""; }
+.awardsHero .heroCopy { position:relative; z-index:3; width:min(1200px,calc(100% - 64px)); max-width:none; margin:0 auto; padding:52px 0 108px; color:#fff; }
+.awardsHero .heroCopy .eyebrow { color:#a8dce5; letter-spacing:.14em; }
+.awardsHero .heroCopy h1 { font-family:var(--font-display); font-size:clamp(44px,5.2vw,64px); font-weight:400; letter-spacing:-.04em; line-height:1.05; }
+.awardsHero .heroCopy h1::after { display:block; width:88px; height:5px; margin-top:24px; border-radius:3px; background:#d8202f; content:""; }
+.awardsHero::before,.awardsHero::after { position:absolute; z-index:1; right:0; bottom:-1px; left:0; width:100%; border:0; border-radius:0; box-shadow:none; content:""; pointer-events:none; }
+.awardsHero::before { height:74px; background:#d8202f; clip-path:polygon(0 25%,12% 37%,25% 62%,38% 86%,52% 100%,68% 95%,82% 76%,100% 43%,100% 100%,0 100%); }
+.awardsHero::after { z-index:2; height:68px; background:#fff; clip-path:polygon(0 28%,12% 40%,25% 65%,38% 89%,52% 100%,68% 95%,82% 76%,100% 43%,100% 100%,0 100%); }
 .section { padding-block:72px 84px; }
 .sectionHead { max-width:760px; margin:0 auto 34px; text-align:center; }
 .sectionHead h2 { margin:0; color:var(--navy); font-size:clamp(30px,3.5vw,44px); letter-spacing:-.035em; line-height:1.15; }
@@ -55,7 +70,7 @@
 .partnerGrid p { margin:5px 0 0; color:#64748b; font-size:12px; }
 .page a:focus-visible { outline:3px solid var(--red); outline-offset:3px; }
 @media(max-width:900px) { .labGrid,.departmentGrid { grid-template-columns:repeat(2,minmax(0,1fr)); } .partnerGrid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media(max-width:680px) { .container { width:calc(100% - 36px); } .hero { grid-template-columns:1fr; } .heroCopy { grid-column:1; grid-row:1; justify-self:stretch; padding:42px 22px 28px; } .heroImage { grid-column:1; grid-row:2; min-height:240px; } .heroImage::after { background:linear-gradient(0deg,transparent 55%,#0d2140 100%); } .section { padding-block:50px 58px; } .labGrid,.departmentGrid,.milestoneGrid,.partnerGrid { grid-template-columns:1fr; } .noteSection > div { align-items:stretch; flex-direction:column; } .departmentCard { min-height:180px; } }
+@media(max-width:680px) { .container { width:calc(100% - 36px); } .hero { grid-template-columns:1fr; } .heroCopy { grid-column:1; grid-row:1; justify-self:stretch; padding:42px 22px 28px; } .heroImage { grid-column:1; grid-row:2; min-height:240px; } .heroImage::after { background:linear-gradient(0deg,transparent 55%,#0d2140 100%); } .awardsHero { min-height:460px; padding-block:0; } .awardsHero::before { height:46px; } .awardsHero::after { height:40px; } .awardsHero .heroImage img { object-position:66% center; } .awardsHero .heroImage::after { background:linear-gradient(90deg,#10063ff2 0%,#10063fce 48%,#10063f68 100%); } .awardsHero .heroCopy { width:calc(100% - 40px); margin-inline:auto; padding:48px 0 76px; } .awardsHero .heroCopy h1 { font-size:clamp(36px,9vw,50px); } .section { padding-block:50px 58px; } .labGrid,.departmentGrid,.milestoneGrid,.partnerGrid { grid-template-columns:1fr; } .noteSection > div { align-items:stretch; flex-direction:column; } .departmentCard { min-height:180px; } }
 
 /* Shared institutional styling for the remaining About routes. */
 .aboutShell {
@@ -67,33 +82,41 @@
 .aboutShell :global(.page-banner) {
   position: relative;
   overflow: hidden;
-  min-height: 360px;
-  display: grid;
-  align-items: end;
-  padding-block: 44px 58px;
-  background: radial-gradient(circle at 85% 10%, #294968 0, transparent 30%), linear-gradient(125deg, #101c34, #192e4a);
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  background-color: #10063f;
+  background-image: linear-gradient(90deg, #10063fe8 0%, #10063fc7 36%, #10063f60 70%, #10063f20 100%), url("/images/about-hero-background.png");
+  background-position: center, center 46%;
+  background-size: cover;
 }
 
+.aboutShell :global(.page-banner)::before,
 .aboutShell :global(.page-banner)::after {
   position: absolute;
-  top: -200px;
-  right: 6%;
-  width: 460px;
-  height: 460px;
-  border: 1px solid #ffffff16;
-  border-radius: 50%;
-  box-shadow: 0 0 0 42px #ffffff08, 0 0 0 84px #ffffff05;
+  z-index: 0;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   content: "";
   pointer-events: none;
 }
+.aboutShell :global(.page-banner)::before { height: 74px; background: #d8202f; clip-path: polygon(0 25%, 12% 37%, 25% 62%, 38% 86%, 52% 100%, 68% 95%, 82% 76%, 100% 43%, 100% 100%, 0 100%); }
+.aboutShell :global(.page-banner)::after { top: auto; height: 68px; background: #fff; clip-path: polygon(0 28%, 12% 40%, 25% 65%, 38% 89%, 52% 100%, 68% 95%, 82% 76%, 100% 43%, 100% 100%, 0 100%); }
 
-.aboutShell :global(.page-banner-inner),
-.aboutShell :global(.page-banner-copy) { position: relative; z-index: 1; }
+.aboutShell :global(.page-banner-inner) { width: min(1200px, calc(100% - var(--page-gutter) * 2)); }
+.aboutShell :global(.page-banner-copy) { position: relative; z-index: 1; width: 100%; padding: 52px 0 108px; }
 
 .aboutShell :global(.breadcrumbs) { margin-bottom: 30px; color: #c8d5e5; }
 .aboutShell :global(.breadcrumbs a) { color: #c8d5e5; }
 .aboutShell :global(.page-banner .eyebrow) { color: #a8dce5; }
 .aboutShell :global(.page-banner h1) { max-width: 920px; font-size: clamp(42px, 6vw, 72px); font-weight: 750; letter-spacing: -.055em; line-height: 1; }
+.aboutShell :global(.page-banner h1)::after { display: block; width: 88px; height: 5px; margin-top: 24px; border-radius: 3px; background: #d8202f; content: ""; }
 .aboutShell :global(.page-banner-copy > p:last-child) { max-width: 730px; color: #d7e1ed; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.7; }
 
 .aboutShell :global(.page-body) { min-height: 55vh; padding-block: clamp(42px, 6vw, 76px); background: linear-gradient(180deg, #f2f5f8, #fbfcfe 240px); }
@@ -135,8 +158,16 @@
 .aboutShell :global(.page-related) { margin-top: 42px; padding-top: 28px; border-top: 1px solid #e5eaf0; }
 .aboutShell :global(.page-related h2) { margin-bottom: 18px; font-size: 25px; }
 
+/* Leadership hero uses the supplied artwork, including its built-in wave finish. */
+.aboutShell:global(.content-page-leadership) :global(.page-banner) { min-height: 560px; background-color: #061447; background-image: url("/images/leadership-hero.png"); background-repeat: no-repeat; background-position: center 68%; background-size: cover; }
+
 @media (max-width: 760px) {
-  .aboutShell :global(.page-banner) { min-height: 0; padding-block: 28px 40px; }
+  .aboutShell :global(.page-banner) { min-height: 460px; padding: 0; background-position: center, 65% center; }
+  .aboutShell:global(.content-page-leadership) :global(.page-banner) { min-height: 460px; padding: 0; background-position: 58% center; }
+  .aboutShell :global(.page-banner-inner) { width: calc(100% - 40px); }
+  .aboutShell :global(.page-banner-copy) { padding: 48px 0 76px; }
+  .aboutShell :global(.page-banner)::before { height: 46px; }
+  .aboutShell :global(.page-banner)::after { height: 40px; }
   .aboutShell :global(.breadcrumbs) { margin-bottom: 24px; }
   .aboutShell :global(.page-content-layout) { grid-template-columns: minmax(0, 1fr); }
   .aboutShell :global(.page-article) { padding: 24px; border-radius: 16px; }
@@ -146,6 +177,60 @@
   .aboutShell :global(.leadership-showcase-card),
   .aboutShell :global(.leadership-showcase-card-2) { grid-template-columns: minmax(0, 1fr); }
   .aboutShell :global(.leadership-showcase-card .leadership-photo-wrap) { min-height: 280px; height: 280px; }
+}
+
+/* Founder message page */
+.founderMessagePage :global(.page-banner) { min-height: 560px; padding: 0; background-color: #10063f; background-image: linear-gradient(90deg, #10063ff5 0%, #10063fe8 38%, #1027489c 63%, #10274835 100%), url("/home/health-science-hero.webp"); background-position: center, center 48%; background-size: cover; }
+.founderMessagePage :global(.page-banner)::before,
+.founderMessagePage :global(.page-banner)::after { position: absolute; z-index: 0; right: 0; bottom: -1px; left: 0; width: 100%; border: 0; border-radius: 0; box-shadow: none; content: ""; pointer-events: none; }
+.founderMessagePage :global(.page-banner)::before { height: 74px; background: #d8202f; clip-path: polygon(0 25%, 12% 37%, 25% 62%, 38% 86%, 52% 100%, 68% 95%, 82% 76%, 100% 43%, 100% 100%, 0 100%); }
+.founderMessagePage :global(.page-banner)::after { top: auto; height: 68px; background: #fff; clip-path: polygon(0 28%, 12% 40%, 25% 65%, 38% 89%, 52% 100%, 68% 95%, 82% 76%, 100% 43%, 100% 100%, 0 100%); }
+.founderMessagePage :global(.page-banner-inner) { width: min(1200px, calc(100% - var(--page-gutter) * 2)); }
+.founderMessagePage :global(.page-banner-copy) { padding: 52px 0 108px; }
+.founderMessagePage :global(.breadcrumbs) { margin-bottom: 34px; }
+.founderMessagePage :global(.page-banner h1) { max-width: 760px; font-size: clamp(42px, 5.2vw, 64px); }
+.founderMessagePage :global(.page-banner-copy > p:last-child) { max-width: 680px; }
+.founderMessagePage :global(.page-body) { min-height: 0; padding-block: clamp(40px, 6vw, 72px) 84px; background: #fff; }
+.founderMessagePage :global(.page-content-layout) { display: block; width: min(1120px, calc(100% - var(--page-gutter) * 2)); }
+.founderMessagePage :global(.page-sidebar) { display: none; }
+.founderMessagePage :global(.page-article) { max-width: none; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.founderMessagePage :global(.leader-message) { grid-template-columns: minmax(250px, 340px) minmax(0, 1fr); align-items: stretch; gap: 0; overflow: hidden; margin: 0; border: 1px solid #e0e7f0; border-radius: 24px; background: #f2f5f9; box-shadow: 0 20px 48px #10274812; }
+.founderMessagePage :global(.leader-message > img) { width: 100%; height: 100%; min-height: 420px; border-radius: 0; background: linear-gradient(150deg, #102748, #10063f); object-fit: contain; object-position: center bottom; }
+.founderMessagePage :global(.leader-message > div) { align-self: center; padding: clamp(28px, 4vw, 52px); background: #f2f5f9; }
+.founderMessagePage :global(.leader-message .eyebrow) { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 12px; padding: 7px 12px; border: 1px solid #f2d2d7; border-radius: 999px; background: #fff7f8; color: #c51f2d; font-size: 10px; letter-spacing: .12em; }
+.founderMessagePage :global(.leader-message .eyebrow)::before { width: 7px; height: 7px; border-radius: 50%; background: #d8202f; content: ""; }
+.founderMessagePage :global(.leader-message h2) { margin: 0 0 14px; color: #102748; font-size: clamp(28px, 3vw, 40px); letter-spacing: -.045em; line-height: 1.12; }
+.founderMessagePage :global(.leader-message > div > p:not(.eyebrow)) { margin: 0; color: #58697f; font-size: 16px; line-height: 1.8; }
+.founderMessagePage :global(.profile-credentials) { display: flex; flex-wrap: wrap; gap: 9px; margin: 22px 0; padding: 0; list-style: none; }
+.founderMessagePage :global(.profile-credentials li) { position: static; padding: 8px 12px; border: 1px solid #dce6f2; border-radius: 999px; background: #f4f7fb; color: #334964; font-size: 12px; line-height: 1.45; }
+.founderMessagePage :global(.profile-credentials li::before) { display: none; }
+.founderMessagePage :global(.leader-message blockquote) { margin: 0; padding: 17px 19px; border: 0; border-left: 3px solid #d8202f; border-radius: 0 13px 13px 0; background: #f1f5fb; color: #243b5a; font-size: 15px; font-weight: 700; line-height: 1.7; }
+.founderMessagePage :global(.page-article > p:not(.eyebrow)) { margin: 26px 0 8px; color: #5c6b7f; font-size: 15px; }
+.founderMessagePage :global(.page-article > .text-link) { display: inline-flex; min-height: 58px; align-items: center; justify-content: center; gap: 18px; margin-top: 4px; padding: 12px 20px; border: 1px solid #d6e0ec; border-radius: 999px; background: #fff; color: #102748; font-size: 17px; font-weight: 700; line-height: 1.2; text-decoration: none; transition: border-color .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.founderMessagePage :global(.page-article > .text-link:hover) { transform: translateY(-2px); border-color: #d8202f; color: #102748; box-shadow: 0 8px 20px #10274812; }
+.founderMessagePage :global(.page-article > .text-link span) { display: inline-flex; align-items: center; justify-content: center; margin-left: 0; color: #d8202f; transition: transform .2s ease; }
+.founderMessagePage :global(.page-article > .text-link:hover span) { transform: translateX(3px); }
+.founderMessagePage :global(.page-related .related-links a) { background: #f2f5f9; transition: background-color .2s ease, border-color .2s ease, transform .2s ease; }
+.founderMessagePage :global(.page-related .related-links a:hover) { transform: translateY(-2px); border-color: #cbd7e6; background: #eaf0f7; }
+
+@media (max-width: 760px) {
+  .founderMessagePage :global(.page-banner) { min-height: 460px; padding: 0; background-image: linear-gradient(90deg, #10063ff5 0%, #10063fe8 48%, #1027489c 100%), url("/home/health-science-hero.webp"); background-position: center, 58% center; }
+  .founderMessagePage :global(.page-banner)::before { height: 46px; }
+  .founderMessagePage :global(.page-banner)::after { height: 40px; }
+  .founderMessagePage :global(.page-banner-inner) { width: calc(100% - 40px); }
+  .founderMessagePage :global(.page-banner-copy) { padding: 48px 0 76px; }
+  .founderMessagePage :global(.breadcrumbs) { margin-bottom: 24px; }
+  .founderMessagePage :global(.page-body) { padding-block: 30px 58px; }
+  .founderMessagePage :global(.leader-message) { grid-template-columns: minmax(0, 1fr); border-radius: 18px; }
+  .founderMessagePage :global(.leader-message > img) { width: min(100%, 340px); height: 320px; min-height: 0; justify-self: center; }
+  .founderMessagePage :global(.leader-message > div) { padding: 26px; }
+}
+
+@media (max-width: 420px) {
+  .founderMessagePage :global(.page-banner) { min-height: 460px; }
+  .founderMessagePage :global(.page-banner h1) { font-size: 38px; }
+  .founderMessagePage :global(.leader-message > img) { height: 275px; }
+  .founderMessagePage :global(.leader-message > div) { padding: 22px; }
 }
 
 /* Matching visual treatment for the custom About gallery and information pages. */
@@ -264,4 +349,41 @@
   .noteSection .button { width: 100%; }
   .departmentCard { min-height: 185px; }
   .milestoneGrid article { min-height: 0; }
+}
+
+/* Consistent About subpage hero and white content sections for Faculty, Labs and Approvals. */
+.whiteSectionPage { background: #fff; }
+.whiteSectionPage .section { background: #fff; }
+.whiteSectionPage .labCard,
+.whiteSectionPage .departmentCard,
+.whiteSectionPage .partnerGrid article,
+.whiteSectionPage .disclosurePanel { background: #f2f5f9; }
+.whiteSectionPage .noteSection { background: #fff; color: #334155; }
+.whiteSectionPage .noteSection .eyebrow { color: #c51f2d; }
+.whiteSectionPage .noteSection h2 { color: #101c34; }
+.whiteSectionPage .noteSection p:not(.eyebrow) { color: #64748b; }
+
+.hero.consistentHero { position: relative; display: flex; min-height: 560px; align-items: center; overflow: hidden; margin: 0; padding: 0; border-radius: 0; background: #10063f; }
+.hero.consistentHero .heroImage { position: absolute; z-index: 0; inset: 0; grid-column: auto; grid-row: auto; min-height: 0; margin: 0; border-radius: 0; box-shadow: none; }
+.hero.consistentHero .heroImage img { object-position: center 46%; }
+.hero.consistentHero .heroImage::after { background: linear-gradient(90deg, #10063fe8 0%, #10063fc7 36%, #10063f60 70%, #10063f20 100%); }
+.hero.consistentHero::before,
+.hero.consistentHero::after { position: absolute; z-index: 1; right: 0; bottom: -1px; left: 0; width: 100%; border: 0; border-radius: 0; box-shadow: none; content: ""; pointer-events: none; }
+.hero.consistentHero::before { height: 74px; background: #d8202f; clip-path: polygon(0 25%, 12% 37%, 25% 62%, 38% 86%, 52% 100%, 68% 95%, 82% 76%, 100% 43%, 100% 100%, 0 100%); }
+.hero.consistentHero::after { height: 68px; background: #fff; clip-path: polygon(0 28%, 12% 40%, 25% 65%, 38% 89%, 52% 100%, 68% 95%, 82% 76%, 100% 43%, 100% 100%, 0 100%); }
+.hero.consistentHero .heroCopy { position: relative; z-index: 2; width: min(1200px, calc(100% - 64px)); max-width: none; margin: 0 auto; padding: 52px 0 108px; }
+.hero.consistentHero .heroCopy .eyebrow { color: #a8dce5; }
+.hero.consistentHero .heroCopy h1 { max-width: 920px; color: #fff; font-size: clamp(42px, 5.2vw, 64px); font-weight: 750; letter-spacing: -.055em; line-height: 1.05; }
+.hero.consistentHero .heroCopy h1::after { display: block; width: 88px; height: 5px; margin-top: 24px; border-radius: 3px; background: #d8202f; content: ""; }
+.hero.consistentHero .heroCopy > p:last-child { max-width: 730px; margin-top: 18px; color: #d7e1ed; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.7; }
+.hero.approvalsHero .heroImage::after { background: linear-gradient(90deg, #10063f99 0%, #10063f55 38%, #10063f12 72%, transparent 100%); }
+
+@media (max-width: 760px) {
+  .hero.consistentHero { min-height: 460px; }
+  .hero.consistentHero::before { height: 46px; }
+  .hero.consistentHero::after { height: 40px; }
+  .hero.consistentHero .heroImage::after { background: linear-gradient(90deg, #10063ff2 0%, #10063fce 48%, #10063f68 100%); }
+  .hero.consistentHero .heroCopy { width: calc(100% - 40px); margin-inline: auto; padding: 48px 0 76px; }
+  .hero.consistentHero .heroCopy h1 { font-size: clamp(36px, 9vw, 50px); }
+  .hero.consistentHero.approvalsHero .heroImage::after { background: linear-gradient(90deg, #10063fa8 0%, #10063f66 48%, #10063f18 100%); }
 }

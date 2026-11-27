@@ -2,6 +2,7 @@ import { SiteIcon } from "@/components/site-icon";
 import Image from "next/image";
 import Link from "next/link";
 import { leadership } from "@/lib/site-content";
+import { labPhotos } from "@/lib/lab-photos";
 import styles from "./about-page.module.css";
 
 const highlights = [
@@ -24,7 +25,9 @@ const values = [
 export function AboutPage() {
   return <main id="main-content" className={styles.page}>
     <section className={styles.hero} aria-labelledby="about-title">
-      <div className={styles.heroImage}><Image src="/images/about-iths-dna-research.webp" alt="" fill priority sizes="(max-width:760px) 100vw, 50vw" /></div>
+      <div className={styles.heroImage} aria-hidden="true">
+        <Image src="/images/about-hero-background.png" alt="" fill priority sizes="100vw" />
+      </div>
       <div className={styles.heroContent}>
         <h1 id="about-title">About <span>ITHS</span></h1>
         <p>Specialist health science education connecting academic understanding with clinical practice since 2023.</p>
@@ -39,19 +42,22 @@ export function AboutPage() {
           <p>Explore specialist disciplines and get guidance on the next step from education to a career in health science.</p>
           <Link className={styles.inlineLink} href="/academics/">Explore our departments <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link>
         </div>
+        <div className={styles.whyImage}>
+          <Image src={labPhotos.microscopy.src} alt={labPhotos.microscopy.alt} fill sizes="(max-width: 760px) 100vw, 48vw" />
+        </div>
         <div className={styles.highlights} aria-label="ITHS highlights">
           {highlights.map(item => <div className={styles.highlight} key={item.label}><span className={styles.icon} aria-hidden="true">{item.icon}</span><strong>{item.value}</strong><p>{item.label}</p></div>)}
         </div>
       </div>
     </section>
 
-    <section className={`${styles.section} ${styles.tinted}`} aria-labelledby="about-leadership-title">
+    <section className={`${styles.section} ${styles.tinted} ${styles.leadershipSection}`} aria-labelledby="about-leadership-title">
       <div className={styles.container}>
         <div className={styles.sectionHead}><h2 id="about-leadership-title">Meet Our <span>Leadership</span></h2><p>The people guiding health science education at ITHS.</p></div>
         <div className={styles.leaders}>
           {leadership.map(person => <article className={styles.leader} key={person.href}>
             <div className={styles.portrait}><span className={styles.badge}>{person.badge}</span><Image src={person.title === "Founder" ? "/home/founder.png" : "/home/director.webp"} alt={person.name} fill sizes="(max-width: 760px) 90vw, 450px" /></div>
-            <div className={styles.leaderBody}><h3>{person.name}</h3><p className={styles.role}>{person.title}</p><ul className={styles.credentials}>{person.credentials.map(credential => <li key={credential}>{credential}</li>)}</ul><p>{person.description}</p><blockquote>“{person.quote}”</blockquote><Link className={styles.inlineLink} href={person.href}>Read {person.title.toLowerCase()}&apos;s message <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link></div>
+            <div className={styles.leaderBody}><h3>{person.name}</h3><p className={styles.role}>{person.title}</p><ul className={styles.credentials}>{person.credentials.map(credential => <li key={credential}>{credential}</li>)}</ul><p>{person.description}</p><blockquote>â€œ{person.quote}â€</blockquote><Link className={styles.inlineLink} href={person.href}>Read {person.title.toLowerCase()}&apos;s message <span aria-hidden="true"><SiteIcon name="arrowRight" /></span></Link></div>
           </article>)}
         </div>
       </div>

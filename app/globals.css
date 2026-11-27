@@ -346,6 +346,12 @@ h1 em, h2 em { color: var(--color-accent); font-weight: 400; }
 .page-body { background: white; }
 .page-body-events { padding-block: 58px 80px; }
 .content-page-leadership .page-body-leadership { padding-block: clamp(36px, 5vw, 70px); }
+.content-page-leadership .page-body.page-body-leadership { background: #fff; }
+.content-page-leadership .page-content-leadership-showcase .page-article { border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.content-page-leadership .page-body-leadership .leadership-showcase-card { background: #f2f5f9; }
+.content-page-leadership .page-body-leadership .leadership-showcase-card .leadership-photo-wrap { background: #102748; }
+.content-page-leadership .page-body-leadership .leadership-showcase-card .leadership-profile-photo { background: transparent; }
+.content-page-leadership .page-body-leadership .page-related .related-links a { background: #f2f5f9; }
 .page-body-leadership { background: #f1f4f7; }
 .page-content-layout { display: grid; grid-template-columns: minmax(0, 1fr) 270px; align-items: start; gap: 9%; }
 .page-content-layout.page-content-leadership { width: min(var(--container-width), calc(100% - var(--page-gutter) * 2)); grid-template-columns: minmax(0, 1fr) 270px; gap: 50px; }

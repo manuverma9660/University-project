@@ -1,12 +1,21 @@
 .page { --navy:#102748; --red:#d71925; color:#334155; background:#fff; font-family:Arial,Helvetica,sans-serif; line-height:1.7; }
 .container { width:min(1200px,calc(100% - 48px)); margin-inline:auto; }
-.governanceHero { position:relative; isolation:isolate; display:flex; min-height:380px; align-items:center; overflow:hidden; background:#0e2142; }
+.governanceHero { position:relative; isolation:isolate; display:flex; min-height:560px; align-items:center; overflow:hidden; background:#0e2142; }
 .governanceHero > img { z-index:-2; object-fit:cover; object-position:right 42%; }
-.heroShade { position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,#0d2140f2 0%,#102748d9 45%,#10274840 100%); }
-.governanceHero .container { padding-block:70px; }
+.heroShade { position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,#10063feb 0%,#10063fc7 42%,#10274845 100%); }
+.governanceHero .container { position:relative; z-index:2; padding-block:70px 104px; }
+.breadcrumbs { display:flex; flex-wrap:wrap; gap:9px; margin-bottom:34px; color:#c8d5e5; font-size:11px; text-transform:capitalize; }
+.breadcrumbs a { color:inherit; }
+.breadcrumbs a:hover { color:#fff; }
+.breadcrumbs > span:nth-child(even) { color:#d8202f; }
+.breadcrumbs > span[aria-current="page"] { color:#c8d5e5; }
 .eyebrow { margin:0 0 12px; color:var(--red); font-size:12px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
 .governanceHero h1,.partnershipCopy h1 { max-width:760px; margin:0; color:#fff; font-size:clamp(38px,5vw,62px); letter-spacing:-.04em; line-height:1.08; }
+.governanceHero h1::after { display:block; width:88px; height:5px; margin-top:24px; border-radius:3px; background:#d8202f; content:""; }
 .governanceHero .container > p:not(.eyebrow) { max-width:690px; margin:18px 0 0; color:#e2e9f3; font-size:17px; }
+.heroWaveRed,.heroWaveWhite { position:absolute; z-index:1; right:0; bottom:-1px; left:0; width:100%; pointer-events:none; }
+.heroWaveRed { height:74px; background:#d8202f; clip-path:polygon(0 25%,12% 37%,25% 62%,38% 86%,52% 100%,68% 95%,82% 76%,100% 43%,100% 100%,0 100%); }
+.heroWaveWhite { height:68px; background:#fff; clip-path:polygon(0 28%,12% 40%,25% 65%,38% 89%,52% 100%,68% 95%,82% 76%,100% 43%,100% 100%,0 100%); }
 .heroLink { display:inline-flex; gap:12px; margin-top:22px; color:white; font-size:14px; font-weight:800; text-decoration:none; }
 .heroLink span { color:#ff6b75; }
 .section { padding-block:70px 84px; }
@@ -14,7 +23,7 @@
 .sectionHead h2 { margin:0; color:var(--navy); font-size:clamp(30px,3.5vw,44px); letter-spacing:-.035em; line-height:1.15; }
 .sectionHead > p:last-child { color:#64748b; }
 .governanceGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
-.governanceCard { display:flex; min-height:230px; flex-direction:column; padding:25px; border:1px solid #e1e7ef; border-radius:13px; color:inherit; text-decoration:none; transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease; }
+.governanceCard { display:flex; min-height:230px; flex-direction:column; padding:25px; border:1px solid #e1e7ef; border-radius:13px; background:#f2f5f9; color:inherit; text-decoration:none; transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease; }
 .governanceCard:hover { transform:translateY(-3px); border-color:#aebbd0; box-shadow:0 14px 32px #10274812; }
 .governanceCard > span { color:var(--red); font-size:12px; font-weight:800; }
 .governanceCard h3 { margin:15px 0 8px; color:var(--navy); font-size:22px; line-height:1.25; }
@@ -50,4 +59,4 @@
 .cardLink span { color:var(--red); }
 .page a:focus-visible { outline:3px solid var(--red); outline-offset:3px; }
 @media(max-width:980px) { .partnerGrid { grid-template-columns:repeat(2,minmax(0,1fr)); } .partnershipCopy { padding-left:32px; } }
-@media(max-width:680px) { .container { width:calc(100% - 36px); } .governanceHero { min-height:350px; } .governanceHero .container { padding-block:52px; } .governanceGrid,.partnerGrid { grid-template-columns:1fr; } .section { padding-block:50px 58px; } .recordNote { align-items:flex-start; flex-direction:column; padding:18px; } .partnershipCopy { width:calc(100% - 44px); padding:50px 0 44px; } .partnershipPhoto { min-height:0; } .partnerPhoto { height:210px; } }
+@media(max-width:680px) { .container { width:calc(100% - 36px); } .governanceHero { min-height:460px; } .governanceHero .container { padding-block:42px 82px; } .breadcrumbs { margin-bottom:24px; } .heroWaveRed { height:46px; } .heroWaveWhite { height:40px; } .governanceGrid,.partnerGrid { grid-template-columns:1fr; } .section { padding-block:50px 58px; } .recordNote { align-items:flex-start; flex-direction:column; padding:18px; } .partnershipCopy { width:calc(100% - 44px); padding:50px 0 44px; } .partnershipPhoto { min-height:0; } .partnerPhoto { height:210px; } }
