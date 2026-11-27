@@ -26,7 +26,7 @@ const faqs = [
 ];
 
 export function MolecularMedicinePage() {
-  return <div className="molecular-page">
+  return <div className="molecular-page molecular-medicine-programme-page">
     <section className="molecular-hero">
       <div className="molecular-inner molecular-hero-grid">
         <div className="molecular-hero-copy">
