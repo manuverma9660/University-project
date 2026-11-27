@@ -180,7 +180,7 @@
 }
 
 /* Founder message page */
-.founderMessagePage :global(.page-banner) { min-height: 560px; padding: 0; background-color: #10063f; background-image: linear-gradient(90deg, #10063ff5 0%, #10063fe8 38%, #1027489c 63%, #10274835 100%), url("/home/health-science-hero.webp"); background-position: center, center 48%; background-size: cover; }
+.founderMessagePage :global(.page-banner) { min-height: 560px; padding: 0; background-color: #10063f; background-image: linear-gradient(90deg, #10063ff5 0%, #10063fe8 38%, #1027489c 63%, #10274835 100%), url("/images/founder-director-hero.png"); background-position: center, center 48%; background-size: cover; }
 .founderMessagePage :global(.page-banner)::before,
 .founderMessagePage :global(.page-banner)::after { position: absolute; z-index: 0; right: 0; bottom: -1px; left: 0; width: 100%; border: 0; border-radius: 0; box-shadow: none; content: ""; pointer-events: none; }
 .founderMessagePage :global(.page-banner)::before { height: 74px; background: #d8202f; clip-path: polygon(0 25%, 12% 37%, 25% 62%, 38% 86%, 52% 100%, 68% 95%, 82% 76%, 100% 43%, 100% 100%, 0 100%); }
@@ -214,7 +214,7 @@
 .founderMessagePage :global(.page-related .related-links a:hover) { transform: translateY(-2px); border-color: #cbd7e6; background: #eaf0f7; }
 
 @media (max-width: 760px) {
-  .founderMessagePage :global(.page-banner) { min-height: 460px; padding: 0; background-image: linear-gradient(90deg, #10063ff5 0%, #10063fe8 48%, #1027489c 100%), url("/home/health-science-hero.webp"); background-position: center, 58% center; }
+  .founderMessagePage :global(.page-banner) { min-height: 460px; padding: 0; background-image: linear-gradient(90deg, #10063ff5 0%, #10063fe8 48%, #1027489c 100%), url("/images/founder-director-hero.png"); background-position: center, 58% center; }
   .founderMessagePage :global(.page-banner)::before { height: 46px; }
   .founderMessagePage :global(.page-banner)::after { height: 40px; }
   .founderMessagePage :global(.page-banner-inner) { width: calc(100% - 40px); }
