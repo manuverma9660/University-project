@@ -21,7 +21,7 @@ export const campusDetails: Record<CampusKey, {
     partner: "SCOPE Global Skills University",
     introduction: "Study Clinical Embryology & ART in Central India, with specialist teaching, practical lab learning, and clinical exposure.",
     benefits: ["Industry-aligned curriculum", "Hands-on laboratory learning", "Career and placement support"],
-    image: "/images/campuses/bhopal-hero.jfif",
+    image: "/images/campuses/bhopal-hero.webp",
     imageAlt: "Scope Global Skills University campus in Bhopal",
     programmeHeading: "Clinical Embryology & ART programmes",
     programmeIntro: "Choose a pathway that fits your academic background and career goals.",
