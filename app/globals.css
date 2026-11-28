@@ -2061,6 +2061,10 @@ h2 em {
   padding-block: 54px 80px;
 }
 
+.content-page-campus {
+  overflow-x: clip;
+}
+
 .page-body-cancer-biology {
   background: white;
   padding: 0 0 0;
@@ -3150,43 +3154,99 @@ h2 em {
 }
 
 .campus-landing-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: 100vw;
+  margin-inline: calc(50% - 50vw);
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr);
+  grid-template-columns: minmax(0, 1.02fr) minmax(340px, .98fr);
   align-items: center;
-  gap: clamp(28px, 5vw, 72px);
-  padding: clamp(30px, 5vw, 66px);
-  border-radius: 26px;
-  background: white;
+  gap: clamp(28px, 4vw, 58px);
+  min-height: 520px;
+  padding: clamp(30px, 4.5vw, 60px) clamp(28px, 6vw, 96px);
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 0;
+  background: radial-gradient(circle at 8% 5%, rgba(39, 114, 190, .4), transparent 34%), linear-gradient(125deg, #071b3a 0%, #0b2c59 57%, #123f78 100%);
+  box-shadow: 0 24px 60px rgba(14, 36, 73, .16);
 }
+
+.campus-landing-hero::before,
+.campus-landing-hero::after {
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(183, 216, 255, .12);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.campus-landing-hero::before {
+  width: 520px;
+  height: 520px;
+  top: -300px;
+  left: 35%;
+  box-shadow: 0 0 0 42px rgba(183, 216, 255, .035), 0 0 0 88px rgba(183, 216, 255, .025);
+}
+
+.campus-landing-hero::after {
+  width: 240px;
+  height: 240px;
+  right: 35%;
+  bottom: -190px;
+}
+
+.campus-landing-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 24px;
+  color: #a9c3e5;
+  font-size: 12px;
+}
+
+.campus-landing-breadcrumb a {
+  color: #d5e5fb;
+  text-decoration: none;
+}
+
+.campus-landing-breadcrumb a:hover { color: white; text-decoration: underline; }
 
 .campus-landing-kicker {
   display: inline-flex;
   margin-bottom: 18px;
-  padding: 9px 14px;
+  padding: 8px 13px;
   border-radius: 999px;
-  background: #eeedf8;
-  color: var(--color-primary);
+  border: 1px solid rgba(185, 217, 255, .26);
+  background: rgba(255, 255, 255, .08);
+  color: #c8e2ff;
   font-size: 12px;
   font-weight: var(--weight-bold);
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
-.campus-landing-hero h2 {
+.campus-landing-hero h1 {
   margin: 0 0 16px;
-  color: var(--color-primary);
+  color: white;
   font-family: var(--font-display);
-  font-size: clamp(38px, 4.5vw, 62px);
+  font-size: clamp(40px, 4.7vw, 66px);
   font-weight: 400;
-  line-height: 1.05;
+  line-height: 1.02;
+  letter-spacing: -.035em;
 }
 
-.campus-landing-hero h2 em {
-  color: var(--color-accent);
+.campus-landing-hero h1 em {
+  color: #91c8ff;
   font-style: normal;
 }
 
 .campus-landing-hero-copy>p {
   max-width: 620px;
-  color: var(--color-muted);
+  color: #d3e1f3;
   font-size: 17px;
   line-height: 1.6;
 }
@@ -3197,7 +3257,7 @@ h2 em {
   margin: 20px 0 26px;
   padding: 0;
   list-style: none;
-  color: var(--color-primary);
+  color: #f3f7ff;
   font-size: 14px;
   font-weight: var(--weight-semibold);
 }
@@ -3224,18 +3284,440 @@ h2 em {
 }
 
 .campus-landing-actions .text-link {
-  color: var(--color-primary);
+  color: white;
   font-size: 14px;
   font-weight: var(--weight-bold);
+}
+
+.campus-landing-actions .text-link:hover { color: #91c8ff; }
+
+.campus-landing-hero-visual {
+  position: relative;
+  min-width: 0;
+  min-height: 390px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .42);
+  border-radius: 22px;
+  background: #173d6d;
+  box-shadow: 0 18px 42px rgba(2, 14, 35, .32);
 }
 
 .campus-landing-hero-image {
   display: block;
   width: 100%;
-  height: 390px;
-  border-radius: 20px;
+  height: 430px;
   background: #e9edf4;
   object-fit: cover;
+}
+
+.campus-landing-hero-visual::after {
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(180deg, transparent 58%, rgb(3 19 43 / 18%));
+  content: "";
+  pointer-events: none;
+}
+
+.campus-landing-hero-visual figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 18px;
+  bottom: 18px;
+  left: auto;
+  width: max-content;
+  max-width: calc(100% - 36px);
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid #e2eaf4;
+  border-radius: 12px;
+  background: #fff;
+  color: #142b50;
+  box-shadow: 0 10px 24px rgb(15 39 73 / 15%);
+}
+
+.campus-landing-hero-visual figcaption span:first-child {
+  color: #2869a8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.campus-landing-hero-visual figcaption strong { font-size: 21px; }
+.campus-landing-hero-visual figcaption span:last-child { color: #536982; font-size: 12px; }
+
+.campus-landing-bhopal {
+  gap: clamp(30px, 4vw, 48px);
+}
+
+.campus-bhopal-photo-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  min-height: 0;
+  margin-top: -54px;
+  margin-bottom: calc(-1 * clamp(30px, 4vw, 48px));
+  margin-inline: calc(50% - 50vw);
+  padding: 0;
+  background: #fff;
+}
+
+.campus-bhopal-photo-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: initial;
+}
+
+.campus-bhopal-photo-hero > div {
+  position: absolute;
+  top: 50%;
+  right: clamp(88px, 15vw, 240px);
+  width: min(86%, 520px);
+  min-height: 184px;
+  margin: 0;
+  padding: 28px 30px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border: 1px solid rgb(199 226 255 / 28%);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgb(7 28 61 / 94%), rgb(15 58 105 / 92%));
+  color: #fff;
+  box-shadow: 0 14px 36px rgb(3 20 46 / 24%);
+  transform: translateY(-50%);
+}
+
+.campus-bhopal-campus-logo {
+  display: grid;
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 68%);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.campus-bhopal-campus-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.campus-bhopal-photo-hero-copy > div {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.campus-bhopal-campus-label {
+  color: #e8f3ff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.campus-bhopal-photo-hero strong {
+  font-family: var(--font-display);
+  font-size: clamp(25px, 2.6vw, 34px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.campus-bhopal-photo-hero p {
+  margin: 2px 0 0;
+  color: #d2e2f5;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.campus-landing-bhopal .campus-landing-hero {
+  border: 1px solid #e4eaf2;
+  background: #fff;
+  box-shadow: 0 16px 44px rgb(20 44 79 / 7%);
+}
+
+.campus-landing-bhopal .campus-landing-hero-copy {
+  transform: translateX(36px);
+}
+
+.campus-landing-bhopal .campus-landing-hero-visual {
+  transform: translateX(-36px);
+}
+
+.campus-landing-bhopal .campus-landing-hero::before,
+.campus-landing-bhopal .campus-landing-hero::after {
+  border-color: rgb(31 87 151 / 8%);
+}
+
+.campus-landing-bhopal .campus-landing-kicker {
+  border-color: #d7e5f7;
+  background: #edf4fd;
+  color: #1b4c83;
+}
+
+.campus-landing-bhopal .campus-landing-hero h1 { color: #142b50; }
+.campus-landing-bhopal .campus-landing-hero h1 em { color: #246fc0; }
+.campus-landing-bhopal .campus-landing-hero-copy>p { color: #536982; }
+.campus-landing-bhopal .campus-landing-hero-copy>ul { color: #1b3153; }
+.campus-landing-bhopal .campus-landing-breadcrumb { color: #7889a0; }
+.campus-landing-bhopal .campus-landing-breadcrumb a { color: #315f92; }
+.campus-landing-bhopal .campus-landing-actions .text-link { color: #173b68; }
+.campus-landing-bhopal .campus-landing-actions .text-link:hover { color: #2474c5; }
+
+.campus-landing-bhopal .campus-bhopal-photo-hero > div {
+  top: auto;
+  right: auto;
+  bottom: clamp(6px, .8vw, 12px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.campus-landing-shimla {
+  gap: clamp(30px, 4vw, 48px);
+}
+
+.campus-landing-shimla .campus-landing-hero {
+  border: 1px solid #e4eaf2;
+  background: #fff;
+  box-shadow: 0 16px 44px rgb(20 44 79 / 7%);
+}
+
+.campus-landing-shimla .campus-landing-hero-copy { transform: translateX(36px); }
+.campus-landing-shimla .campus-landing-hero-visual { transform: translateX(-36px); }
+.campus-landing-shimla .campus-landing-hero h1 { color: #142b50; }
+.campus-landing-shimla .campus-landing-hero h1 em { color: #246fc0; }
+.campus-landing-shimla .campus-landing-hero-copy>p { color: #536982; }
+.campus-landing-shimla .campus-landing-hero-copy>ul { color: #1b3153; }
+.campus-landing-shimla .campus-landing-breadcrumb { color: #7889a0; }
+.campus-landing-shimla .campus-landing-breadcrumb a { color: #315f92; }
+.campus-landing-shimla .campus-landing-kicker {
+  border-color: #d7e5f7;
+  background: #edf4fd;
+  color: #1b4c83;
+}
+.campus-landing-shimla .campus-landing-actions .text-link { color: #173b68; }
+.campus-landing-shimla .campus-landing-actions .text-link:hover { color: #2474c5; }
+
+.campus-shimla-photo-hero {
+  isolation: isolate;
+  height: clamp(500px, 42vw, 680px);
+  min-height: 0;
+  background: #17395f;
+}
+
+.campus-shimla-photo-hero > img {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 8%;
+}
+
+.campus-shimla-photo-hero > div {
+  top: auto;
+  right: auto;
+  bottom: clamp(6px, .8vw, 12px);
+  left: 50%;
+  width: min(86%, 520px);
+  z-index: 1;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, rgb(7 28 61 / 94%), rgb(15 58 105 / 92%));
+}
+
+.campus-landing-shimla .campus-landing-hero-visual::after {
+  background: linear-gradient(180deg, transparent 58%, rgb(3 19 43 / 18%));
+}
+
+.campus-landing-shimla .campus-landing-hero-visual figcaption {
+  right: 18px;
+  left: auto;
+  width: max-content;
+  max-width: calc(100% - 36px);
+  bottom: 18px;
+  padding: 14px 16px;
+  border: 1px solid #e2eaf4;
+  border-radius: 12px;
+  background: #fff;
+  color: #142b50;
+  box-shadow: 0 10px 24px rgb(15 39 73 / 15%);
+  text-shadow: none;
+}
+
+.campus-landing-shimla .campus-landing-hero-visual figcaption span:first-child {
+  color: #2869a8;
+}
+
+.campus-landing-hoshiarpur {
+  gap: clamp(30px, 4vw, 48px);
+}
+
+.campus-landing-hoshiarpur .campus-landing-hero {
+  border: 1px solid #e4eaf2;
+  background: #fff;
+  box-shadow: 0 16px 44px rgb(20 44 79 / 7%);
+}
+
+.campus-landing-hoshiarpur .campus-landing-hero-copy { transform: translateX(36px); }
+.campus-landing-hoshiarpur .campus-landing-hero-visual { transform: translateX(-36px); }
+.campus-landing-hoshiarpur .campus-landing-hero h1 { color: #142b50; }
+.campus-landing-hoshiarpur .campus-landing-hero h1 em { color: #246fc0; }
+.campus-landing-hoshiarpur .campus-landing-hero-copy>p { color: #536982; }
+.campus-landing-hoshiarpur .campus-landing-hero-copy>ul { color: #1b3153; }
+.campus-landing-hoshiarpur .campus-landing-breadcrumb { color: #7889a0; }
+.campus-landing-hoshiarpur .campus-landing-breadcrumb a { color: #315f92; }
+.campus-landing-hoshiarpur .campus-landing-kicker {
+  border-color: #d7e5f7;
+  background: #edf4fd;
+  color: #1b4c83;
+}
+.campus-landing-hoshiarpur .campus-landing-actions .text-link { color: #173b68; }
+.campus-landing-hoshiarpur .campus-landing-actions .text-link:hover { color: #2474c5; }
+
+.campus-hoshiarpur-photo-hero {
+  isolation: isolate;
+  height: clamp(500px, 42vw, 680px);
+  min-height: 0;
+  background: #17395f;
+}
+
+.campus-hoshiarpur-photo-hero > img {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 48%;
+}
+
+.campus-landing-hoshiarpur .campus-hoshiarpur-photo-hero > div {
+  top: auto;
+  right: auto;
+  bottom: clamp(6px, .8vw, 12px);
+  left: 50%;
+  width: min(86%, 520px);
+  z-index: 1;
+  transform: translateX(-50%);
+}
+
+.campus-landing-hoshiarpur .campus-landing-hero-visual figcaption {
+  right: 18px;
+  left: auto;
+  width: max-content;
+  max-width: calc(100% - 36px);
+  bottom: 18px;
+  padding: 14px 16px;
+  border: 1px solid #e2eaf4;
+  border-radius: 12px;
+  background: #fff;
+  color: #142b50;
+  box-shadow: 0 10px 24px rgb(15 39 73 / 15%);
+  text-shadow: none;
+}
+
+.campus-landing-hoshiarpur .campus-landing-hero-visual figcaption span:first-child { color: #2869a8; }
+.campus-landing-hoshiarpur .campus-landing-hero-visual figcaption span:last-child { color: #536982; }
+
+.campus-landing-mohali {
+  gap: clamp(30px, 4vw, 48px);
+}
+
+.campus-landing-mohali .campus-landing-hero {
+  border: 1px solid #e4eaf2;
+  background: #fff;
+  box-shadow: 0 16px 44px rgb(20 44 79 / 7%);
+}
+
+.campus-landing-mohali .campus-landing-hero-copy { transform: translateX(36px); }
+.campus-landing-mohali .campus-landing-hero-visual { transform: translateX(-36px); }
+.campus-landing-mohali .campus-landing-hero h1 { color: #142b50; }
+.campus-landing-mohali .campus-landing-hero h1 em { color: #246fc0; }
+.campus-landing-mohali .campus-landing-hero-copy>p { color: #536982; }
+.campus-landing-mohali .campus-landing-hero-copy>ul { color: #1b3153; }
+.campus-landing-mohali .campus-landing-breadcrumb { color: #7889a0; }
+.campus-landing-mohali .campus-landing-breadcrumb a { color: #315f92; }
+.campus-landing-mohali .campus-landing-kicker {
+  border-color: #d7e5f7;
+  background: #edf4fd;
+  color: #1b4c83;
+}
+.campus-landing-mohali .campus-landing-actions .text-link { color: #173b68; }
+.campus-landing-mohali .campus-landing-actions .text-link:hover { color: #2474c5; }
+.campus-landing-mohali .campus-bhopal-campus-logo {
+  width: 144px;
+  height: 64px;
+  flex-basis: 144px;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.campus-mohali-photo-hero {
+  isolation: isolate;
+  height: clamp(500px, 42vw, 680px);
+  min-height: 0;
+  background: #17395f;
+}
+
+.campus-mohali-photo-hero > img {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
+.campus-landing-mohali .campus-mohali-photo-hero > div {
+  top: auto;
+  right: auto;
+  bottom: clamp(6px, .8vw, 12px);
+  left: 50%;
+  width: min(86%, 520px);
+  z-index: 1;
+  transform: translateX(-50%);
+}
+
+.campus-landing-mohali .campus-landing-hero-visual figcaption {
+  right: 18px;
+  left: auto;
+  width: max-content;
+  max-width: calc(100% - 36px);
+  bottom: 18px;
+  padding: 14px 16px;
+  border: 1px solid #e2eaf4;
+  border-radius: 12px;
+  background: #fff;
+  color: #142b50;
+  box-shadow: 0 10px 24px rgb(15 39 73 / 15%);
+  text-shadow: none;
+}
+
+.campus-landing-mohali .campus-landing-hero-visual figcaption span:first-child { color: #2869a8; }
+.campus-landing-mohali .campus-landing-hero-visual figcaption span:last-child { color: #536982; }
+
+.campus-landing-shimla .campus-landing-hero-visual figcaption span:last-child {
+  color: #536982;
+}
+
+.campus-landing-shimla .campus-bhopal-campus-logo {
+  width: 82px;
+  height: 82px;
+  flex-basis: 82px;
+  border-radius: 50%;
 }
 
 .campus-programmes,
@@ -3798,7 +4280,7 @@ h2 em {
 }
 
 .cancer-course-page .cancer-course-hero {
-  background: linear-gradient(90deg, rgb(4 16 54 / 62%) 0%, rgb(5 22 68 / 36%) 55%, rgb(5 22 68 / 22%) 100%), url("/images/stem-cell-hero.png") center / cover no-repeat;
+  background: linear-gradient(90deg, rgb(4 16 54 / 78%) 0%, rgb(5 22 68 / 56%) 55%, rgb(5 22 68 / 28%) 100%), url("/cancer-biology.webp") center / cover no-repeat;
 }
 .cancer-course-page .cancer-course-hero::after { display: none; }
 
@@ -3987,6 +4469,12 @@ h2 em {
   padding-block: 55px 62px;
   background: linear-gradient(115deg, var(--color-primary) 0%, var(--color-primary) 58%, var(--color-primary) 100%);
   color: white;
+}
+
+.neuroscience-hero {
+  background-image: linear-gradient(90deg, rgb(13 12 57 / 78%) 0%, rgb(13 12 57 / 58%) 48%, rgb(13 12 57 / 28%) 100%), url("/images/about-iths-biomedical.webp");
+  background-position: center;
+  background-size: cover;
 }
 
 .molecular-hero::after {
@@ -4468,7 +4956,7 @@ h2 em {
 }
 
 .clinical-embryology-page .molecular-hero {
-  background: linear-gradient(90deg, rgb(5 12 43 / 82%) 0%, rgb(7 16 53 / 50%) 48%, rgb(7 16 53 / 25%) 100%), url("/images/clinical-embryology-hero.png") center / cover no-repeat;
+  background: linear-gradient(90deg, rgb(5 12 43 / 82%) 0%, rgb(7 16 53 / 50%) 48%, rgb(7 16 53 / 25%) 100%), url("/clinical-embryology.webp") center / cover no-repeat;
 }
 
 .clinical-embryology-page .molecular-hero::after {
@@ -4747,7 +5235,7 @@ h2 em {
 }
 
 .stem-cell-programme-page .molecular-hero {
-  background: linear-gradient(90deg, rgb(5 12 43 / 78%) 0%, rgb(7 16 53 / 48%) 48%, rgb(7 16 53 / 22%) 100%), url("/images/stem-cell-hero.png") 58% center / cover no-repeat;
+  background: linear-gradient(90deg, rgb(5 12 43 / 78%) 0%, rgb(7 16 53 / 48%) 48%, rgb(7 16 53 / 22%) 100%), url("/stem-cell.webp") 58% center / cover no-repeat;
 }
 
 .stem-cell-programme-page .molecular-hero::after {
@@ -4932,8 +5420,222 @@ h2 em {
   font-size: 16px;
 }
 
+/* Neuroscience page: give each learning section its own coordinated surface. */
+.neuroscience-page .molecular-overview {
+  position: relative;
+  margin-block: 26px;
+  padding: 54px clamp(24px, 5vw, 68px);
+  border: 1px solid #dce6f2;
+  border-radius: 24px;
+  background: linear-gradient(120deg, #f5f8ff 0%, #edf4fc 100%);
+  box-shadow: 0 20px 55px rgb(16 39 72 / 7%);
+}
+
+.neuroscience-page .molecular-overview > div {
+  max-width: 640px;
+}
+
+.neuroscience-page .molecular-overview img {
+  border: 5px solid white;
+  border-radius: 18px 48px 18px 48px;
+  box-shadow: 0 18px 40px rgb(10 37 83 / 18%);
+}
+
+.neuroscience-page .molecular-pathways {
+  background: #fff;
+}
+
+.neuroscience-page .molecular-pathways .molecular-heading h2::after,
+.neuroscience-page .molecular-benefits .molecular-heading h2::after {
+  display: block;
+  width: 54px;
+  height: 4px;
+  margin: 14px auto 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #e5262a, #438bea);
+  content: "";
+}
+
+.neuroscience-page .molecular-benefit-grid article {
+  min-height: 190px;
+  border-color: #dce6f2;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgb(16 39 72 / 6%);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.neuroscience-page .molecular-benefit-grid article:hover {
+  transform: translateY(-5px);
+  border-color: #8db8ea;
+  box-shadow: 0 18px 36px rgb(16 39 72 / 11%);
+}
+
+.neuroscience-page .molecular-benefit-grid article > span {
+  border-radius: 13px;
+  background: linear-gradient(145deg, #eaf2ff, #f9e9ee);
+  color: #174b8d;
+}
+
+.neuroscience-page .molecular-compare {
+  padding: 72px 0 78px;
+  background: #f1f5fb;
+}
+
+.neuroscience-page .molecular-compare > .molecular-heading,
+.neuroscience-page .molecular-compare > .molecular-table-wrap,
+.neuroscience-page .molecular-compare > .clinical-eligibility-note {
+  width: min(1220px, calc(100% - 64px));
+  margin-inline: auto;
+}
+
+.neuroscience-page .molecular-compare .molecular-table-wrap {
+  overflow: hidden;
+  border-color: #d8e2ef;
+  border-radius: 18px;
+  box-shadow: 0 18px 42px rgb(16 39 72 / 8%);
+}
+
+.neuroscience-page .molecular-compare tbody tr:nth-child(even) {
+  background: #f7faff;
+}
+
+.neuroscience-page .molecular-fit {
+  background: radial-gradient(ellipse at 92% 8%, #dbe9ff 0, transparent 32%), #eaf1fb;
+}
+
+.neuroscience-page .molecular-fit-grid article {
+  min-height: 150px;
+  border-color: #d7e3f3;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgb(18 47 92 / 7%);
+}
+
+.neuroscience-page .molecular-fit-grid h3 {
+  color: #164c8d;
+}
+
+.neuroscience-page .molecular-careers {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 88% 12%, #1457a5 0, transparent 36%), linear-gradient(115deg, #111640, #071d49);
+}
+
+.neuroscience-page .molecular-careers::after {
+  position: absolute;
+  top: -110px;
+  right: -55px;
+  width: 340px;
+  height: 340px;
+  border: 1px solid rgb(138 190 255 / 24%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 38px rgb(138 190 255 / 5%), 0 0 0 76px rgb(138 190 255 / 4%);
+  content: "";
+  pointer-events: none;
+}
+
+.neuroscience-page .molecular-career-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.neuroscience-page .molecular-career-list p {
+  min-height: 58px;
+  align-items: center;
+  background: rgb(255 255 255 / 5%);
+}
+
+.neuroscience-page .molecular-benefits {
+  background: #fff;
+}
+
+.neuroscience-page .molecular-faq {
+  background: #f3f6fb;
+}
+
+.neuroscience-page .molecular-faq-list details {
+  border-color: #d9e3ef;
+  box-shadow: 0 8px 22px rgb(16 39 72 / 4%);
+}
+
+.neuroscience-page .molecular-faq-list details[open] {
+  border-color: #b8cdec;
+  background: #e8f0fb;
+}
+
+.neuroscience-page .molecular-cta {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(115deg, #111640, #092e65);
+}
+
+.neuroscience-page .molecular-cta::before {
+  position: absolute;
+  top: -175px;
+  left: 50%;
+  width: 460px;
+  height: 460px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 42px rgb(255 255 255 / 4%);
+  content: "";
+  pointer-events: none;
+}
+
+.neuroscience-page .molecular-cta > .molecular-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.neuroscience-page .molecular-cta a:first-child {
+  background: linear-gradient(120deg, #e31e2c, #f2363e);
+}
+
+.neuroscience-page .molecular-related {
+  padding-inline: 26px;
+  border-top: 1px solid #e0e7f0;
+}
+
+.neuroscience-page .molecular-related a {
+  border-color: #dce5f0;
+  background: #f7f9fc;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.neuroscience-page .molecular-related a:hover {
+  transform: translateY(-2px);
+  border-color: #9dbbe2;
+  background: #eef4fd;
+}
+
+@media (max-width: 760px) {
+  .neuroscience-page .molecular-overview {
+    margin-block: 16px;
+    padding: 28px 20px;
+    border-radius: 18px;
+  }
+
+  .neuroscience-page .molecular-overview img {
+    height: 260px;
+  }
+
+  .neuroscience-page .molecular-compare > .molecular-heading,
+  .neuroscience-page .molecular-compare > .molecular-table-wrap,
+  .neuroscience-page .molecular-compare > .clinical-eligibility-note {
+    width: calc(100% - 32px);
+  }
+
+  .neuroscience-page .molecular-benefit-grid article,
+  .neuroscience-page .molecular-fit-grid article {
+    min-height: 0;
+  }
+
+  .neuroscience-page .molecular-related {
+    padding-inline: 0;
+  }
+}
+
 .nutrigenetics-page .molecular-hero {
-  background: linear-gradient(90deg, rgb(4 18 58 / 76%) 0%, rgb(5 28 78 / 42%) 52%, rgb(5 28 78 / 20%) 100%), url("/images/nutrigenetics-hero.png") center / cover no-repeat;
+  background: linear-gradient(90deg, rgb(4 18 58 / 76%) 0%, rgb(5 28 78 / 42%) 52%, rgb(5 28 78 / 20%) 100%), url("/nutrigenetics.webp") center / cover no-repeat;
 }
 
 .nutrigenetics-page .molecular-hero::after {
@@ -5535,6 +6237,14 @@ h2 em {
   border: 1px solid var(--color-border);
   border-radius: 16px;
   background: white;
+  box-shadow: 0 10px 26px rgba(23, 41, 79, .045);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.campus-programme-card:hover {
+  transform: translateY(-4px);
+  border-color: #a8c9ef;
+  box-shadow: 0 18px 36px rgba(23, 41, 79, .11);
 }
 
 .campus-programme-level {
@@ -5602,14 +6312,23 @@ h2 em {
 
 .campus-highlights {
   padding: clamp(28px, 4vw, 48px);
+  border: 1px solid #e1e9f5;
   border-radius: 22px;
-  background: #eeeff5;
+  background: linear-gradient(135deg, #f5f8fd, #eaf1fb);
 }
 
 .campus-highlight-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
+  gap: 14px;
+}
+
+.campus-highlight-grid article {
+  min-height: 165px;
+  padding: 22px;
+  border: 1px solid #dce6f3;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .82);
 }
 
 .campus-highlight-grid article>span {
@@ -5667,6 +6386,149 @@ h2 em {
 .campus-location .button {
   flex: 0 0 auto;
   background: var(--color-accent);
+}
+
+.campus-location-partner {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(20px, 3vw, 38px);
+  min-height: 270px;
+  padding: clamp(30px, 4vw, 52px);
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 9%);
+  border-radius: 25px;
+  background: #1b1a45;
+  box-shadow: 0 18px 42px rgb(17 25 55 / 16%);
+}
+
+.campus-location-partner::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 0 auto;
+  width: min(54%, 700px);
+  content: "";
+  background: linear-gradient(90deg, #1b1a45 0%, rgb(27 26 69 / 86%) 28%, rgb(27 26 69 / 58%) 100%), var(--campus-partner-image) center / cover no-repeat;
+}
+
+.campus-location-partner-bhopal { --campus-partner-image: url("/images/campuses/scope-global-skills-university-hero.png"); }
+.campus-location-partner-shimla { --campus-partner-image: url("/images/campuses/bahra-shimla-hero-bg.png"); }
+.campus-location-partner-hoshiarpur { --campus-partner-image: url("/images/campuses/rayat-bahra-hoshiarpur-hero.png"); }
+.campus-location-partner-mohali { --campus-partner-image: url("/images/campuses/rayat-bahra-mohali-hero.png"); }
+
+.campus-location-scope-logo {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: 92px;
+  height: 92px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 72%);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgb(0 0 0 / 18%);
+}
+
+.campus-location-scope-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 7px;
+  box-sizing: border-box;
+}
+
+.campus-location-partner-logo-round { border-radius: 50%; }
+.campus-location-partner-mohali { grid-template-columns: 144px minmax(0, 1fr) auto; }
+.campus-location-partner-mohali .campus-location-scope-logo {
+  width: 144px;
+  height: 64px;
+  border-radius: 10px;
+}
+
+.campus-location-scope-copy,
+.campus-location-partner > .button,
+.campus-location-scope-curve {
+  position: relative;
+  z-index: 2;
+}
+
+.campus-location-partner .campus-location-scope-copy .eyebrow {
+  margin: 0 0 14px;
+  color: #ff8e8b;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.campus-location-partner .campus-location-scope-copy h2 {
+  margin: 0 0 12px;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(27px, 3.2vw, 42px);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+.campus-location-partner .campus-location-scope-copy > p:not(.eyebrow) {
+  margin: 0 0 14px;
+  color: #eef1ff;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.campus-location-partner .campus-location-scope-copy .campus-address {
+  margin: 0;
+  color: #d2d6ed;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.campus-location-partner > .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-width: 220px;
+  padding: 17px 24px;
+  border: 0;
+  border-radius: 14px;
+  background: #df2428;
+  color: #fff;
+  white-space: nowrap;
+  box-shadow: 0 12px 25px rgb(0 0 0 / 18%);
+  transition: transform .2s ease, background-color .2s ease;
+}
+
+.campus-location-partner > .button:hover {
+  transform: translateY(-2px);
+  background: #c91d24;
+}
+
+.campus-location-scope-curve {
+  position: absolute;
+  z-index: 1;
+  width: 190px;
+  height: 190px;
+  border: 2px solid rgb(237 47 53 / 24%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.campus-location-scope-curve-top {
+  top: -130px;
+  left: -95px;
+  box-shadow: 0 0 0 14px rgb(237 47 53 / 5%), 0 0 0 30px rgb(237 47 53 / 4%);
+}
+
+.campus-location-scope-curve-bottom {
+  right: -132px;
+  bottom: -134px;
+  box-shadow: 0 0 0 14px rgb(237 47 53 / 5%), 0 0 0 30px rgb(237 47 53 / 4%);
 }
 
 .leader-message {
@@ -6035,6 +6897,10 @@ h2 em {
     padding: 32px;
   }
 
+  .campus-landing-hero-visual {
+    min-height: 330px;
+  }
+
   .campus-landing-hero-image {
     height: 330px;
   }
@@ -6265,6 +7131,113 @@ h2 em {
     padding: 24px;
   }
 
+  .campus-landing-bhopal .campus-landing-hero-copy,
+  .campus-landing-bhopal .campus-landing-hero-visual,
+  .campus-landing-shimla .campus-landing-hero-copy,
+  .campus-landing-shimla .campus-landing-hero-visual,
+  .campus-landing-hoshiarpur .campus-landing-hero-copy,
+  .campus-landing-hoshiarpur .campus-landing-hero-visual,
+  .campus-landing-mohali .campus-landing-hero-copy,
+  .campus-landing-mohali .campus-landing-hero-visual {
+    transform: none;
+  }
+
+  .campus-bhopal-photo-hero {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .campus-shimla-photo-hero {
+    height: clamp(360px, 92vw, 500px);
+  }
+
+  .campus-hoshiarpur-photo-hero {
+    height: clamp(360px, 92vw, 500px);
+  }
+
+  .campus-mohali-photo-hero {
+    height: clamp(360px, 92vw, 500px);
+  }
+
+  .campus-shimla-photo-hero > img {
+    object-position: left top;
+  }
+
+  .campus-landing-shimla .campus-shimla-photo-hero > div {
+    top: auto;
+    right: auto;
+    bottom: 8px;
+    left: 50%;
+    width: min(88%, 460px);
+    transform: translateX(-50%);
+  }
+
+  .campus-landing-hoshiarpur .campus-hoshiarpur-photo-hero > div {
+    top: auto;
+    right: auto;
+    bottom: 8px;
+    left: 50%;
+    width: min(88%, 460px);
+    transform: translateX(-50%);
+  }
+
+  .campus-landing-mohali .campus-mohali-photo-hero > div {
+    top: auto;
+    right: auto;
+    bottom: 8px;
+    left: 50%;
+    width: min(88%, 460px);
+    transform: translateX(-50%);
+  }
+
+  .campus-bhopal-photo-hero > div {
+    right: 22px;
+    width: min(88%, 460px);
+    max-width: calc(100% - 44px);
+    gap: 13px;
+    padding: 18px 20px;
+  }
+
+  .campus-landing-bhopal .campus-bhopal-photo-hero > div {
+    top: auto;
+    right: auto;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .campus-bhopal-photo-hero-copy {
+    min-height: 164px;
+    padding: 18px 20px;
+    gap: 13px;
+  }
+
+  .campus-bhopal-campus-logo {
+    width: 54px;
+    height: 54px;
+    flex-basis: 54px;
+    border-radius: 12px;
+  }
+
+  .campus-landing-shimla .campus-bhopal-campus-logo {
+    width: 58px;
+    height: 58px;
+    flex-basis: 58px;
+    border-radius: 50%;
+  }
+
+  .campus-landing-mohali .campus-bhopal-campus-logo {
+    width: 96px;
+    height: 52px;
+    flex-basis: 96px;
+    padding: 3px;
+    border-radius: 9px;
+  }
+
+  .campus-landing-hero-visual {
+    min-height: 250px;
+  }
+
   .campus-landing-hero-image {
     height: 260px;
   }
@@ -6278,6 +7251,46 @@ h2 em {
     align-items: flex-start;
     flex-direction: column;
     padding: 24px;
+  }
+
+  .campus-location-partner {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+    gap: 18px;
+    min-height: 0;
+    padding: 28px 22px;
+    border-radius: 22px;
+  }
+
+  .campus-location-partner::before {
+    width: 100%;
+    opacity: .4;
+  }
+
+  .campus-location-scope-logo {
+    width: 76px;
+    height: 76px;
+    border-radius: 16px;
+  }
+
+  .campus-location-partner-mohali { grid-template-columns: minmax(0, 1fr); }
+  .campus-location-partner-mohali .campus-location-scope-logo {
+    width: 112px;
+    height: 54px;
+  }
+
+  .campus-location-partner .campus-location-scope-copy h2 {
+    font-size: clamp(28px, 7vw, 36px);
+  }
+
+  .campus-location-partner .campus-location-scope-copy > p:not(.eyebrow) {
+    font-size: 15px;
+  }
+
+  .campus-location-partner > .button {
+    width: 100%;
+    min-width: 0;
+    white-space: normal;
   }
 
   .cancer-course-inner,
@@ -7218,4 +8231,300 @@ h2 em {
 .faq-list details[open] summary span,
 .home-faq-list details[open] summary span {
   transform: rotate(45deg);
+}
+
+/* B.Tech tissue engineering page: distinct surfaces for each course section. */
+.btech-tissue-page > .molecular-hero {
+  background-image: linear-gradient(90deg, rgb(10 16 65 / 78%) 0%, rgb(10 20 70 / 58%) 48%, rgb(6 18 62 / 24%) 100%), url("/images/notices/Laboratory-Exposure-Session-ITHS-1024x683.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+.btech-tissue-page > .molecular-hero::after {
+  opacity: .22;
+}
+
+.btech-tissue-page > .molecular-overview {
+  position: relative;
+  margin-block: 26px;
+  padding: 54px clamp(24px, 5vw, 68px);
+  border: 1px solid #dce6f2;
+  border-radius: 24px;
+  background: linear-gradient(120deg, #f5f8ff, #edf4fc);
+  box-shadow: 0 20px 55px rgb(16 39 72 / 7%);
+}
+
+.btech-tissue-page > .molecular-overview img {
+  border: 5px solid white;
+  border-radius: 18px 48px 18px 48px;
+  box-shadow: 0 18px 40px rgb(10 37 83 / 18%);
+}
+
+.btech-tissue-page > .molecular-pathways {
+  background: #eff4fb;
+}
+
+.btech-tissue-page > .molecular-pathways .molecular-course-grid article {
+  border-color: #d9e4f1;
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgb(16 39 72 / 7%);
+}
+
+.btech-tissue-page > .molecular-pathways .molecular-course-grid article:first-child {
+  border-top: 4px solid #e5262a;
+}
+
+.btech-tissue-page > .molecular-pathways .molecular-course-grid article:last-child {
+  border-top: 4px solid #2676c9;
+}
+
+.btech-tissue-page > .molecular-benefits:nth-of-type(4) {
+  background: white;
+}
+
+.btech-tissue-page > .molecular-benefits:nth-of-type(4) .molecular-benefit-grid article,
+.btech-tissue-page > .molecular-benefits:nth-of-type(7) .molecular-benefit-grid article {
+  border-color: #dce6f2;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgb(16 39 72 / 6%);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.btech-tissue-page > .molecular-benefits:nth-of-type(4) .molecular-benefit-grid article:hover,
+.btech-tissue-page > .molecular-benefits:nth-of-type(7) .molecular-benefit-grid article:hover {
+  transform: translateY(-4px);
+  border-color: #8db8ea;
+  box-shadow: 0 18px 36px rgb(16 39 72 / 10%);
+}
+
+.btech-tissue-page > .molecular-benefits:nth-of-type(4) .molecular-benefit-grid article {
+  border-bottom: 3px solid #3d82cf;
+}
+
+.btech-tissue-page > .molecular-careers {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 88% 12%, #1457a5 0, transparent 36%), linear-gradient(115deg, #111640, #071d49);
+}
+
+.btech-tissue-page > .molecular-careers .molecular-career-list p {
+  min-height: 58px;
+  align-items: center;
+  border-color: rgb(148 191 245 / 30%);
+  background: rgb(255 255 255 / 5%);
+}
+
+.btech-tissue-page > .molecular-compare {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 70px max(32px, calc((100% - 1220px) / 2)) 76px;
+  background: #f1f5fb;
+}
+
+.btech-tissue-page > .molecular-compare .molecular-table-wrap {
+  width: min(100%, 900px);
+  margin-inline: auto;
+  overflow-x: auto;
+  border-color: #d8e2ef;
+  border-radius: 18px;
+  box-shadow: 0 18px 42px rgb(16 39 72 / 8%);
+}
+
+.btech-tissue-page > .molecular-compare .molecular-table-wrap table {
+  table-layout: fixed;
+}
+
+.btech-tissue-page > .molecular-compare .molecular-table-wrap th:first-child,
+.btech-tissue-page > .molecular-compare .molecular-table-wrap td:first-child {
+  width: 38%;
+}
+
+.btech-tissue-page > .molecular-compare .molecular-table-wrap th,
+.btech-tissue-page > .molecular-compare .molecular-table-wrap td {
+  padding: 16px 20px;
+  text-align: center;
+}
+
+.btech-tissue-page > .molecular-compare tbody tr:nth-child(even) {
+  background: #f7faff;
+}
+
+.btech-tissue-page > .molecular-benefits:nth-of-type(7) {
+  background: linear-gradient(120deg, #f4f7fc, #edf3fb);
+}
+
+.btech-tissue-page > .molecular-faq {
+  background: white;
+}
+
+.btech-tissue-page > .molecular-faq .molecular-faq-list details {
+  border-color: #d9e3ef;
+  box-shadow: 0 8px 22px rgb(16 39 72 / 4%);
+}
+
+.btech-tissue-page > .molecular-faq .molecular-faq-list details[open] {
+  border-color: #b8cdec;
+  background: #e8f0fb;
+}
+
+.btech-tissue-page > .molecular-cta {
+  background: linear-gradient(115deg, #111640, #092e65);
+}
+
+.btech-tissue-page > .molecular-related {
+  border-top: 1px solid #e0e7f0;
+}
+
+.btech-tissue-page > .molecular-related a {
+  border-color: #dce5f0;
+  background: #f7f9fc;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.btech-tissue-page > .molecular-related a:hover {
+  transform: translateY(-2px);
+  border-color: #9dbbe2;
+  background: #eef4fd;
+}
+
+@media (max-width: 760px) {
+  .btech-tissue-page > .molecular-overview {
+    margin-block: 16px;
+    padding: 28px 20px;
+    border-radius: 18px;
+  }
+
+  .btech-tissue-page > .molecular-overview img {
+    height: 260px;
+  }
+
+  .btech-tissue-page > .molecular-compare {
+    padding: 48px 16px 54px;
+  }
+
+  .btech-tissue-page > .molecular-compare .molecular-table-wrap th,
+  .btech-tissue-page > .molecular-compare .molecular-table-wrap td {
+    padding-inline: 16px;
+    text-align: center;
+  }
+}
+
+/* Keep the B.Tech colour bands full-width instead of showing inset panels. */
+.btech-tissue-page > .molecular-overview {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 68px max(32px, calc((100% - 1220px) / 2));
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(110deg, #f4f8ff 0%, #eaf2fc 100%);
+  box-shadow: none;
+}
+
+.btech-tissue-page > .molecular-benefits {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 70px max(32px, calc((100% - 1220px) / 2)) 78px;
+}
+
+.btech-tissue-page > .molecular-benefits:nth-of-type(4) {
+  background: #fff;
+}
+
+.btech-tissue-page > .molecular-benefits:nth-of-type(4) .molecular-benefit-grid {
+  width: min(100%, 1000px);
+  margin-inline: auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 28px;
+}
+
+.btech-tissue-page > .molecular-benefits:nth-of-type(7) {
+  background: #edf3fb;
+}
+
+.btech-tissue-page > .molecular-benefits:nth-of-type(7) .molecular-benefit-grid article {
+  display: flex;
+  min-height: 176px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 26px 24px;
+  border: 1px solid #d8e3f0;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 26px rgb(16 39 72 / 7%);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.btech-tissue-page > .molecular-benefits:nth-of-type(7) .molecular-benefit-grid article:hover {
+  transform: translateY(-4px);
+  border-color: #a9c3e2;
+  box-shadow: 0 16px 32px rgb(16 39 72 / 12%);
+}
+
+.btech-tissue-page > .molecular-benefits:nth-of-type(7) .molecular-benefit-grid h3 {
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.btech-tissue-page > .molecular-benefits .molecular-benefit-grid article {
+  padding: 20px 10px;
+  border: 0;
+  border-bottom: 1px solid #cbd9e9;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.btech-tissue-page > .molecular-benefits .molecular-benefit-grid article:hover {
+  transform: none;
+  border-color: #4383c9;
+  box-shadow: none;
+}
+
+.btech-tissue-page > .molecular-careers .molecular-career-list p {
+  border: 1px solid rgb(148 191 245 / 36%);
+  border-radius: 9px;
+  background: rgb(255 255 255 / 5%);
+}
+
+.btech-tissue-page > .molecular-careers .molecular-career-list p:last-child {
+  grid-column: auto;
+}
+
+.btech-tissue-page > .molecular-related {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 42px max(32px, calc((100% - 1220px) / 2)) 58px;
+  background: #f8fafc;
+}
+
+@media (max-width: 760px) {
+  .btech-tissue-page > .molecular-overview,
+  .btech-tissue-page > .molecular-benefits,
+  .btech-tissue-page > .molecular-related {
+    padding-inline: 20px;
+  }
+
+  .btech-tissue-page > .molecular-benefits:nth-of-type(4) .molecular-benefit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btech-tissue-page > .molecular-benefits {
+    padding-block: 48px 56px;
+  }
+
+  .btech-tissue-page > .molecular-related {
+    padding-block: 36px 46px;
+  }
+
+  .btech-tissue-page > .molecular-careers .molecular-career-list p:last-child {
+    grid-column: auto;
+  }
 }

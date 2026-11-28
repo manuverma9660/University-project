@@ -72,6 +72,8 @@
 .tableWrap th, .tableWrap td { padding: 18px 20px; border-bottom: 1px solid #e2e8f0; font-size: 13px; line-height: 1.7; }
 .tableWrap thead th { background: var(--campus-navy); color: #fff; font-size: 12px; }
 .tableWrap tbody th { color: var(--campus-navy); }
+.compareCampus { display: flex; min-width: 0; align-items: center; gap: 12px; color: var(--campus-navy); font-size: 13px; font-weight: 700; line-height: 1.45; }
+.compareCampus img { display: block; width: 52px; height: 40px; flex: 0 0 52px; overflow: hidden; border: 1px solid #dce4ee; border-radius: 7px; object-fit: cover; box-shadow: 0 3px 9px #10274814; }
 .tableWrap tbody tr:last-child > * { border-bottom: 0; }
 .tableWrap td > a { display: inline-flex; min-height: 44px; align-items: center; gap: 8px; color: #b71925; font-size: 12px; font-weight: 600; white-space: nowrap; }
 .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; margin: 0; padding: 0; list-style: none; }
@@ -145,3 +147,157 @@
   .faqs details { padding-inline: 19px; }
 }
 @media (prefers-reduced-motion: reduce) { .collagePhoto img, .campusPhoto img { transition: none; } .collagePhoto:hover img, .campusPhoto:hover img { transform: none; } }
+
+.ctaCampus {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(64px, 7vw, 96px);
+  background: #14294b;
+  color: #e8eef9;
+}
+.ctaCampus::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  background: radial-gradient(ellipse at 79% 34%, rgb(129 166 220 / 11%), transparent 43%);
+}
+.ctaCampus::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: radial-gradient(ellipse at 75% 25%, rgb(117 160 220 / 13%), transparent 38%), radial-gradient(circle at -3% -45%, transparent 0 155px, rgb(239 65 77 / 20%) 156px 158px, transparent 159px 181px, rgb(239 65 77 / 13%) 182px 184px, transparent 185px), radial-gradient(circle at 104% 135%, transparent 0 175px, rgb(239 65 77 / 21%) 176px 178px, transparent 179px 201px, rgb(239 65 77 / 14%) 202px 204px, transparent 205px);
+}
+.ctaCampus > .container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(36px, 6vw, 92px);
+}
+.ctaCopy { min-width: 0; }
+.ctaCampus .eyebrow { margin-bottom: 16px; color: #ff929e; }
+.ctaCampus h2 { color: #fff; font-size: clamp(38px, 4.5vw, 58px); font-weight: 700; letter-spacing: -.035em; line-height: 1.08; }
+.ctaCampus .ctaCopy > p:not(.eyebrow) { max-width: 590px; margin: 20px 0 0; color: #e1e9f7; font-size: clamp(16px, 1.45vw, 19px); line-height: 1.65; }
+.ctaCampus .ctaActions { min-width: 285px; align-items: flex-start; gap: 13px; }
+.ctaCampus .ctaActions > .button {
+  display: inline-flex;
+  min-height: 60px;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 15px 24px;
+  border: 1px solid #eb2934;
+  border-radius: 14px;
+  background: #d71925;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  box-shadow: 0 12px 30px rgb(0 0 0 / 20%);
+  transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.ctaCampus .ctaActions > .button:hover { transform: translateY(-2px); background: #ed2631; box-shadow: 0 16px 32px rgb(0 0 0 / 25%); }
+.ctaCampus .ctaActions > a:not(.button) { gap: 10px; color: #e4ebf8; font-size: 14px; transition: color .2s ease, transform .2s ease; }
+.ctaCampus .ctaActions > a:not(.button):hover { transform: translateX(3px); color: #fff; }
+.ctaCampus .ctaActions > .ctaPhone { color: #fff; font-size: 14px; font-weight: 700; }
+.ctaPhone svg { width: 17px; height: 17px; color: #ff9ba2; }
+.ctaCampus .ctaActions > a:last-child { margin-top: 5px; }
+
+@media (max-width: 760px) {
+  .ctaCampus { padding-block: 54px; }
+  .ctaCampus > .container { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .ctaCampus h2 { max-width: 560px; font-size: clamp(36px, 9vw, 48px); }
+  .ctaCampus .ctaActions { min-width: 0; width: 100%; align-items: flex-start; }
+  .ctaCampus .ctaActions > .button { width: 100%; max-width: 360px; }
+}
+
+@media (max-width: 420px) {
+  .ctaCampus { padding-block: 44px; }
+  .ctaCampus > .container { width: calc(100% - 36px); }
+  .ctaCampus .ctaActions > .button { padding-inline: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctaCampus .ctaActions > .button,
+  .ctaCampus .ctaActions > a:not(.button) { transition: none; }
+}
+
+.campusCard { border-radius: 14px; }
+.campusPhoto { height: 210px; }
+.campusBody { padding: 22px; }
+.partnerLogo { height: 52px; margin-bottom: 15px; }
+.partnerLogo img { max-height: 52px; }
+.description { margin: 12px 0 17px; font-size: 13px; line-height: 1.65; }
+.programmes { padding-top: 16px; }
+.programmes ul { gap: 8px; margin-top: 10px; }
+.programmes a { min-height: 30px; font-size: 13px; }
+.highlights { padding-block: 16px; }
+.highlights ul { gap: 6px; margin-top: 10px; }
+.cardBottom { padding-top: 16px; }
+.cardActions { margin-top: 11px; }
+@media (max-width: 1080px) {
+  .campusPhoto { height: 190px; }
+  .campusBody { padding: 20px; }
+}
+@media (max-width: 760px) {
+  .campusPhoto { height: 205px; }
+  .campusBody { padding: 21px; }
+}
+@media (max-width: 480px) {
+  .campusPhoto { height: 170px; }
+  .campusBody { padding: 18px; }
+  .partnerLogo { height: 48px; margin-bottom: 13px; }
+  .partnerLogo img { max-height: 48px; }
+}
+
+.campusGrid { width: 100%; max-width: 980px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-inline: auto; }
+.campusCard { position: relative; min-width: 0; border-radius: 15px; box-shadow: 0 8px 24px rgb(16 39 72 / 7%); }
+.campusPhoto { height: 180px; }
+.campusBody { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-content: start; column-gap: 20px; row-gap: 0; padding: 22px; }
+.campusBody > * { min-width: 0; }
+.partnerLogo { position: absolute; z-index: 2; top: 14px; right: 14px; width: min(174px, calc(100% - 28px)); height: 46px; justify-content: center; margin: 0; padding: 4px 10px; border: 1px solid #e3e9f1; border-radius: 9px; background: #fff; box-shadow: 0 5px 14px rgb(16 39 72 / 12%); }
+.partnerLogo img { max-width: 150px; max-height: 36px; object-position: center; }
+.kicker, .campusBody h3, .partnerName, .description { grid-column: 1 / -1; }
+.campusBody .kicker { margin-bottom: 6px; }
+.campusBody h3 { font-size: clamp(24px, 2vw, 28px); }
+.partnerName { margin-top: 6px; font-size: 14px; }
+.description { margin: 10px 0 15px; font-size: 12.5px; line-height: 1.6; }
+.programmes { grid-column: 1; min-width: 0; padding-top: 13px; }
+.programmes ul { gap: 7px; margin-top: 8px; }
+.programmes a { min-height: 28px; font-size: 12px; line-height: 1.4; }
+.programmes a > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.programmes small { font-size: 10px; }
+.highlights { grid-column: 2; min-width: 0; padding-block: 13px 10px; border-top: 1px solid #e2e8f0; }
+.highlights ul { display: grid; gap: 7px; margin-top: 8px; }
+.highlights li { padding: 4px 7px; font-size: 10px; }
+.cardBottom { grid-column: 1 / -1; padding-top: 13px; }
+.cardBottom address { font-size: 11px; line-height: 1.6; }
+.cardBottom address > span { min-width: 0; overflow-wrap: anywhere; }
+.mapLink { min-height: 34px; font-size: 11px; }
+.cardActions { margin-top: 8px; }
+.cardActions .button, .outlineButton { min-height: 42px; }
+@media (max-width: 1000px) {
+  .campusGrid { max-width: 520px; grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .campusGrid { max-width: 520px; }
+  .campusPhoto { height: 205px; }
+  .campusBody { grid-template-columns: minmax(0, 1fr); padding: 21px; }
+  .programmes, .highlights, .cardBottom { grid-column: 1; }
+  .highlights { padding-block: 15px; }
+  .partnerLogo { top: 14px; right: 14px; }
+}
+@media (max-width: 480px) {
+  .campusPhoto { height: 170px; }
+  .campusBody { padding: 18px; }
+  .partnerLogo { top: 12px; right: 12px; width: 152px; height: 42px; }
+  .partnerLogo img { max-width: 132px; max-height: 32px; }
+  .locationBadge { right: 12px; bottom: 12px; left: 12px; max-width: calc(100% - 24px); padding: 6px 10px; white-space: normal; }
+  .cardActions { grid-template-columns: minmax(0, 1fr) auto; }
+  .cardActions .button { min-width: 0; }
+}
